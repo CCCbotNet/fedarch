@@ -610,7 +610,7 @@ Example:
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
-| 3.1.1.1 | 2026-W06 | GTM_2026-W06_277 | ⬜ AWAITING | #WeOwnSeason003 season alignment — version bump v2.4.3 → v3.1.1.1 (L-094); +Source of Truth URL (CCCbotNet/fedarch); +Season tag; Repository → CCCbotNet/fedarch; Document ID → CCC.md; #ContextSwap cccid.info → CCCbot.Net (×6); #ContextSwap snapshot.box → cccbot.eth (×2); -Adoption Signatures section; NO content changes; FULL PRESERVE (L-097) |
+| 3.1.1.1 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_346 | #WeOwnSeason003 season alignment — version bump v2.4.3 → v3.1.1.1 (L-094); +Source of Truth URL (CCCbotNet/fedarch); +Season tag; Repository → CCCbotNet/fedarch; Document ID → CCC.md; #ContextSwap cccid.info → CCCbot.Net (×6); #ContextSwap snapshot.box → cccbot.eth (×2); -Adoption Signatures section; NO content changes; FULL PRESERVE (L-097) |
 | 2.4.3 | 2026-W05 | GTM_2026-W05_793 | GTM_2026-W05_795 | +JRW (Webb) — xCRO; #ContextSwap: ccc.bot → cccid.info; #ContextSwap: D-038 @MAIT:#<SME> format |
 | 2.4.2 | 2026-W05 | GTM_2026-W05_270 | — | +CCC-ID Rules section; +Agent Identity Format section; +Contributors (LDC, SHD); TOC → 15 items; fixes applied |
 | 2.4.1 | 2026-W05 | GTM_2026-W05_262 | — | #ContextSwap: ILO → IAL; roles aligned with SharedKernel_v2.4.7 |
