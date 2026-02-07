@@ -1,13 +1,13 @@
 # BEST-PRACTICES.md
 
-## 📋 BEST-PRACTICES_v3.1.1.2.md
+## 📋 BEST-PRACTICES_v3.1.1.3.md
 ## ♾️ WeOwnNet 🌐 — #BestPractices
 
 | Field | Value |
 |-------|-------|
 | Document | BEST-PRACTICES.md |
-| Version | 3.1.1.2 |
-| CCC-ID | GTM_2026-W06_277 |
+| Version | 3.1.1.3 |
+| CCC-ID | GTM_2026-W06_413 |
 | Updated | 2026-02-07 (W06) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | 🔒 LOCKED |
@@ -41,8 +41,9 @@
 22. [CCC Workspace ACK Best Practices](#-ccc-workspace-ack-best-practices)
 23. [USER-IDENTITY Season Refresh Best Practices](#-user-identity-season-refresh-best-practices)
 24. [Season Certification Best Practices](#-season-certification-best-practices)
-25. [Version History](#-version-history)
-26. [Related Documents](#-related-documents)
+25. [CCC-ID Deconfliction Best Practices](#-ccc-id-deconfliction-best-practices)
+26. [Version History](#-version-history)
+27. [Related Documents](#-related-documents)
 
 ---
 
@@ -83,7 +84,8 @@ This document contains best practices for all contributors and agents in the ♾
 | BP-056 | CCC Workspace ACK Header | 1 |
 | BP-057 → BP-058 | USER-IDENTITY Season Refresh | 2 |
 | BP-059 | Season Certification (ISC) | 1 |
-| **TOTAL** | | **53** |
+| BP-060 | CCC-ID Deconfliction | 1 |
+| **TOTAL** | | **54** |
 
 ### Retired Best Practices
 
@@ -881,10 +883,63 @@ REF: GTM_2026-W06_062
 
 ---
 
+## 📋 CCC-ID DECONFLICTION BEST PRACTICES
+
+### BP-060: Cross-Instance CCC-ID Deconfliction
+
+| ID | Best Practice | Approval |
+|----|---------------|----------|
+| BP-060 | Cross-instance CCC-ID deconfliction — contributor MUST state highest CCC-ID when switching instances; agent MUST confirm next sequence per R-212; Tier 1 = manual, Tier 2 = #MetaAgent tracking, Tier 3 = INT-M01 centralized counter | GTM_2026-W06_392 |
+
+### Why BP-060 Matters
+
+| Issue | Without BP-060 | With BP-060 |
+|-------|----------------|-------------|
+| CCC-ID integrity | ❌ Duplicates across instances | ✅ Unique sequence guaranteed |
+| R-168 compliance | ❌ Instance-local counters diverge | ✅ Contributor-level sequence maintained |
+| Audit trail | ❌ Ambiguous — which _386? | ✅ Clear — one _386 per contributor per week |
+
+### Tier 1 Workflow (Current — Manual)
+
+| # | Step | Actor | Description |
+|---|------|-------|-------------|
+| 1 | Switch instance | Human | Contributor moves from Instance A → Instance B |
+| 2 | State highest CCC-ID | Human | "Highest CCC-ID = `<CCC>_<YYYY>-W<WW>_<NNN>`" |
+| 3 | Set next sequence | AI | Next CCC-ID = `_<NNN+1>` |
+| 4 | Confirm | AI | "✅ R-212 — Continuing from `_<NNN+1>`" |
+
+### Tier 1 Example
+
+```
+Human: "Switching from INT-OG1. Highest CCC-ID = GTM_2026-W06_386"
+AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
+```
+
+### Compliance Tiers
+
+| Tier | Timeframe | Implementation | Enforcer |
+|------|-----------|----------------|----------|
+| **Tier 1** (NOW) | Immediate | Contributor manually states highest CCC-ID | Human |
+| **Tier 2** (Mid) | #WeOwnSeason003 | #MetaAgent tracks high-water mark per contributor per week | #MetaAgent |
+| **Tier 3** (Long) | INT-M01 | Centralized CCC-ID counter API — single source of truth | INT-M01 |
+
+### Related Items (BP-060)
+
+| ID | Type | Description |
+|----|------|-------------|
+| R-212 | Rule | Cross-instance CCC-ID deconfliction REQUIRED |
+| L-112 | Learning | Cross-instance CCC-ID deconfliction learning |
+| R-168 | Rule | CCC-ID sequence tied to contributor |
+| R-169 | Rule | CCC-ID resets at ISO week boundary |
+| #BadAgent #13 | Incident | First duplication — GTM_2026-W06_386 (W06) |
+
+---
+
 ## 📋 VERSION HISTORY
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.1.3 | 2026-W06 | GTM_2026-W06_413 | GTM_2026-W06_415 | +BP-060 (CCC-ID Deconfliction); +CCC-ID Deconfliction Best Practices section; Related Documents updated (CCC → v3.1.1.2, PROTOCOLS → v3.1.1.2, +GUIDE-006, TMPL-009 → v3.1.1.2); BP Index TOTAL → 54; TOC → 27 items; FULL PRESERVE (L-097) |
 | 3.1.1.2 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_327 | +BP-057, BP-058, BP-059; +USER-IDENTITY Season Refresh section; +Season Certification section; ALL URLs → CCCbotNet/fedarch; ALL instances → Elevated naming; Source of Truth → CCCbotNet/fedarch; Related Docs updated; BP-056 example → INT-P01; TMPL-009 +Season field; TOC → 26 items; FULL PRESERVE (L-097) |
 | 3.1.1.1 | 2026-W06 | GTM_2026-W06_080 | GTM_2026-W06_104 | 🚀 #WeOwnSeason003 RELEASE — +BP-054, BP-055, BP-056; +System Prompt Best Practices section; +CCC Workspace ACK Best Practices section; version format v2.4.X → v3.X.X.X (L-094); FULL PRESERVE from v2.4.11 base (L-097); TOC → 24 items |
 | 2.4.11 | 2026-W05 | GTM_2026-W05_818 | GTM_2026-W05_820 | +BP-049, BP-050, BP-051; +Onboarding Best Practices section; +#HomeInstance Best Practices section; +TMPL-009 reference; +`_USERS_/` folder; +L-070 pinning update; SharedKernel → v2.4.16; CCC → v2.4.3; TOC → 22 items |
@@ -910,9 +965,9 @@ REF: GTM_2026-W06_062
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
 | SharedKernel | v3.1.1.3 | GTM_2026-W06_277 | GTM_2026-W06_289 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| BEST-PRACTICES | v3.1.1.2 | GTM_2026-W06_277 | ⬜ AWAITING | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
-| PROTOCOLS | v2.4.4 | GTM_2026-W05_509 | GTM_2026-W05_512 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
-| CCC | v2.4.3 | GTM_2026-W05_793 | GTM_2026-W05_795 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
+| BEST-PRACTICES | v3.1.1.3 | GTM_2026-W06_413 | GTM_2026-W06_415 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| PROTOCOLS | v3.1.1.2 | GTM_2026-W06_407 | GTM_2026-W06_409 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
+| CCC | v3.1.1.2 | GTM_2026-W06_403 | GTM_2026-W06_405 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
 
 ---
 
@@ -937,6 +992,7 @@ REF: GTM_2026-W06_062
 | GUIDE-002_FEDARCH-GOVERNANCE | v2.4.0 | — | — | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GUIDES_/GUIDE-002_FEDARCH-GOVERNANCE.md) |
 | GUIDE-003_USER-ONBOARDING | v2.4.1 | — | — | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GUIDES_/GUIDE-003_USER-ONBOARDING.md) |
 | GUIDE-005_Notes-to-RAG | v2.4.0 | GTM_2026-W05_415 | GTM_2026-W05_415 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GUIDES_/GUIDE-005_Notes-to-RAG.md) |
+| GUIDE-006_GitHub-PAT-for-AnythingLLM | v3.1.1.1 | GTM_2026-W06_377 | GTM_2026-W06_380 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GUIDES_/GUIDE-006_GitHub-PAT-for-AnythingLLM.md) |
 
 #### _MISC_
 
@@ -954,7 +1010,7 @@ REF: GTM_2026-W06_062
 | TMPL-006_SYSTEM-PROMPT-TEMPLATE | v2.4.0 | — | — | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-006_SYSTEM-PROMPT-TEMPLATE.md) |
 | TMPL-007_GH-COMMIT-MESSAGE | v2.4.0 | GTM_2026-W05_490 | GTM_2026-W05_490 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-007_GH-COMMIT-MESSAGE_v2.4.0.md) |
 | TMPL-008_VSA | v2.4.0 | GTM_2026-W05_623 | GTM_2026-W05_625 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-008_VSA_v2.4.0.md) |
-| TMPL-009_USER-IDENTITY | v3.1.1.1 | GTM_2026-W06_168 | GTM_2026-W06_168 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-009_USER-IDENTITY.md) |
+| TMPL-009_USER-IDENTITY | v3.1.1.2 | GTM_2026-W06_353 | GTM_2026-W06_370 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-009_USER-IDENTITY.md) |
 | TMPL-010_ISC | v3.1.1.2 | GTM_2026-W06_270 | GTM_2026-W06_270 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-010_ISC.md) |
 
 ---
