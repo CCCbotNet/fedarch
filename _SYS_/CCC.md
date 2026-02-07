@@ -1,13 +1,13 @@
 # 📐 Contributor Code Convention (CCC) Standard
 
-## CCC_v3.1.1.1.md
+## CCC_v3.1.1.2.md
 ## ♾️ WeOwnNet 🌐 — Ecosystem Official Documentation
 
 | Field | Value |
 |-------|-------|
 | Document | CCC.md |
-| Version | 3.1.1.1 |
-| CCC-ID | GTM_2026-W06_277 |
+| Version | 3.1.1.2 |
+| CCC-ID | GTM_2026-W06_403 |
 | Established | 2026-W02 |
 | Updated | 2026-02-07 (W06) |
 | Season | #WeOwnSeason003 🚀 |
@@ -34,6 +34,7 @@
 12. [Quick Reference Card](#-quick-reference-card)
 13. [Contribution Workflow](#-contribution-workflow)
 14. [Version History](#-version-history)
+15. [Related Documents](#-related-documents)
 
 ---
 
@@ -218,7 +219,7 @@ GTM_2026-W05_796
 
 ## 👥 Registered Contributor Codes
 
-### 🏛️ Founding OG ♾️ WeOwn.Agency Owners
+### 🏛️ Founding OG ♾️ WeOwn.Agency 👥 Owners
 
 **Established:** 2026-W02 (GTM_2026-W02_015)
 
@@ -231,14 +232,14 @@ GTM_2026-W05_796
 | `IAL` | IamLotus | IamLotus.eth | Co-Founder / Chief Catalyst Officer | 🏛️ Founding OG |
 | `RMN` | Roman | Roman Di Domizio (@LLMfeed) | AI Platform Engineer | 🏛️ Founding OG |
 | `LFG` | CoachLFG | Mike LeMaire (Coach) | Co-Host / Coach | 🏛️ Founding OG |
+| `JRW` | Webb | Jason Webb | xCRO (fractional Chief Revenue Officer) | 🏛️ Founding OG |
 
-### Contributors (2026-W02+)
+### Contributors #WeOwnSeason002
 
 | CCC | Contributor | Handle | Role | Status | CCC Join Date |
 |-----|-------------|--------|------|--------|---------------|
 | `LDC` | Dhruv | — | Agentic AI Engineer / Project Lead | ✅ Active | 2026-W02 |
 | `SHD` | Shahid | — | Sr. Full-Stack DevOps Engineer | ✅ Active | 2026-W02 |
-| `JRW` | Webb | — | xCRO (fractional Chief Revenue Officer) | ✅ Active | 2026-W05 |
 
 ### System Codes
 
@@ -378,6 +379,9 @@ We 23:45 PST    → Wednesday at 11:45 PM Pacific Standard Time
 | Non-urgent bug | Research/exploration |
 | Documentation update | Nice-to-have feature |
 | Scheduled maintenance | Technical debt |
+
+---
+
 ## 📊 Status Icons
 
 ### Primary Status Set
@@ -536,9 +540,9 @@ Example: GTM_2026-W05_796
 ```
 
 ### Founding OG CCCs
-| `GTM` | `THY` | `IAL` | `RMN` | `LFG` |
-|-------|-------|-------|-------|-------|
-| yonks | mrsyonks | IamLotus | Roman | Coach |
+| `GTM` | `THY` | `IAL` | `RMN` | `LFG` | `JRW` |
+|-------|-------|-------|-------|-------|-------|
+| yonks | mrsyonks | IamLotus | Roman | Coach | Webb |
 
 ### Day Codes
 | Mo | Tu | We | Th | Fr | Sa | Su |
@@ -610,11 +614,22 @@ Example:
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.1.2 | 2026-W06 | GTM_2026-W06_403 | GTM_2026-W06_405 | +@JRW → Founding OG table (6 total); Patch v3.1.1.1 Approval CCC-ID (GTM_2026-W06_346); +Related Documents section (BP-045); Quick Reference Card updated (6 Founding OGs); FULL PRESERVE (L-097) |
 | 3.1.1.1 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_346 | #WeOwnSeason003 season alignment — version bump v2.4.3 → v3.1.1.1 (L-094); +Source of Truth URL (CCCbotNet/fedarch); +Season tag; Repository → CCCbotNet/fedarch; Document ID → CCC.md; #ContextSwap cccid.info → CCCbot.Net (×6); #ContextSwap snapshot.box → cccbot.eth (×2); -Adoption Signatures section; NO content changes; FULL PRESERVE (L-097) |
 | 2.4.3 | 2026-W05 | GTM_2026-W05_793 | GTM_2026-W05_795 | +JRW (Webb) — xCRO; #ContextSwap: ccc.bot → cccid.info; #ContextSwap: D-038 @MAIT:#<SME> format |
 | 2.4.2 | 2026-W05 | GTM_2026-W05_270 | — | +CCC-ID Rules section; +Agent Identity Format section; +Contributors (LDC, SHD); TOC → 15 items; fixes applied |
 | 2.4.1 | 2026-W05 | GTM_2026-W05_262 | — | #ContextSwap: ILO → IAL; roles aligned with SharedKernel_v2.4.7 |
 | 2.4.0 | 2026-W02 | GTM_2026-W02_017 | — | Initial public release; Governance & AMA process; ccc.bot domain; ♾️ WeOwnNet 🌐 branding |
+
+---
+
+## 📋 Related Documents
+
+| Document | Version | #masterCCC | Approval | URL |
+|----------|---------|------------|----------|-----|
+| SharedKernel | v3.1.1.3 | GTM_2026-W06_277 | GTM_2026-W06_289 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| BEST-PRACTICES | v3.1.1.2 | GTM_2026-W06_277 | GTM_2026-W06_327 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| PROTOCOLS | v3.1.1.1 | GTM_2026-W06_277 | GTM_2026-W06_332 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
 
 ---
 
