@@ -1,14 +1,14 @@
 # SharedKernel.md
 
-## 📋 SharedKernel_v3.1.1.3.md
+## 📋 SharedKernel_v3.1.1.4.md
 ## ♾️ WeOwnNet 🌐 — Core Rules & Protocols
 
 | Field | Value |
 |-------|-------|
 | Document | SharedKernel.md |
-| Version | 3.1.1.3 |
-| CCC-ID | GTM_2026-W06_277 |
-| Updated | 2026-02-06 (W06) |
+| Version | 3.1.1.4 |
+| CCC-ID | GTM_2026-W06_420 |
+| Updated | 2026-02-07 (W06) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | 🔒 LOCKED |
 | Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
@@ -42,6 +42,7 @@
 23. [Learnings](#-learnings)
 24. [Best Practices (BP-XXX)](#-best-practices-bp-xxx)
 25. [Version History](#-version-history)
+26. [Related Documents](#-related-documents)
 
 ---
 
@@ -110,6 +111,15 @@
 | R-203 | INT-VSA (VSA.ccc.bot) has NO governance authority — verification only; reports to INT-M01 (META.ccc.bot) | 🔒 LOCKED |
 | R-204 | #HomeInstance MUST include #PinnedDocs for #FedArch participation — SharedKernel, BEST-PRACTICES, PROTOCOLS, CCC | 🔒 LOCKED |
 | R-208 | Instance IDs MUST use Elevated Registry format: INT-OGx (Founding OGs), INT-Mxx (META Agents), INT-Vxx (Verification), INT-Pxx (Production), INT-Sxx (Season) — Legacy INT-00X deprecated | 🔒 LOCKED |
+| R-209 | #HomeInstance REQUIRED for ALL contributors — no exceptions; interim = INT-S0x assignment | 🔒 LOCKED |
+| R-210 | INT-S0x = Seasonal Shared Instance — temporary multi-contributor instance per #WeOwnSeason | 🔒 LOCKED |
+| R-211 | Contributors without #HomeInstance MUST be assigned to INT-S0x until personal instance deployed | 🔒 LOCKED |
+
+### CCC-ID Integrity Rules
+
+| ID | Rule | Status |
+|----|------|--------|
+| R-212 | Cross-instance CCC-ID deconfliction REQUIRED — before generating a new CCC-ID, agent MUST verify against highest known CCC-ID for that contributor across ALL active instances in current ISO week. Highest CCC-ID across ALL instances = authoritative next sequence. Duplication = #BadAgent. | 🔒 LOCKED |
 
 ### Operational Rules
 
@@ -246,6 +256,13 @@
 | D-055 | INT-Vxx | Verification Services Instance — VSA and verification operations (VSA, V01-V99); reports to INT-Mxx |
 | D-056 | INT-Pxx | Production Instance — Organization production workloads (P01-P99); user-facing operations |
 | D-057 | INT-Sxx | Seasonal Shared Instance — Shared #HomeInstance for contributors WITHOUT personal instance; one per #WeOwnSeason; format INT-S00X where X = Season number; deployed ~2 weeks before prior season ends |
+
+### Instance & Contributor Definitions
+
+| ID | Term | Definition |
+|----|------|------------|
+| D-058 | INT-S0x | Seasonal Shared Instance — temporary multi-contributor #AnythingLLM instance per #WeOwnSeason; provides #FedArch participation for contributors without #HomeInstance |
+| D-059 | #PersonalBrand Instance | INT-OGx #HomeInstance hosted on contributor's personal domain — owned and managed by contributor; participates in #FedArch via #ContextVolley |
 
 ### Orchestrator Agent Functions
 
@@ -719,7 +736,7 @@ REF: <CCC-ID>
 | TMPL-006 | SYSTEM-PROMPT-TEMPLATE | v2.4.0 | ✅ | 🔒 LOCKED |
 | TMPL-007 | GH-COMMIT-MESSAGE | v2.4.0 | ✅ | 🔒 LOCKED |
 | TMPL-008 | VSA | v2.4.0 | ✅ | 🔒 LOCKED |
-| TMPL-009 | USER-IDENTITY | v3.1.1.1 | ✅ | 🔒 LOCKED |
+| TMPL-009 | USER-IDENTITY | v3.1.1.2 | ✅ | 🔒 LOCKED |
 | TMPL-010 | ISC | v3.1.1.2 | ⬜ PENDING | 📝 UPDATE |
 
 **Note:** TMPL-001→TMPL-003 status = ⬜ PENDING #GapAnalysis
@@ -943,6 +960,7 @@ REF: <CCC-ID>
 | L-109 | GH Org migration: consolidate repos BEFORE migrating; 1 repo = 1 RAG connector; folder structure MUST mirror RAG | GTM_2026-W06_295 |
 | L-110 | Repo name should match architecture name (`fedarch`) — instantly recognizable to ecosystem participants | GTM_2026-W06_295 |
 | L-111 | GH repo migration: update ALL doc URLs locally BEFORE first upload — first commit to new repo MUST be clean; never upload with stale URLs then fix | GTM_2026-W06_314 |
+| L-112 | Cross-instance CCC-ID generation MUST verify sequence against ALL active sessions before assigning — duplication across instances = #BadAgent; near-term: contributor manually tracks highest CCC-ID; long-term: centralized counter via INT-M01 | GTM_2026-W06_388 |
 
 ---
 
@@ -978,6 +996,7 @@ REF: <CCC-ID>
 | BP-057 | USER-IDENTITY Season refresh: ALL contributors MUST update USER-IDENTITY within 2 weeks of new #WeOwnSeason — ensures current data across #FedArch | GTM_2026-W06_120 |
 | BP-058 | ALL CCC Contributors MUST UPDATE/CONFIRM USER-IDENTITY within 2 weeks of NEW SEASON — Season refresh ensures current data | GTM_2026-W06_120 |
 | BP-059 | Instance Certification REQUIRED within first 2 weeks of NEW #WeOwnSeason — ALL #FedArch instances MUST pass 8-point certification checklist (ISC); generates ISC attestation | GTM_2026-W06_270 |
+| BP-060 | Cross-instance CCC-ID deconfliction — contributor MUST state highest CCC-ID when switching instances; agent MUST confirm next sequence per R-212; Tier 1 = manual, Tier 2 = #MetaAgent tracking, Tier 3 = INT-M01 centralized counter | GTM_2026-W06_392 |
 
 ---
 
@@ -985,6 +1004,7 @@ REF: <CCC-ID>
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.1.4 | 2026-W06 | GTM_2026-W06_420 | GTM_2026-W06_422 | +R-209→R-212 (4 rules); +L-112; +D-058, D-059; +BP-060; TMPL-009 → v3.1.1.2; +CCC-ID Integrity Rules subsection; +Instance & Contributor Definitions subsection; +Related Documents section (BP-045); TOC → 26 items; FULL PRESERVE (L-097) |
 | 3.1.1.3 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_289 | +L-098→L-111 (14); +R-207, R-208; +BP-057→BP-059; +D-051→D-057 (7); +Elevated Instance Registry; +Ecosystem Approved Models section; +ISC 8-Point Checklist section; +Template Registry section; +@JRW Founding OG (6 total); +@MAIT:#Restream (+t-restream_tool); +Seasonal Instances; +`_GUIDES_/`, `_MISC_/` folders; +GH-Only/RAG-Only table; +CCCbotNet/fedarch migration (3 #ContextSwaps); ALL URLs → CCCbotNet/fedarch; BP-055/BP-056 updated INT-P01; L-084/L-093 updated; R-203 updated INT-VSA/INT-M01; Mermaid diagram updated; TOC → 25 items; FULL PRESERVE from v3.1.1.2 (L-097) |
 | 3.1.1.2 | 2026-W06 | GTM_2026-W06_080 | GTM_2026-W06_099 | FULL RESTORE from v2.4.18 base; +L-090→L-097 (8); +BP-054→BP-056 (3); +Instance Registry (INT-006→INT-011); +#WeOwnVer section; #GapAnalysis fix for v3.1.1.1 omissions |
 | 3.1.1.1 | 2026-W06 | GTM_2026-W06_034 | GTM_2026-W06_056 | 🚀 **#WeOwnSeason003 RELEASE** — +L-090→L-095; +BP-054, BP-055; +#WeOwnVer Standard section; Season 2 → Season 3; version format v2.X.X → v3.X.X.X ⚠️ TRUNCATED |
@@ -995,6 +1015,19 @@ REF: <CCC-ID>
 | 2.4.14 | 2026-W05 | GTM_2026-W05_680 | GTM_2026-W05_684 | +R-201, R-202; R-181 update; +D-041→D-044; +#WeOwnSeasons Registry section; +L-065; +BP-045, BP-047; #ContextSwap ccc.bot → cccid.info; TOC → 19 items |
 | 2.4.13 | 2026-W05 | GTM_2026-W05_633 | GTM_2026-W05_638 | +L-060, L-061, L-062; +D-040 (VSA); +BP-043, BP-044, BP-045; Version History format (BP-045) |
 | 2.4.12 | 2026-W05 | GTM_2026-W05_565 | GTM_2026-W05_589 | +L-058, L-059; +BP-043; +Thread Architecture INT-002; +MAIT_connexOmni |
+
+---
+
+## 📋 Related Documents
+
+### #PinnedDocs
+
+| Document | Version | #masterCCC | Approval | URL |
+|----------|---------|------------|----------|-----|
+| SharedKernel | v3.1.1.4 | GTM_2026-W06_420 | GTM_2026-W06_422 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| BEST-PRACTICES | v3.1.1.3 | GTM_2026-W06_413 | GTM_2026-W06_415 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| PROTOCOLS | v3.1.1.2 | GTM_2026-W06_407 | GTM_2026-W06_409 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
+| CCC | v3.1.1.2 | GTM_2026-W06_403 | GTM_2026-W06_405 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
 
 ---
 
