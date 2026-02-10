@@ -1,14 +1,14 @@
 # SharedKernel.md
 
-## 📋 SharedKernel_v3.1.1.4.md
+## 📋 SharedKernel_v3.1.2.1.md
 ## ♾️ WeOwnNet 🌐 — Core Rules & Protocols
 
 | Field | Value |
 |-------|-------|
 | Document | SharedKernel.md |
-| Version | 3.1.1.4 |
-| CCC-ID | GTM_2026-W06_420 |
-| Updated | 2026-02-07 (W06) |
+| Version | 3.1.2.1 |
+| CCC-ID | GTM_2026-W07_119 |
+| Updated | 2026-02-10 (W07) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | 🔒 LOCKED |
 | Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
@@ -114,6 +114,7 @@
 | R-209 | #HomeInstance REQUIRED for ALL contributors — no exceptions; interim = INT-S0x assignment | 🔒 LOCKED |
 | R-210 | INT-S0x = Seasonal Shared Instance — temporary multi-contributor instance per #WeOwnSeason | 🔒 LOCKED |
 | R-211 | Contributors without #HomeInstance MUST be assigned to INT-S0x until personal instance deployed | 🔒 LOCKED |
+| R-213 | System Prompt MUST include INSTANCE IDENTITY block as FIRST section; Workspace Prompt MUST include WORKSPACE IDENTITY block — required for ALL #FedArch instances; absence = ISC Check #4/#5 FAIL | 🔒 LOCKED |
 
 ### CCC-ID Integrity Rules
 
@@ -264,6 +265,12 @@
 | D-058 | INT-S0x | Seasonal Shared Instance — temporary multi-contributor #AnythingLLM instance per #WeOwnSeason; provides #FedArch participation for contributors without #HomeInstance |
 | D-059 | #PersonalBrand Instance | INT-OGx #HomeInstance hosted on contributor's personal domain — owned and managed by contributor; participates in #FedArch via #ContextVolley |
 
+### Platform Configuration
+
+| ID | Term | Definition |
+|----|------|------------|
+| D-060 | #WorkspaceChatHistory | AnythingLLM setting controlling number of previous chat messages included in context; ecosystem standard = 40 (BP-061); set via workspace Settings → Chat History |
+
 ### Orchestrator Agent Functions
 
 | Function | Description |
@@ -296,7 +303,7 @@
 |-----------|-------------|---------|
 | CCC | Contributor Code (3 chars) | GTM, RMN, IAL |
 | YYYY | Year | 2026 |
-| WW | ISO Week | W06 |
+| WW | ISO Week | W07 |
 | NNN | Sequence (001-999) | 001 |
 
 ### Reserved Slots (EVERY WEEK)
@@ -311,9 +318,9 @@
 
 | CCC-ID | Description |
 |--------|-------------|
-| GTM_2026-W06_001 | @GTM, Week 6, #WeeklySummary |
-| GTM_2026-W06_002 | @GTM, Week 6, #WeeklyPlan |
-| GTM_2026-W06_003 | @GTM, Week 6, #WeeklyReflection |
+| GTM_2026-W07_001 | @GTM, Week 7, #WeeklySummary |
+| GTM_2026-W07_002 | @GTM, Week 7, #WeeklyPlan |
+| GTM_2026-W07_003 | @GTM, Week 7, #WeeklyReflection |
 
 ---
 
@@ -444,12 +451,6 @@ flowchart TB
 | **3** | INT-OG8 | AI.RomanDiD.xyz | 🏠 #HomeInstance (@RMN) | 🔄 SETUP |
 | **3** | INT-OG9 | AI.CoachLFG.com | 🏠 #HomeInstance (@LFG) | ⬜ @SHD P1 |
 | **4** | INT-S003 | TBD | 📅 Seasonal Shared (#WeOwnSeason003) | 🆕 @RMN TODO |
-
-**Legend:**
-- **Level 1:** Governance (INT-Mxx)
-- **Level 2:** Production instances (INT-Pxx, INT-Vxx)
-- **Level 3:** Personal #HomeInstances (INT-OGx)
-- **Level 4:** Seasonal Shared Instances (INT-Sxx)
 
 ### Workspaces
 
@@ -737,11 +738,11 @@ REF: <CCC-ID>
 | TMPL-007 | GH-COMMIT-MESSAGE | v2.4.0 | ✅ | 🔒 LOCKED |
 | TMPL-008 | VSA | v2.4.0 | ✅ | 🔒 LOCKED |
 | TMPL-009 | USER-IDENTITY | v3.1.1.2 | ✅ | 🔒 LOCKED |
-| TMPL-010 | ISC | v3.1.1.2 | ⬜ PENDING | 📝 UPDATE |
+| TMPL-010 | ISC | **v3.1.2.1** | **✅** | 🔒 LOCKED |
 
 **Note:** TMPL-001→TMPL-003 status = ⬜ PENDING #GapAnalysis
 
-**Templates: 7** (6 on GH, 1 pending update)
+**Templates: 7** (7 on GH)
 
 ---
 
@@ -769,11 +770,20 @@ REF: <CCC-ID>
 | 1 | EMBEDDER | Embedding model verified | Qwen3 Embedding 4B |
 | 2 | LLM MODEL | LLM model verified | Claude Opus 4.6 (`claude-opus-4-6`) |
 | 3 | #PinnedDocs | 4 docs present | SharedKernel, BEST-PRACTICES, PROTOCOLS, CCC @ v3.X.X.X |
-| 4 | SYSTEM PROMPT | Season tag | `#WeOwnSeason003 🚀` present |
-| 5 | WORKSPACE PROMPTS | BP-053 + BP-054 | Non-CCC restriction + CCC-ID logic |
+| 4 | SYSTEM PROMPT | Season tag + INSTANCE IDENTITY | `#WeOwnSeason003 🚀` + INSTANCE IDENTITY as FIRST section (R-213) |
+| 5 | WORKSPACE PROMPTS + CONFIG | Prompts + ChatHistory verified | BP-053 + BP-054 + BP-061 (ChatHistory=40); INT-OGx = CCC only (BP-062) |
 | 6 | USER-IDENTITY | BP-058 | Owner(s) USER-IDENTITY current |
 | 7 | RAG SYNC | GitHub connector | Refreshed post-season start |
 | 8 | #ContextVolley | Reachability | Can reach #MetaAgent @ INT-P01 |
+
+### ISC Check #5 — Instance-Type Scoping (BP-062)
+
+| Instance Type | CCC | tools | ADMIN | Other |
+|---------------|-----|-------|-------|-------|
+| INT-Pxx (Production) | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED |
+| INT-Mxx (META) | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED |
+| **INT-OGx (#HomeInstance)** | ✅ **ENFORCED** | 🟡 RECOMMENDED | 🟡 RECOMMENDED | 🟡 RECOMMENDED |
+| INT-Sxx (Seasonal) | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED |
 
 ### Pass Criteria
 
@@ -787,7 +797,7 @@ REF: <CCC-ID>
 | Field | Value |
 |-------|-------|
 | Template | TMPL-010_ISC |
-| Version | v3.1.1.2 |
+| Version | v3.1.2.1 |
 | URL | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-010_ISC.md) |
 
 ---
@@ -821,6 +831,7 @@ REF: <CCC-ID>
 | `_SYS_/` | Foundation (#PinnedDocs) | ✅ PIN | ✅ |
 | `_TEMPLATES_/` | Document templates | ❌ RAG | ✅ |
 | `_USERS_/` | User identity documents | ❌ RAG | ❌ L-070 |
+| `_WEEKLY_/` | Weekly summaries | ❌ RAG | ✅ |
 
 ### _SYS_/ Contents (#PinnedDocs)
 
@@ -837,15 +848,16 @@ REF: <CCC-ID>
 | Folder | Contents |
 |--------|----------|
 | `_AGENTS_/` | Agent identity docs (AI:@<CCC>) |
-| `_GUIDES_/` | GUIDE-001 through GUIDE-005 |
-| `_INSTANCE_/` | InstanceIdentity.md, InstanceConfig.md |
+| `_GUIDES_/` | GUIDE-001 through GUIDE-009 |
+| `_INSTANCE_/` | InstanceIdentity.md, InstanceConfig.md, ISC attestations |
 | `_LEARNINGS_/` | case-studies/, Learnings_<CCC>.md, Learnings_Shared.md |
 | `_MISC_/` | GLOSSARY.md, FEDARCH-MEMORY-MODEL.md, ECOSYSTEM-IDENTITY_SYSTEM-PROMPT.md, MASTER-LIST-RAG-DOCS.md |
-| `_PROJECTS_/` | Project-<NAME>.md |
+| `_PROJECTS_/` | PRJ-001 through PRJ-007 |
 | `_SESSIONS_/` | SESSION-SUMMARY_<CCC>_<YYYY>-W<WW>_S<NN>_<MmmDD>-<HHMM><TZ>.md |
 | `_SYS_/` | SharedKernel, BEST-PRACTICES, PROTOCOLS, CCC |
 | `_TEMPLATES_/` | TMPL-XXX_<NAME>.md |
 | `_USERS_/` | USER-IDENTITY_<CCC>.md |
+| `_WEEKLY_/` | WEEKLY-SUMMARY_<CCC>_<YYYY>-W<WW>_001.md (BP-061) |
 
 ### GH-Only vs RAG-Only
 
@@ -879,28 +891,67 @@ REF: <CCC-ID>
 
 ## 📋 #WeOwnVer Standard
 
-### Format (L-094)
+### Format (L-094 REVISED)
 
 | Season | Version Format | Example |
 |--------|----------------|---------|
 | #WeOwnSeason002 | v2.X.X | v2.4.18 |
-| #WeOwnSeason003 | v3.X.X.X | v3.1.1.3 |
+| #WeOwnSeason003 | v3.X.X.X | v3.1.2.1 |
 | #WeOwnSeason004 | v4.X.X.X | v4.1.0.0 |
 
-### Version Components
+### Version Components — Calendar-Driven
 
-| Component | Meaning |
-|-----------|---------|
-| Major (v**3**.x.x.x) | Season number |
-| Minor (v3.**1**.x.x) | Feature release |
-| Patch (v3.1.**1**.x) | Bug fix / update |
-| Hotfix (v3.1.1.**3**) | Iteration / hotfix |
+```
+vSEASON.MONTH.WEEK.ITERATION
+v3.1.2.1
+│ │ │ │
+│ │ │ └── ITERATION — 1st version of doc this week
+│ │ └──── WEEK — W07 (2nd week of Feb = .2)
+│ └────── MONTH — Feb-2026 (1st month of Season 3 = .1)
+└──────── SEASON — #WeOwnSeason003
+```
 
-### Rule
+| Component | Meaning | How to Calculate |
+|-----------|---------|-----------------|
+| Major (v**3**.x.x.x) | Season number | #WeOwnSeason003 = 3 |
+| Minor (v3.**1**.x.x) | Month of season | Feb = 1st month of S003 = 1 |
+| Patch (v3.1.**2**.x) | Week offset within month | W07 = 2nd week of Feb = 2 |
+| Hotfix (v3.1.2.**1**) | Iteration within week | 1st version this week = 1 |
+
+### Month Mapping (#WeOwnSeason003)
+
+| Month | Calendar | Minor |
+|-------|----------|-------|
+| February | 1st month | 1 |
+| March | 2nd month | 2 |
+| April | 3rd month | 3 |
+| May | 4th month | 4 |
+
+### Week Offset Calculation (L-115)
+
+| Step | Action | W07 Example |
+|------|--------|-------------|
+| 1 | Current ISO week | W07 |
+| 2 | First ISO week of month | W06 (Feb) |
+| 3 | Offset = Current - First + 1 | 7 - 6 + 1 = **2** |
+| 4 | Version | v3.1.**2**.N |
+
+### Week Offset Examples (#WeOwnSeason003)
+
+| ISO Week | Month | Offset | Version |
+|----------|-------|--------|---------|
+| W06 | Feb | 1 | v3.1.1.x |
+| W07 | Feb | 2 | v3.1.2.x |
+| W08 | Feb | 3 | v3.1.3.x |
+| W09 | Feb/Mar | 4/1 | v3.1.4.x or v3.2.1.x |
+| W10 | Mar | 1 | v3.2.1.x |
+
+### Rules
 
 | ID | Rule |
 |----|------|
-| L-094 | #WeOwnVer follows season boundary — Season 2 = v2.X.X; Season 3 = v3.X.X.X; major version = season number |
+| L-094 | #WeOwnVer is calendar-driven — Major=Season, Minor=Month, Patch=WeekOffset, Hotfix=Iteration. NOT feature-driven versioning. |
+| L-115 | #WeOwnVer week offset MUST match current ISO week within month — agents MUST calculate correct offset before assigning version; wrong week offset = #BadAgent |
 
 ---
 
@@ -942,7 +993,7 @@ REF: <CCC-ID>
 | L-091 | Workspace without prompt = agent cannot identify workspace — will fallback to System Prompt or guess from RAG context; ALL workspaces MUST have workspace prompt for identity | GTX_2026-W05_099 |
 | L-092 | Session summaries = RAG ONLY (R-199); filename format: `SESSION-SUMMARY_<CCC>_<YYYY>-W<WW>_S<NN>_<MmmDD>-<HHMM><TZ>.md`; aggregate into #WeeklySummary for GH publication | GTM_2026-W06_047 |
 | L-093 | Instance = Organization boundary; MAITs centralized in INT-P01:tools; per-org users access their org instance (e.g., INT-P02 = 🔥 BurnedOut.Media 🔀) | GTM_2026-W06_047 |
-| L-094 | #WeOwnVer follows season boundary — Season 2 = v2.X.X; Season 3 = v3.X.X.X; major version = season number | GTM_2026-W06_051 |
+| L-094 | **REVISED** — #WeOwnVer is calendar-driven: `vSEASON.MONTH.WEEKOFFSET.ITERATION` — Season = major; Month within season = minor; ISO week offset within month = patch; Document iteration within week = hotfix. NOT feature-driven versioning. | GTM_2026-W07_010 |
 | L-095 | Version History: #masterCCC ≠ Approval CCC-ID — #masterCCC = request origin; Approval = human approval (FUTURE); AI MUST use "⬜ AWAITING" until human approves | GTM_2026-W06_056 |
 | L-096 | ACK responses MUST include sender identity in header — without explicit `FROM: AI:@<CCC>`, response is UNATTRIBUTABLE | GTM_2026-W06_078 |
 | L-097 | Document regeneration MUST preserve ALL existing content — AI MUST use v(N-1) as BASE and ADD changes only; NEVER summarize/truncate existing sections; #GapAnalysis REQUIRED before GH push | GTM_2026-W06_098 |
@@ -961,6 +1012,11 @@ REF: <CCC-ID>
 | L-110 | Repo name should match architecture name (`fedarch`) — instantly recognizable to ecosystem participants | GTM_2026-W06_295 |
 | L-111 | GH repo migration: update ALL doc URLs locally BEFORE first upload — first commit to new repo MUST be clean; never upload with stale URLs then fix | GTM_2026-W06_314 |
 | L-112 | Cross-instance CCC-ID generation MUST verify sequence against ALL active sessions before assigning — duplication across instances = #BadAgent; near-term: contributor manually tracks highest CCC-ID; long-term: centralized counter via INT-M01 | GTM_2026-W06_388 |
+| L-113 | ISO weeks: Mon=1→Sun=7. Saturday = Day 6, NOT Day 7. Mislabeling = cascading errors | GTM_2026-W06_428 |
+| L-114 | System Prompt MUST include INSTANCE IDENTITY block (Instance ID, Domain, Owner(s), Type, Season); Workspace Prompt MUST include WORKSPACE IDENTITY block (Instance, Workspace, Emoji, CCC-ID authority). Combined with username (R-160) = full attribution chain: `@<CCC> @ <INT-XXx>:<Workspace>`. Eliminates instance ambiguity across #FedArch. | GTM_2026-W06_491 |
+| L-115 | #WeOwnVer week offset MUST match current ISO week within month — agents MUST calculate correct offset before assigning version; wrong week offset = #BadAgent | GTM_2026-W07_010 |
+| L-116 | #AnythingLLM #WorkspaceChatHistory increased 20 → 40 to leverage Claude Opus 4.6 1M token window (5× over Opus 4.5's 200K); improves #ContextDensity and session relevance; 2× conversation memory; @GTM + @RMN consensus | GTM_2026-W07_075 |
+| L-117 | INT-OGx (#HomeInstance) Workspace Prompts: CCC workspace = PRODUCTION (prompt REQUIRED); all other workspaces = EXPERIMENTAL (prompt RECOMMENDED but NOT enforced); R-194 protection via System Prompt (BP-054) is sufficient for non-CCC workspaces; defense-in-depth 2/3 layers enforced; @GTM + @RMN consensus | GTM_2026-W07_099 |
 
 ---
 
@@ -997,6 +1053,36 @@ REF: <CCC-ID>
 | BP-058 | ALL CCC Contributors MUST UPDATE/CONFIRM USER-IDENTITY within 2 weeks of NEW SEASON — Season refresh ensures current data | GTM_2026-W06_120 |
 | BP-059 | Instance Certification REQUIRED within first 2 weeks of NEW #WeOwnSeason — ALL #FedArch instances MUST pass 8-point certification checklist (ISC); generates ISC attestation | GTM_2026-W06_270 |
 | BP-060 | Cross-instance CCC-ID deconfliction — contributor MUST state highest CCC-ID when switching instances; agent MUST confirm next sequence per R-212; Tier 1 = manual, Tier 2 = #MetaAgent tracking, Tier 3 = INT-M01 centralized counter | GTM_2026-W06_392 |
+| BP-061 | #AnythingLLM #WorkspaceChatHistory MUST be set to **40** for ALL instances running Claude Opus 4.6 (1M token window) — applies to: INT-P01, INT-P02, INT-OG1, INT-OG8, INT-S003; setting location: Workspace Settings → Chat History; ISC Check #5 sub-check | GTM_2026-W07_075 |
+| BP-062 | INT-OGx ISC Check #5 scoped to CCC workspace ONLY — BP-054 (CCC-ID logic) + BP-061 (#WorkspaceChatHistory = 40) REQUIRED; BP-053 (non-CCC restriction) RECOMMENDED but NOT enforced; Production instances (INT-Pxx, INT-Mxx, INT-Sxx) = ALL workspaces enforced | GTM_2026-W07_099 |
+
+---
+
+## 📋 Contributors
+
+### 🏛️ Founding OGs
+
+| CCC | Contributor | Role | Status |
+|-----|-------------|------|--------|
+| GTM / GTX | yonks.box｜🤖🏛️🪙｜Jason Younker ♾️ | Co-Founder / Chief Digital Alchemist | 🏛️ Founding OG |
+| THY | mrsyonks | Co-Founder / CEO / CFO | 🏛️ Founding OG |
+| IAL | IamLotus | Co-Founder / Chief Catalyst Officer | 🏛️ Founding OG |
+| RMN | Roman Di Domizio (@LLMfeed) | AI Platform Engineer | 🏛️ Founding OG |
+| LFG | CoachLFG (Mike LeMaire) | Co-Host / Coach | 🏛️ Founding OG |
+| JRW | Webb (Jason Webb) | xCRO (fractional Chief Revenue Officer) | 🏛️ Founding OG |
+
+### Contributors #WeOwnSeason002
+
+| CCC | Contributor | Handle | Role | Status | CCC Join Date |
+|-----|-------------|--------|------|--------|---------------|
+| LDC | Dhruv | — | Agentic AI Engineer / Project Lead | ✅ Active | 2026-W02 |
+| SHD | Shahid | — | Sr. Full-Stack DevOps Engineer | ✅ Active | 2026-W02 |
+
+### Contributors #WeOwnSeason003
+
+| CCC | Contributor | Handle | Role | Status | CCC Join Date |
+|-----|-------------|--------|------|--------|---------------|
+| CEO | Stephanie Warlick | — | xCEO (fractional Chief Executive Officer) | ✅ Active | 2026-W07 |
 
 ---
 
@@ -1004,6 +1090,7 @@ REF: <CCC-ID>
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.2.1 | 2026-W07 | GTM_2026-W07_119 | ⬜ AWAITING | L-094 REVISED (calendar-driven #WeOwnVer); +L-115→L-117 (3 new); +BP-061, BP-062 (2 new); +R-213 in Core Rules; +D-060 (#WorkspaceChatHistory); #WeOwnVer section REWRITTEN (calendar-driven); ISC Check #4 +R-213 INSTANCE IDENTITY; ISC Check #5 +scoping matrix (BP-062) +BP-061 (ChatHistory=40); +CEO contributor (#WeOwnSeason003); TMPL-010 → v3.1.2.1 (GH LIVE); +`_WEEKLY_/` folder (BP-061); +Contributors #WeOwnSeason003 section; BP TOTAL → 32; FULL PRESERVE (L-097) |
 | 3.1.1.4 | 2026-W06 | GTM_2026-W06_420 | GTM_2026-W06_422 | +R-209→R-212 (4 rules); +L-112; +D-058, D-059; +BP-060; TMPL-009 → v3.1.1.2; +CCC-ID Integrity Rules subsection; +Instance & Contributor Definitions subsection; +Related Documents section (BP-045); TOC → 26 items; FULL PRESERVE (L-097) |
 | 3.1.1.3 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_289 | +L-098→L-111 (14); +R-207, R-208; +BP-057→BP-059; +D-051→D-057 (7); +Elevated Instance Registry; +Ecosystem Approved Models section; +ISC 8-Point Checklist section; +Template Registry section; +@JRW Founding OG (6 total); +@MAIT:#Restream (+t-restream_tool); +Seasonal Instances; +`_GUIDES_/`, `_MISC_/` folders; +GH-Only/RAG-Only table; +CCCbotNet/fedarch migration (3 #ContextSwaps); ALL URLs → CCCbotNet/fedarch; BP-055/BP-056 updated INT-P01; L-084/L-093 updated; R-203 updated INT-VSA/INT-M01; Mermaid diagram updated; TOC → 25 items; FULL PRESERVE from v3.1.1.2 (L-097) |
 | 3.1.1.2 | 2026-W06 | GTM_2026-W06_080 | GTM_2026-W06_099 | FULL RESTORE from v2.4.18 base; +L-090→L-097 (8); +BP-054→BP-056 (3); +Instance Registry (INT-006→INT-011); +#WeOwnVer section; #GapAnalysis fix for v3.1.1.1 omissions |
@@ -1024,7 +1111,7 @@ REF: <CCC-ID>
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| SharedKernel | v3.1.1.4 | GTM_2026-W06_420 | GTM_2026-W06_422 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| SharedKernel | v3.1.2.1 | GTM_2026-W07_119 | ⬜ AWAITING | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
 | BEST-PRACTICES | v3.1.1.3 | GTM_2026-W06_413 | GTM_2026-W06_415 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
 | PROTOCOLS | v3.1.1.2 | GTM_2026-W06_407 | GTM_2026-W06_409 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
 | CCC | v3.1.1.2 | GTM_2026-W06_403 | GTM_2026-W06_405 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
