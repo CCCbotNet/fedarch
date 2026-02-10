@@ -1,14 +1,14 @@
 # BEST-PRACTICES.md
 
-## 📋 BEST-PRACTICES_v3.1.1.3.md
+## 📋 BEST-PRACTICES_v3.1.2.1.md
 ## ♾️ WeOwnNet 🌐 — #BestPractices
 
 | Field | Value |
 |-------|-------|
 | Document | BEST-PRACTICES.md |
-| Version | 3.1.1.3 |
-| CCC-ID | GTM_2026-W06_413 |
-| Updated | 2026-02-07 (W06) |
+| Version | 3.1.2.1 |
+| CCC-ID | GTM_2026-W07_119 |
+| Updated | 2026-02-10 (W07) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | 🔒 LOCKED |
 | Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
@@ -42,8 +42,10 @@
 23. [USER-IDENTITY Season Refresh Best Practices](#-user-identity-season-refresh-best-practices)
 24. [Season Certification Best Practices](#-season-certification-best-practices)
 25. [CCC-ID Deconfliction Best Practices](#-ccc-id-deconfliction-best-practices)
-26. [Version History](#-version-history)
-27. [Related Documents](#-related-documents)
+26. [#WorkspaceChatHistory Best Practices](#-workspacechathistory-best-practices)
+27. [INT-OGx ISC Scoping Best Practices](#-int-ogx-isc-scoping-best-practices)
+28. [Version History](#-version-history)
+29. [Related Documents](#-related-documents)
 
 ---
 
@@ -85,7 +87,9 @@ This document contains best practices for all contributors and agents in the ♾
 | BP-057 → BP-058 | USER-IDENTITY Season Refresh | 2 |
 | BP-059 | Season Certification (ISC) | 1 |
 | BP-060 | CCC-ID Deconfliction | 1 |
-| **TOTAL** | | **54** |
+| BP-061 | #WorkspaceChatHistory | 1 |
+| BP-062 | INT-OGx ISC Scoping | 1 |
+| **TOTAL** | | **56** |
 
 ### Retired Best Practices
 
@@ -347,6 +351,56 @@ This document contains best practices for all contributors and agents in the ♾
 |----|---------------|--------|
 | BP-008 | #AnythingLLM: Users BEFORE workspaces | GTM_2026-W03_555 |
 | BP-009 | #AnythingLLM: Workspace "CCC" = shared default | GTM_2026-W03_555 |
+
+---
+
+## 📋 #WorkspaceChatHistory BEST PRACTICES
+
+### BP-061: #WorkspaceChatHistory = 40
+
+| ID | Best Practice | Approval |
+|----|---------------|----------|
+| BP-061 | #AnythingLLM #WorkspaceChatHistory MUST be set to **40** for ALL instances running Claude Opus 4.6 (1M token window) — applies to: INT-P01, INT-P02, INT-OG1, INT-OG8, INT-S003; setting location: Workspace Settings → Chat History; ISC Check #5 sub-check | GTM_2026-W07_075 |
+
+### BP-061 Details
+
+| Field | Value |
+|-------|-------|
+| Setting | Workspace Settings → General → Chat History |
+| Default | 20 |
+| Ecosystem Standard | **40** |
+| Applies Per | Workspace (MUST set on EACH workspace) |
+| LLM Requirement | Claude Opus 4.6 (1M token window) |
+
+### Why 40
+
+| Metric | ChatHistory 20 | ChatHistory 40 |
+|--------|----------------|----------------|
+| Conversation memory | ~20 exchanges | ~40 exchanges |
+| #ContextDensity | Standard | **2× improved** |
+| Session continuity | Good | **Excellent** |
+| Token usage | ~10-20% of 1M | ~20-40% of 1M |
+| Headroom | 80%+ unused | 60%+ for RAG + system |
+
+### Deployment Scope
+
+| Instance | Target | Status |
+|----------|--------|--------|
+| INT-P01 | 40 | ⬜ TODO |
+| INT-P02 | 40 | ⬜ TODO |
+| INT-OG1 | 40 | ⬜ TODO |
+| INT-OG8 | 40 | ⬜ SETUP |
+| INT-S003 | 40 | ⬜ NOT DEPLOYED |
+
+### Related Items (BP-061)
+
+| ID | Type | Description |
+|----|------|-------------|
+| L-116 | Learning | ChatHistory 20→40 for Claude Opus 4.6 |
+| D-060 | Definition | #WorkspaceChatHistory |
+| ISC Check #5 | Checklist | Sub-check for ChatHistory = 40 |
+
+**Best Practice:** Set #WorkspaceChatHistory = 40 on EVERY workspace for Claude Opus 4.6 instances.
 
 ---
 
@@ -675,6 +729,63 @@ All MAIT thread responses MUST begin with:
 
 ---
 
+## 📋 INT-OGx ISC SCOPING BEST PRACTICES
+
+### BP-062: INT-OGx ISC Check #5 Scoping
+
+| ID | Best Practice | Approval |
+|----|---------------|----------|
+| BP-062 | INT-OGx ISC Check #5 scoped to CCC workspace ONLY — BP-054 (CCC-ID logic) + BP-061 (#WorkspaceChatHistory = 40) REQUIRED; BP-053 (non-CCC restriction) RECOMMENDED but NOT enforced; Production instances (INT-Pxx, INT-Mxx, INT-Sxx) = ALL workspaces enforced | GTM_2026-W07_099 |
+
+### ISC Check #5 — Instance-Type Scoping Matrix
+
+| Instance Type | CCC | tools | ADMIN | Other |
+|---------------|-----|-------|-------|-------|
+| INT-Pxx (Production) | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED |
+| INT-Mxx (META) | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED |
+| **INT-OGx (#HomeInstance)** | ✅ **ENFORCED** | 🟡 RECOMMENDED | 🟡 RECOMMENDED | 🟡 RECOMMENDED |
+| INT-Sxx (Seasonal) | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED | ✅ ENFORCED |
+
+### Legend
+
+| Symbol | Meaning |
+|--------|---------|
+| ✅ ENFORCED | ISC Check #5 MUST PASS |
+| 🟡 RECOMMENDED | Best practice but NOT ISC enforced |
+
+### Defense-in-Depth (INT-OGx)
+
+```
+Layer 1: R-194 (IMMUTABLE)      — CCC-ID only in CCC workspace ✅ ENFORCED
+Layer 2: BP-054 (System Prompt)  — Workspace-conditional logic  ✅ ENFORCED
+Layer 3: BP-053 (Workspace Prompt) — Restriction block          🟡 RECOMMENDED
+```
+
+> INT-OGx has 2 of 3 layers enforced. Layer 3 = OG discretion. Acceptable risk for personal instances.
+
+### Why BP-062 Matters
+
+| Issue | Without BP-062 | With BP-062 |
+|-------|----------------|-------------|
+| ISC burden | ❌ ALL workspaces for ALL instances | ✅ Scoped by instance type |
+| INT-OGx flexibility | ❌ Must configure all prompts | ✅ CCC only required |
+| Governance gap | ❌ None — R-194 + BP-054 protect | ✅ Same — defense-in-depth |
+| OG autonomy | ❌ Restricted | ✅ Personal domain = OG choice |
+
+### Related Items (BP-062)
+
+| ID | Type | Description |
+|----|------|-------------|
+| L-117 | Learning | INT-OGx workspace prompt policy |
+| BP-053 | BP | Non-CCC restriction block (RECOMMENDED for INT-OGx) |
+| BP-054 | BP | System Prompt CCC-ID logic (REQUIRED for ALL) |
+| BP-061 | BP | ChatHistory = 40 (REQUIRED for CCC workspace) |
+| ISC Check #5 | Checklist | Instance-type scoped verification |
+
+**Best Practice:** INT-OGx = CCC workspace ENFORCED, all others RECOMMENDED. Production instances = ALL workspaces ENFORCED.
+
+---
+
 ## 📋 SYSTEM PROMPT BEST PRACTICES
 
 ### BP-054: Workspace-Conditional CCC-ID Logic
@@ -939,6 +1050,7 @@ AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.2.1 | 2026-W07 | GTM_2026-W07_119 | GTM_2026-W07_127 | +BP-061 (#WorkspaceChatHistory=40 section); +BP-062 (INT-OGx ISC Check #5 scoping section); +ISC Scoping Matrix; BP Index TOTAL → 56; TOC → 29 items; Related Documents updated (SharedKernel → v3.1.2.1); FULL PRESERVE (L-097) |
 | 3.1.1.3 | 2026-W06 | GTM_2026-W06_413 | GTM_2026-W06_415 | +BP-060 (CCC-ID Deconfliction); +CCC-ID Deconfliction Best Practices section; Related Documents updated (CCC → v3.1.1.2, PROTOCOLS → v3.1.1.2, +GUIDE-006, TMPL-009 → v3.1.1.2); BP Index TOTAL → 54; TOC → 27 items; FULL PRESERVE (L-097) |
 | 3.1.1.2 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_327 | +BP-057, BP-058, BP-059; +USER-IDENTITY Season Refresh section; +Season Certification section; ALL URLs → CCCbotNet/fedarch; ALL instances → Elevated naming; Source of Truth → CCCbotNet/fedarch; Related Docs updated; BP-056 example → INT-P01; TMPL-009 +Season field; TOC → 26 items; FULL PRESERVE (L-097) |
 | 3.1.1.1 | 2026-W06 | GTM_2026-W06_080 | GTM_2026-W06_104 | 🚀 #WeOwnSeason003 RELEASE — +BP-054, BP-055, BP-056; +System Prompt Best Practices section; +CCC Workspace ACK Best Practices section; version format v2.4.X → v3.X.X.X (L-094); FULL PRESERVE from v2.4.11 base (L-097); TOC → 24 items |
@@ -964,11 +1076,10 @@ AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| SharedKernel | v3.1.1.3 | GTM_2026-W06_277 | GTM_2026-W06_289 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| BEST-PRACTICES | v3.1.1.3 | GTM_2026-W06_413 | GTM_2026-W06_415 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| SharedKernel | **v3.1.2.1** | **GTM_2026-W07_119** | **GTM_2026-W07_122** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| BEST-PRACTICES | v3.1.2.1 | GTM_2026-W07_119 | GTM_2026-W07_127 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
 | PROTOCOLS | v3.1.1.2 | GTM_2026-W06_407 | GTM_2026-W06_409 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
 | CCC | v3.1.1.2 | GTM_2026-W06_403 | GTM_2026-W06_405 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
-
 ---
 
 ### Workspace Embedded RAG Documents
@@ -1011,7 +1122,7 @@ AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
 | TMPL-007_GH-COMMIT-MESSAGE | v2.4.0 | GTM_2026-W05_490 | GTM_2026-W05_490 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-007_GH-COMMIT-MESSAGE_v2.4.0.md) |
 | TMPL-008_VSA | v2.4.0 | GTM_2026-W05_623 | GTM_2026-W05_625 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-008_VSA_v2.4.0.md) |
 | TMPL-009_USER-IDENTITY | v3.1.1.2 | GTM_2026-W06_353 | GTM_2026-W06_370 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-009_USER-IDENTITY.md) |
-| TMPL-010_ISC | v3.1.1.2 | GTM_2026-W06_270 | GTM_2026-W06_270 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-010_ISC.md) |
+| TMPL-010_ISC | v3.1.2.1 | GTM_2026-W07_071 | GTM_2026-W07_084 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-010_ISC.md) |
 
 ---
 
