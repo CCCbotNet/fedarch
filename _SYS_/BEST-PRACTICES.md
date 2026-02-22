@@ -1,14 +1,14 @@
 # BEST-PRACTICES.md
 
-## 📋 BEST-PRACTICES_v3.1.2.1.md
+## 📋 BEST-PRACTICES_v3.1.3.1.md
 ## ♾️ WeOwnNet 🌐 — #BestPractices
 
 | Field | Value |
 |-------|-------|
 | Document | BEST-PRACTICES.md |
-| Version | 3.1.2.1 |
-| CCC-ID | GTM_2026-W07_119 |
-| Updated | 2026-02-10 (W07) |
+| Version | 3.1.3.1 |
+| CCC-ID | GTM_2026-W08_069 |
+| Updated | 2026-02-21 (W08) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | 🔒 LOCKED |
 | Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
@@ -44,8 +44,11 @@
 25. [CCC-ID Deconfliction Best Practices](#-ccc-id-deconfliction-best-practices)
 26. [#WorkspaceChatHistory Best Practices](#-workspacechathistory-best-practices)
 27. [INT-OGx ISC Scoping Best Practices](#-int-ogx-isc-scoping-best-practices)
-28. [Version History](#-version-history)
-29. [Related Documents](#-related-documents)
+28. [#DocLifecycle Best Practices](#-doclifecycle-best-practices)
+29. [API Key Rotation Best Practices](#-api-key-rotation-best-practices)
+30. [Shared Instance Identity Best Practices](#-shared-instance-identity-best-practices)
+31. [Version History](#-version-history)
+32. [Related Documents](#-related-documents)
 
 ---
 
@@ -89,7 +92,10 @@ This document contains best practices for all contributors and agents in the ♾
 | BP-060 | CCC-ID Deconfliction | 1 |
 | BP-061 | #WorkspaceChatHistory | 1 |
 | BP-062 | INT-OGx ISC Scoping | 1 |
-| **TOTAL** | | **56** |
+| BP-063 | #DocLifecycle VSA Gate | 1 |
+| BP-064 | API Key Rotation | 1 |
+| BP-065 | Shared Instance Self-ID | 1 |
+| **TOTAL** | | **59** |
 
 ### Retired Best Practices
 
@@ -1046,10 +1052,227 @@ AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
 
 ---
 
+## 📋 #DocLifecycle Best Practices
+
+### BP-063: Document Lifecycle VSA Gate
+
+| ID | Best Practice | Approval |
+|----|---------------|----------|
+| BP-063 | Document Lifecycle VSA Gate (#DocLifecycle): BEFORE initiating ANY VSA, agent MUST verify document status against lifecycle table (D-062); DRAFT stage = DRAFT CHECK (D-063) only; IDEA/IN PROGRESS = no VSA; REVIEW+ = production VSA eligible; include lifecycle stage in VSA header; prevents false #BadAgent classifications | GTM_2026-W08_014 |
+
+### BP-063 Details
+
+#### Pre-VSA Verification Steps
+
+| # | Step | Action |
+|---|------|--------|
+| 1 | Identify document | What document is being VSA'd? |
+| 2 | Check lifecycle stage | What stage is this document at? (D-062) |
+| 3 | Verify eligibility | Is this stage eligible for requested VSA type? |
+| 4 | Proceed or redirect | Eligible → run VSA. Not eligible → redirect |
+
+#### VSA Eligibility Matrix
+
+| Stage | Icon | DRAFT CHECK | Batch | FULL | DEEP FULL |
+|-------|------|-------------|-------|------|-----------|
+| IDEA | 💡 | ❌ | ❌ | ❌ | ❌ |
+| DRAFT | 📝 | ✅ | ❌ | ❌ | ❌ |
+| IN PROGRESS | 🔄 | ❌ | ❌ | ❌ | ❌ |
+| REVIEW | 👀 | ✅ | ✅ | ✅ | ❌ |
+| APPROVED | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GH LIVE | 🚀 | ✅ | ✅ | ✅ | ✅ |
+| VERIFIED | 🏆 | ✅ | ✅ | ✅ | ✅ |
+
+#### Redirect Matrix
+
+| Requested VSA | Actual Stage | Action |
+|--------------|-------------|--------|
+| DEEP FULL | DRAFT | ❌ "Document at DRAFT stage. Running DRAFT CHECK instead." |
+| FULL | IDEA | ❌ "Document at IDEA stage. No VSA available. Define scope first." |
+| Batch | IN PROGRESS | ❌ "Document being generated. VSA available after REVIEW stage." |
+| DRAFT CHECK | DRAFT | ✅ Proceed |
+| FULL | APPROVED | ✅ Proceed |
+| DEEP FULL | GH LIVE | ✅ Proceed |
+
+#### VSA Header Addition
+
+All VSA headers MUST include lifecycle stage:
+
+```markdown
+| Field | Value |
+|-------|-------|
+| Subject | <DOCUMENT> |
+| **Lifecycle Stage** | **<ICON> <STAGE>** |
+| Type | <VSA TYPE> |
+```
+
+#### DRAFT CHECK Template (D-063)
+
+```
+DRAFT CHECK | <DOCUMENT> | <DATE>
+
+| # | Check | Result |
+|---|-------|--------|
+| 1 | Document exists | ✅ / ❌ |
+| 2 | Owner identified | ✅ / ❌ |
+| 3 | #masterCCC assigned | ✅ / ❌ |
+| 4 | Scope defined | ✅ / ❌ |
+| 5 | SEEK:META planned | ✅ / ❌ |
+
+RESULT: ✅ READY / ❌ NOT READY
+```
+
+### Why BP-063 Matters
+
+| Issue | Without BP-063 | With BP-063 |
+|-------|----------------|-------------|
+| Draft runs DEEP FULL | ❌ FAIL → false #BadAgent | ✅ Redirected to DRAFT CHECK |
+| Pass rate accuracy | ❌ Inflated failure count | ✅ True production failures only |
+| Agent behavior | ❌ Runs any VSA on anything | ✅ Stage-aware verification |
+
+### Related Items (BP-063)
+
+| ID | Type | Description |
+|----|------|-------------|
+| D-062 | Definition | Document Lifecycle (7 stages) |
+| D-063 | Definition | DRAFT CHECK (non-scored VSA) |
+| D-064 | Definition | EXPECTED FAIL (reclassification) |
+| R-215 | Rule | VSA Lifecycle Gate |
+| L-119 | Learning | Draft VSA Policy |
+
+---
+
+## 📋 API Key Rotation Best Practices
+
+### BP-064: OpenRouter API Key Rotation
+
+| ID | Best Practice | Approval |
+|----|---------------|----------|
+| BP-064 | OpenRouter API Key Rotation: #SharedInstance (INT-Pxx) = 7-day rotation; #HomeInstance (INT-OGx) = 30-day rotation; managed via Infisical (Tier 2) or manual (Tier 1); calendar alert 24h before expiry; rotation workflow: generate new key → update instance → logout/login → verify → revoke old key; INT-P01 outage (GTM_2026-W07_156) = catalyst for policy | GTM_2026-W08_028 |
+
+### BP-064 Details
+
+#### Rotation Cadence
+
+| Instance Type | Cadence | Rationale |
+|---------------|---------|-----------|
+| #SharedInstance (INT-Pxx, INT-Sxx) | **7 days** | Multiple users → higher exposure risk |
+| #HomeInstance (INT-OGx) | **30 days** | Single user → lower risk |
+| Event Instance (INT-Exx) | **Per event** | Ephemeral — rotate at deploy, revoke at decommission |
+
+#### Rotation Workflow
+
+| # | Step | Action | Owner |
+|---|------|--------|-------|
+| 1 | Generate new key | OpenRouter dashboard → API Keys → Create | ADMIN |
+| 2 | Update instance | AnythingLLM → Settings → LLM → API Key | ADMIN |
+| 3 | Logout/Login | ADMIN MUST logout and login to refresh session | ADMIN |
+| 4 | Verify | #SmokeTest — confirm LLM responds | ADMIN |
+| 5 | Revoke old key | OpenRouter dashboard → API Keys → Delete old | ADMIN |
+
+#### Management Tiers
+
+| Tier | Method | Status |
+|------|--------|--------|
+| **Tier 1** (NOW) | Manual rotation via OpenRouter dashboard | ✅ ACTIVE |
+| **Tier 2** (Building) | Automated rotation via Infisical | 🔄 @RMN building |
+
+#### Calendar Alert
+
+| Field | Value |
+|-------|-------|
+| When | **24 hours before expiry** |
+| Method | Calendar event (Google/Outlook) |
+| Action | Trigger rotation workflow |
+| Owner | Instance ADMIN |
+
+### Why BP-064 Matters
+
+| Issue | Without BP-064 | With BP-064 |
+|-------|----------------|-------------|
+| Key expires | ❌ FULL OUTAGE (INT-P01 — 2h 18m) | ✅ Proactive rotation |
+| Error message | ❌ Confusing "401 User not found" | ✅ Known pattern |
+| Recovery | ❌ Ad-hoc debugging | ✅ Documented workflow |
+
+### Related Items (BP-064)
+
+| ID | Type | Description |
+|----|------|-------------|
+| L-126 | Learning | API key rotation = intentional security practice |
+| GTM_2026-W07_156 | Incident | INT-P01 outage — 2h 18m (catalyst) |
+
+---
+
+## 📋 Shared Instance Identity Best Practices
+
+### BP-065: Shared Instance Self-ID
+
+| ID | Best Practice | Approval |
+|----|---------------|----------|
+| BP-065 | Shared Instance Self-ID: Non-owner users on shared instances (INT-Pxx, INT-Sxx) MUST self-identify in first message of every new thread — format: "I am @<CCC> (u-<ccc>_user)"; agent MUST NOT assume identity from System Prompt owner or RAG context; if user identity unclear or unverified, agent MUST ASK "Which CCC are you?" before generating CCC-IDs or responding with attribution; validated by @LFG incident (LFG_2026-W08_004) | GTM_2026-W08_034 |
+
+### BP-065 Details
+
+#### When BP-065 Applies
+
+| Instance Type | Applies? | Rationale |
+|---------------|----------|-----------|
+| INT-Pxx (Production) | ✅ **YES** | Multiple users share instance |
+| INT-Sxx (Seasonal) | ✅ **YES** | Multiple users share instance |
+| INT-OGx (#HomeInstance) | ❌ No | Single owner — identity known |
+| INT-Exx (Event) | ✅ **YES** | Demo users share instance |
+
+#### Self-ID Format
+
+```
+"I am @<CCC> (u-<ccc>_user)"
+
+Example: "I am @LFG (u-lfg_user)"
+```
+
+#### Agent Behavior
+
+| Scenario | Agent Action |
+|----------|-------------|
+| User self-identifies | ✅ Use stated identity |
+| User does NOT self-identify | ⚠️ ASK: "Which CCC are you?" |
+| User identity conflicts with System Prompt owner | ✅ Trust user statement, NOT System Prompt |
+| ADMIN account (a-<ccc>_dev) | ❌ No CCC-ID generation regardless (R-206) |
+
+#### Defense-in-Depth — Identity Verification
+
+```
+Layer 1: System Prompt     — INSTANCE identity (R-213) ← NOT user identity
+Layer 2: {user.name}       — Variable injection (L-120/L-121) ← if v1.10.0+
+Layer 3: BP-065            — User self-identifies in first message
+Layer 4: Agent verification — "Which CCC are you?" if unclear
+Layer 5: CCC-ID generation — Only after identity confirmed
+```
+
+### Why BP-065 Matters
+
+| Issue | Without BP-065 | With BP-065 |
+|-------|----------------|-------------|
+| Wrong identity | ❌ Agent assumes System Prompt owner | ✅ User self-identifies |
+| CCC-ID attribution | ❌ Wrong CCC on generated IDs | ✅ Correct attribution |
+| Audit trail | ❌ UNATTRIBUTABLE | ✅ Traceable |
+
+### Related Items (BP-065)
+
+| ID | Type | Description |
+|----|------|-------------|
+| L-127 | Learning | System Prompt owner ≠ current user |
+| L-096 | Learning | ACK responses MUST include sender identity |
+| BP-056 | BP | CCC workspace ACK identity header |
+| LFG_2026-W08_004 | Incident | Agent assumed @THY identity for @LFG |
+
+---
+
 ## 📋 VERSION HISTORY
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.3.1 | 2026-W08 | GTM_2026-W08_069 | GTM_2026-W08_071 | +BP-063 (#DocLifecycle VSA Gate section); +BP-064 (API Key Rotation section); +BP-065 (Shared Instance Self-ID section); +VSA Eligibility Matrix; +DRAFT CHECK Template; +Rotation Workflow; +Defense-in-Depth identity layers; BP Index TOTAL → 59; TOC updated; Related Documents updated; FULL PRESERVE (L-097) |
 | 3.1.2.1 | 2026-W07 | GTM_2026-W07_119 | GTM_2026-W07_127 | +BP-061 (#WorkspaceChatHistory=40 section); +BP-062 (INT-OGx ISC Check #5 scoping section); +ISC Scoping Matrix; BP Index TOTAL → 56; TOC → 29 items; Related Documents updated (SharedKernel → v3.1.2.1); FULL PRESERVE (L-097) |
 | 3.1.1.3 | 2026-W06 | GTM_2026-W06_413 | GTM_2026-W06_415 | +BP-060 (CCC-ID Deconfliction); +CCC-ID Deconfliction Best Practices section; Related Documents updated (CCC → v3.1.1.2, PROTOCOLS → v3.1.1.2, +GUIDE-006, TMPL-009 → v3.1.1.2); BP Index TOTAL → 54; TOC → 27 items; FULL PRESERVE (L-097) |
 | 3.1.1.2 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_327 | +BP-057, BP-058, BP-059; +USER-IDENTITY Season Refresh section; +Season Certification section; ALL URLs → CCCbotNet/fedarch; ALL instances → Elevated naming; Source of Truth → CCCbotNet/fedarch; Related Docs updated; BP-056 example → INT-P01; TMPL-009 +Season field; TOC → 26 items; FULL PRESERVE (L-097) |
@@ -1076,10 +1299,10 @@ AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| SharedKernel | **v3.1.2.1** | **GTM_2026-W07_119** | **GTM_2026-W07_122** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| BEST-PRACTICES | v3.1.2.1 | GTM_2026-W07_119 | GTM_2026-W07_127 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
-| PROTOCOLS | v3.1.1.2 | GTM_2026-W06_407 | GTM_2026-W06_409 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
-| CCC | v3.1.1.2 | GTM_2026-W06_403 | GTM_2026-W06_405 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
+| SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| BEST-PRACTICES | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| PROTOCOLS | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
+| CCC | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
 ---
 
 ### Workspace Embedded RAG Documents
