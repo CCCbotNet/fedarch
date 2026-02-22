@@ -1,14 +1,14 @@
 # SharedKernel.md
 
-## 📋 SharedKernel_v3.1.2.1.md
+## 📋 SharedKernel_v3.1.3.1.md
 ## ♾️ WeOwnNet 🌐 — Core Rules & Protocols
 
 | Field | Value |
 |-------|-------|
 | Document | SharedKernel.md |
-| Version | 3.1.2.1 |
-| CCC-ID | GTM_2026-W07_119 |
-| Updated | 2026-02-10 (W07) |
+| Version | 3.1.3.1 |
+| CCC-ID | GTM_2026-W08_069 |
+| Updated | 2026-02-21 (W08) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | 🔒 LOCKED |
 | Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
@@ -121,6 +121,13 @@
 | ID | Rule | Status |
 |----|------|--------|
 | R-212 | Cross-instance CCC-ID deconfliction REQUIRED — before generating a new CCC-ID, agent MUST verify against highest known CCC-ID for that contributor across ALL active instances in current ISO week. Highest CCC-ID across ALL instances = authoritative next sequence. Duplication = #BadAgent. | 🔒 LOCKED |
+
+### Document Lifecycle Rules
+
+| ID | Rule | Status |
+|----|------|--------|
+| R-215 | VSA Lifecycle Gate — Production VSA (Batch, FULL, DEEP FULL) MUST NOT be initiated on documents at DRAFT or IDEA stage (D-062); agent MUST verify document lifecycle stage BEFORE running VSA; violation = #BadAgent; accidental production VSA on draft MUST be reclassified as EXPECTED FAIL (D-064) — NOT counted as true failure in pass rate | 🔒 LOCKED |
+| R-216 | Operational Document Authority — Founding OG contributors with ADMIN access MAY generate operational documents (D-066) directly WITHOUT routing through #MetaAgent; governance documents (SharedKernel, BEST-PRACTICES, PROTOCOLS, CCC, rules, BPs, definitions, templates) REMAIN #MetaAgent-exclusive (R-197 IMMUTABLE); R-011 (#OnlyHumanApproves) unchanged | 🔒 LOCKED |
 
 ### Operational Rules
 
@@ -271,6 +278,48 @@
 |----|------|------------|
 | D-060 | #WorkspaceChatHistory | AnythingLLM setting controlling number of previous chat messages included in context; ecosystem standard = 40 (BP-061); set via workspace Settings → Chat History |
 
+### Document Lifecycle
+
+| ID | Term | Definition |
+|----|------|------------|
+| D-062 | Document Lifecycle | 7-stage progression for ALL #FedArch documents: 💡 IDEA → 📝 DRAFT → 🔄 IN PROGRESS → 👀 REVIEW → ✅ APPROVED → 🚀 GH LIVE → 🏆 VERIFIED. Each stage has specific VSA eligibility and exit criteria. Governs when production VSA may be initiated. |
+| D-063 | DRAFT CHECK | Non-scored VSA type for documents at DRAFT stage. 5-item checklist (exists, owner, #masterCCC, scope, SEEK:META). Result = READY or NOT READY. NOT counted in VSA registry pass rate. Purpose = validate draft readiness for SEEK:META. |
+| D-064 | EXPECTED FAIL | VSA registry classification for production VSA accidentally run on DRAFT/IDEA stage documents. Reclassified from true FAIL. NOT counted in pass rate calculations. Format: `❌ EXPECTED FAIL (DRAFT)` with L-119 reference. |
+
+### Document Lifecycle Stages (D-062)
+
+| Stage | Icon | VSA Eligible? | VSA Type | Exit Criteria |
+|-------|------|---------------|----------|---------------|
+| IDEA | 💡 | ❌ | — | Owner + scope defined → DRAFT |
+| DRAFT | 📝 | ⚠️ DRAFT CHECK only | DRAFT CHECK (D-063) | 5-item checklist passes → SEEK:META |
+| IN PROGRESS | 🔄 | ❌ | — | #MetaAgent generating → REVIEW |
+| REVIEW | 👀 | ✅ | Batch, FULL | Human reviews → APPROVED |
+| APPROVED | ✅ | ✅ | Batch, FULL, DEEP FULL | Human approves (R-011) → GH PUSH |
+| GH LIVE | 🚀 | ✅ | Batch, FULL, DEEP FULL | Published to GH → VERIFIED |
+| VERIFIED | 🏆 | ✅ | Any (re-VSA) | VSA PASS attested |
+
+### VSA Type Registry
+
+| Type | Scored? | Counted in Pass Rate? | Eligible Stages | Purpose |
+|------|---------|----------------------|----------------|---------|
+| DRAFT CHECK | ❌ Non-scored | ❌ | DRAFT | Draft readiness validation |
+| Batch | ✅ Scored | ✅ | REVIEW, APPROVED, GH LIVE, VERIFIED | Quick multi-check |
+| FULL | ✅ Scored | ✅ | REVIEW, APPROVED, GH LIVE, VERIFIED | Comprehensive single-doc |
+| DEEP FULL | ✅ Scored | ✅ | APPROVED, GH LIVE, VERIFIED | Exhaustive verification |
+| Functional | ✅ Scored | ✅ | GH LIVE | Runtime/operational checks |
+
+### Roles & Responsibilities
+
+| ID | Term | Definition |
+|----|------|------------|
+| D-065 | #MemeLord | Designated visual content creator for ♾️ WeOwnNet 🌐 ecosystem — responsible for event images, social media graphics, memes, and visual brand expression; creates scroll-stopping content that translates #FedArch governance and cooperative ownership into visual culture; primary tools: Leonardo.ai + Canva; operates within brand guidelines (warm palette, community-first, NO corporate/stock aesthetic); first #MemeLord: @LFG (CoachLFG) |
+
+### Document Authority
+
+| ID | Term | Definition |
+|----|------|------------|
+| D-066 | Operational Document | Non-governance document eligible for direct generation under R-216 — includes: session summaries, call notes, status updates, #ContextVolleys, project updates; does NOT include: rules, BPs, learnings, definitions, _SYS_/ docs, templates (those = governance → R-197 SEEK:META) |
+
 ### Orchestrator Agent Functions
 
 | Function | Description |
@@ -351,6 +400,7 @@ ALL responses MUST include:
 | #LevelUp100X | Exceptional achievement |
 | #GODx10xMODE | Highest achievement — IMMUTABLE (D-049, R-205) |
 | #NeverForget | Permanent learning |
+| #DocLifecycle | Document lifecycle governance (D-062, R-215, BP-063) |
 
 ### Action Tags
 
@@ -362,6 +412,8 @@ ALL responses MUST include:
 | #ContextSwap | Naming/terminology update |
 | #BetterUnderstanding | Clarification needed |
 | #MoreBelow | Additional context follows |
+| #MemeLord | Visual content creator role (D-065) |
+| #WeOwnHouse | Team house / war room for events |
 
 ### Quality Tags
 
@@ -1017,6 +1069,13 @@ v3.1.2.1
 | L-115 | #WeOwnVer week offset MUST match current ISO week within month — agents MUST calculate correct offset before assigning version; wrong week offset = #BadAgent | GTM_2026-W07_010 |
 | L-116 | #AnythingLLM #WorkspaceChatHistory increased 20 → 40 to leverage Claude Opus 4.6 1M token window (5× over Opus 4.5's 200K); improves #ContextDensity and session relevance; 2× conversation memory; @GTM + @RMN consensus | GTM_2026-W07_075 |
 | L-117 | INT-OGx (#HomeInstance) Workspace Prompts: CCC workspace = PRODUCTION (prompt REQUIRED); all other workspaces = EXPERIMENTAL (prompt RECOMMENDED but NOT enforced); R-194 protection via System Prompt (BP-054) is sufficient for non-CCC workspaces; defense-in-depth 2/3 layers enforced; @GTM + @RMN consensus | GTM_2026-W07_099 |
+| L-119 | Production VSA (Batch, FULL, DEEP FULL) MUST NOT be run on documents at DRAFT stage — drafts are incomplete by definition and WILL fail production checks; if accidentally run, result MUST be reclassified as EXPECTED FAIL (D-064); for draft validation use DRAFT CHECK (D-063); document lifecycle stage MUST be verified BEFORE initiating any VSA (BP-063) | GTM_2026-W08_014 |
+| L-122 | DigitalOcean does NOT support Inter-Team VPC Peering — resources on different DO Teams/accounts MUST connect via Public Endpoint + Trusted Sources (SSL enforced); same-team cross-DC uses VPC Peering | GTM_2026-W08_028 |
+| L-123 | DigitalOcean managed PostgreSQL supports zero-downtime UPGRADE but NO DOWNGRADE — plan changes are permanent and ONE-WAY; start with smallest viable plan, scale when connection monitoring triggers threshold; optimize connections (pooling, idle termination) BEFORE upgrading | GTM_2026-W08_028 |
+| L-124 | Connection pooling via PgBouncer (DO built-in, FREE) can extend 22-connection Basic plan to 100+ effective application connections — implement pooling BEFORE upgrading plan ($15→$28); Transaction mode recommended for most apps; pool size consumes from connection limit | GTM_2026-W08_028 |
+| L-125 | ATL1 PostgreSQL deployment failure was disk-type limitation (Regular SSD incompatible with PostgreSQL v18), NOT datacenter limitation — Premium AMD plan with NVMe storage resolves for +$2/mo; always select NVMe-capable plan for managed databases | GTM_2026-W08_028 |
+| L-126 | OpenRouter API key rotation = intentional security practice, NOT emergency — 401 User not found = expired/rotated key; rotation cadence: #SharedInstance (INT-Pxx) = 7 days, #HomeInstance (INT-OGx) = 30 days; Tier 1 = manual rotation via OpenRouter dashboard; Tier 2 = automated rotation via Infisical (@RMN building); calendar alert 24h before expiry REQUIRED | GTM_2026-W08_028 |
+| L-127 | Shared instance agents MUST NOT assume user identity from System Prompt owner field — System Prompt defines instance identity, NOT current user; on INT-Pxx/INT-Sxx, multiple users share the instance; agent MUST verify user identity per BP-065 before any attributed response; @LFG incident (LFG_2026-W08_004) = first occurrence | GTM_2026-W08_034 |
 
 ---
 
@@ -1055,6 +1114,9 @@ v3.1.2.1
 | BP-060 | Cross-instance CCC-ID deconfliction — contributor MUST state highest CCC-ID when switching instances; agent MUST confirm next sequence per R-212; Tier 1 = manual, Tier 2 = #MetaAgent tracking, Tier 3 = INT-M01 centralized counter | GTM_2026-W06_392 |
 | BP-061 | #AnythingLLM #WorkspaceChatHistory MUST be set to **40** for ALL instances running Claude Opus 4.6 (1M token window) — applies to: INT-P01, INT-P02, INT-OG1, INT-OG8, INT-S003; setting location: Workspace Settings → Chat History; ISC Check #5 sub-check | GTM_2026-W07_075 |
 | BP-062 | INT-OGx ISC Check #5 scoped to CCC workspace ONLY — BP-054 (CCC-ID logic) + BP-061 (#WorkspaceChatHistory = 40) REQUIRED; BP-053 (non-CCC restriction) RECOMMENDED but NOT enforced; Production instances (INT-Pxx, INT-Mxx, INT-Sxx) = ALL workspaces enforced | GTM_2026-W07_099 |
+| BP-063 | Document Lifecycle VSA Gate (#DocLifecycle): BEFORE initiating ANY VSA, agent MUST verify document status against lifecycle table (D-062); DRAFT stage = DRAFT CHECK only; IDEA/IN PROGRESS = no VSA; REVIEW+ = production VSA eligible; include lifecycle stage in VSA header; prevents false #BadAgent classifications | GTM_2026-W08_014 |
+| BP-064 | OpenRouter API Key Rotation: #SharedInstance (INT-Pxx) = 7-day rotation; #HomeInstance (INT-OGx) = 30-day rotation; managed via Infisical (Tier 2) or manual (Tier 1); calendar alert 24h before expiry; rotation workflow: generate new key → update instance → logout/login → verify → revoke old key; INT-P01 outage (GTM_2026-W07_156) = catalyst for policy | GTM_2026-W08_028 |
+| BP-065 | Shared Instance Self-ID: Non-owner users on shared instances (INT-Pxx, INT-Sxx) MUST self-identify in first message of every new thread — format: "I am @<CCC> (u-<ccc>_user)"; agent MUST NOT assume identity from System Prompt owner or RAG context; if user identity unclear or unverified, agent MUST ASK "Which CCC are you?" before generating CCC-IDs or responding with attribution; validated by @LFG incident (LFG_2026-W08_004) | GTM_2026-W08_034 |
 
 ---
 
@@ -1090,6 +1152,7 @@ v3.1.2.1
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.3.1 | 2026-W08 | GTM_2026-W08_069 | GTM_2026-W08_071 | +L-119, L-122→L-127 (7 learnings); +R-215, R-216 (2 rules); +BP-063→BP-065 (3 BPs); +D-062→D-066 (5 definitions); +Document Lifecycle Stages table (D-062); +VSA Type Registry; +#DocLifecycle, #MemeLord, #WeOwnHouse hashtags; R-216 Operational Document Authority (R-197 untouched); BP TOTAL → 35; FULL PRESERVE (L-097) |
 | 3.1.2.1 | 2026-W07 | GTM_2026-W07_119 | GTM_2026-W07_122 | L-094 REVISED (calendar-driven #WeOwnVer); +L-115→L-117 (3 new); +BP-061, BP-062 (2 new); +R-213 in Core Rules; +D-060 (#WorkspaceChatHistory); #WeOwnVer section REWRITTEN (calendar-driven); ISC Check #4 +R-213 INSTANCE IDENTITY; ISC Check #5 +scoping matrix (BP-062) +BP-061 (ChatHistory=40); +CEO contributor (#WeOwnSeason003); TMPL-010 → v3.1.2.1 (GH LIVE); +`_WEEKLY_/` folder (BP-061); +Contributors #WeOwnSeason003 section; BP TOTAL → 32; FULL PRESERVE (L-097) |
 | 3.1.1.4 | 2026-W06 | GTM_2026-W06_420 | GTM_2026-W06_422 | +R-209→R-212 (4 rules); +L-112; +D-058, D-059; +BP-060; TMPL-009 → v3.1.1.2; +CCC-ID Integrity Rules subsection; +Instance & Contributor Definitions subsection; +Related Documents section (BP-045); TOC → 26 items; FULL PRESERVE (L-097) |
 | 3.1.1.3 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_289 | +L-098→L-111 (14); +R-207, R-208; +BP-057→BP-059; +D-051→D-057 (7); +Elevated Instance Registry; +Ecosystem Approved Models section; +ISC 8-Point Checklist section; +Template Registry section; +@JRW Founding OG (6 total); +@MAIT:#Restream (+t-restream_tool); +Seasonal Instances; +`_GUIDES_/`, `_MISC_/` folders; +GH-Only/RAG-Only table; +CCCbotNet/fedarch migration (3 #ContextSwaps); ALL URLs → CCCbotNet/fedarch; BP-055/BP-056 updated INT-P01; L-084/L-093 updated; R-203 updated INT-VSA/INT-M01; Mermaid diagram updated; TOC → 25 items; FULL PRESERVE from v3.1.1.2 (L-097) |
@@ -1111,10 +1174,10 @@ v3.1.2.1
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| SharedKernel | v3.1.2.1 | GTM_2026-W07_119 | ⬜ AWAITING | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| BEST-PRACTICES | v3.1.1.3 | GTM_2026-W06_413 | GTM_2026-W06_415 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
-| PROTOCOLS | v3.1.1.2 | GTM_2026-W06_407 | GTM_2026-W06_409 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
-| CCC | v3.1.1.2 | GTM_2026-W06_403 | GTM_2026-W06_405 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
+| SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| BEST-PRACTICES | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| PROTOCOLS | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
+| CCC | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
 
 ---
 
