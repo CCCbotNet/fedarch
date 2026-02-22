@@ -1,14 +1,14 @@
 # PROTOCOLS.md
 
-## 📋 PROTOCOLS_v3.1.1.2.md
+## 📋 PROTOCOLS_v3.1.3.1.md
 ## ♾️ WeOwnNet 🌐 — #Protocols
 
 | Field | Value |
 |-------|-------|
 | Document | PROTOCOLS.md |
-| Version | 3.1.1.2 |
-| CCC-ID | GTM_2026-W06_407 |
-| Updated | 2026-02-07 (W06) |
+| Version | 3.1.3.1 |
+| CCC-ID | GTM_2026-W08_069 |
+| Updated | 2026-02-21 (W08) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | 🔒 LOCKED |
 | Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
@@ -21,12 +21,13 @@
 2. [#ContextVolley Protocol](#-contextvolley-protocol)
 3. [#ContextBroadcast Protocol](#-contextbroadcast-protocol)
 4. [#MetaAgent Protocol](#-metaagent-protocol)
-5. [Document Management Protocol](#-document-management-protocol)
-6. [Weekly Operations Protocol](#-weekly-operations-protocol)
-7. [CCC-ID Protocol](#-ccc-id-protocol)
-8. [CCC-ID Deconfliction Protocol](#-ccc-id-deconfliction-protocol)
-9. [Version History](#-version-history)
-10. [Related Documents](#-related-documents)
+5. [#DocLifecycle Protocol](#-doclifecycle-protocol)
+6. [Document Management Protocol](#-document-management-protocol)
+7. [Weekly Operations Protocol](#-weekly-operations-protocol)
+8. [CCC-ID Protocol](#-ccc-id-protocol)
+9. [CCC-ID Deconfliction Protocol](#-ccc-id-deconfliction-protocol)
+10. [Version History](#-version-history)
+11. [Related Documents](#-related-documents)
 
 ---
 
@@ -37,6 +38,7 @@
 | #ContextVolley | Agent-to-agent communication (one-to-one) |
 | #ContextBroadcast | Agent-to-all communication (one-to-many) |
 | #MetaAgent | Governance sync |
+| #DocLifecycle | Document lifecycle VSA governance |
 | Document Management | RAG operations |
 | Weekly Operations | Cadence protocols |
 | CCC-ID Deconfliction | Cross-instance CCC-ID sequence integrity |
@@ -177,15 +179,59 @@ REF: <CCC-ID>
 
 ---
 
+## 📋 #DocLifecycle PROTOCOL
+
+### PURPOSE
+
+| Field | Value |
+|-------|-------|
+| Definition | D-062 |
+| Purpose | Govern document progression and VSA eligibility |
+| Hashtag | #DocLifecycle |
+| Rule | R-215 |
+| Best Practice | BP-063 |
+
+### LIFECYCLE STAGES
+
+| Stage | Icon | VSA Eligible? | VSA Type | Exit Criteria |
+|-------|------|---------------|----------|---------------|
+| IDEA | 💡 | ❌ | — | Owner + scope defined |
+| DRAFT | 📝 | ⚠️ DRAFT CHECK only | DRAFT CHECK (D-063) | 5-item checklist passes |
+| IN PROGRESS | 🔄 | ❌ | — | #MetaAgent generating |
+| REVIEW | 👀 | ✅ | Batch, FULL | Human reviews |
+| APPROVED | ✅ | ✅ | Batch, FULL, DEEP FULL | Human approves (R-011) |
+| GH LIVE | 🚀 | ✅ | Batch, FULL, DEEP FULL | Published to GH |
+| VERIFIED | 🏆 | ✅ | Any (re-VSA) | VSA PASS attested |
+
+### RULES
+
+| ID | Rule |
+|----|------|
+| R-215 | Production VSA MUST NOT be initiated on DRAFT/IDEA stage documents |
+| R-216 | Operational docs may be generated directly by R-216-eligible contributors |
+| R-197 | Governance docs MUST go through #MetaAgent (IMMUTABLE — unchanged) |
+
+### EXPECTED FAIL (D-064)
+
+| Scenario | Classification |
+|----------|---------------|
+| Production VSA on DRAFT doc | ❌ EXPECTED FAIL (DRAFT) |
+| Counted in pass rate? | ❌ NO |
+| #BadAgent? | ❌ NO (R-215) |
+| Logged? | ✅ YES — separately in VSA registry |
+
+---
+
 ## 📋 DOCUMENT MANAGEMENT PROTOCOL
 
-### ROLES (R-175)
+### ROLES (R-175 + R-216)
 
-| Role | Can Manage Docs? |
-|------|------------------|
-| CCC | ❌ NO |
-| MAIT | ❌ NO |
-| ADMIN | ✅ YES |
+| Role | Can Manage Docs? | Can Generate Docs? |
+|------|------------------|--------------------|
+| CCC | ❌ NO | ❌ NO |
+| MAIT | ❌ NO | ❌ NO |
+| ADMIN | ✅ YES | ⚠️ Operational only (R-216) |
+| #MetaAgent | — | ✅ Governance docs (R-197) |
 
 ### RAG STRUCTURE (R-176)
 
@@ -339,6 +385,7 @@ AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.1.3.1 | 2026-W08 | GTM_2026-W08_069 | GTM_2026-W08_071 | +#DocLifecycle Protocol section (D-062, R-215, BP-063); +Protocol Index entry; Document Management +R-216 reference; +Operational doc generation role; TOC → 11 items; FULL PRESERVE (L-097) |
 | 3.1.1.2 | 2026-W06 | GTM_2026-W06_407 | GTM_2026-W06_409 | +CCC-ID Deconfliction Protocol section (R-212); RAG Structure column MAIT → tools; +Related Documents section (BP-045); +Protocol Index entry; TOC → 10 items; FULL PRESERVE (L-097) |
 | 3.1.1.1 | 2026-W06 | GTM_2026-W06_277 | GTM_2026-W06_332 | #WeOwnSeason003 season alignment — version bump v2.4.4 → v3.1.1.1 (L-094); +Source of Truth URL (CCCbotNet/fedarch); +Season tag; versioning example updated; NO content changes; FULL PRESERVE (L-097) |
 | 2.4.4 | 2026-W05 | GTM_2026-W05_506 | GTM_2026-W05_512 | +#ContextBroadcast protocol section (D-039) |
@@ -351,9 +398,10 @@ AI: "✅ R-212 — Continuing from GTM_2026-W06_387"
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| SharedKernel | v3.1.1.3 | GTM_2026-W06_277 | GTM_2026-W06_289 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| BEST-PRACTICES | v3.1.1.2 | GTM_2026-W06_277 | GTM_2026-W06_327 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
-| CCC | v3.1.1.2 | GTM_2026-W06_403 | GTM_2026-W06_405 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
+| SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| BEST-PRACTICES | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| PROTOCOLS | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
+| CCC | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
 
 ---
 
