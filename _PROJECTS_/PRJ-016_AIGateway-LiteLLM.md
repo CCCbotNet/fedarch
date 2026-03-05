@@ -1,18 +1,20 @@
 # PRJ-016: AI Gateway — LiteLLM Deployment
 
-## 📋 PRJ-016_AIGateway-LiteLLM_v3.1.4.1.md
+## 📋 PRJ-016_AIGateway-LiteLLM_v3.2.1.1.md
 ## ♾️ WeOwnNet 🌐
 
 | Field | Value |
 |-------|-------|
 | Document | PRJ-016_AIGateway-LiteLLM.md |
-| Version | 3.1.4.1 |
-| CCC-ID | GTM_2026-W09_117 |
+| Version | 3.2.1.1 |
+| CCC-ID | GTM_2026-W10_122 |
 | Created | 2026-02-27 (W09) |
+| Updated | 2026-03-04 (W10) |
 | Season | #WeOwnSeason003 🚀 |
-| Status | 📝 DRAFT |
-| Lifecycle Stage | 📝 DRAFT (#DocLifecycle) |
-| Tags | #AIGateway #LiteLLM #HybridArchitecture #FOSS #FlowsBros |
+| Status | ✅ APPROVED |
+| Lifecycle Stage | ✅ APPROVED (#DocLifecycle) |
+| Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-016_AIGateway-LiteLLM.md) |
+| Tags | #LiteLLM #AIGateway #Langfuse #jAIMSnet #FOSS #FlowsBros |
 
 ---
 
@@ -20,26 +22,28 @@
 
 1. [Project Identity](#-project-identity)
 2. [Why LiteLLM](#-why-litellm)
-3. [Architecture](#-architecture)
-4. [Provider Configuration](#-provider-configuration)
-5. [Virtual Key Matrix](#-virtual-key-matrix)
-6. [Cost Tracking + Budgets](#-cost-tracking--budgets)
-7. [Rate Limiting](#-rate-limiting)
-8. [Caching Strategy](#-caching-strategy)
-9. [Failover Configuration](#-failover-configuration)
-10. [Observability Pipeline](#-observability-pipeline)
-11. [AnythingLLM Migration Plan](#-anythingllm-migration-plan)
-12. [Deployment Checklist](#-deployment-checklist)
-13. [Docker Compose](#-docker-compose)
-14. [Verification (#SmokeTest)](#-verification-smoketest)
-15. [ROI Impact](#-roi-impact)
-16. [Project Team](#-project-team)
-17. [@MAIT:#AIGateway Setup](#-maitaigateway-setup)
-18. [Risk Matrix](#-risk-matrix)
-19. [Relationship to Other Projects](#-relationship-to-other-projects)
-20. [Discovered By](#-discovered-by)
-21. [Related Documents](#-related-documents)
-22. [Version History](#-version-history)
+3. [Timeline Acceleration — W10](#-timeline-acceleration--w10)
+4. [Co-Location — jAIMSnet Droplet (ATL1)](#-co-location--jaimsnet-droplet-atl1)
+5. [Architecture](#-architecture)
+6. [Provider Configuration](#-provider-configuration)
+7. [Virtual Key Matrix](#-virtual-key-matrix)
+8. [Cost Tracking + Budgets](#-cost-tracking--budgets)
+9. [Cost Impact](#-cost-impact)
+10. [Rate Limiting](#-rate-limiting)
+11. [Caching Strategy](#-caching-strategy)
+12. [Failover Configuration](#-failover-configuration)
+13. [Langfuse Integration (PRJ-017)](#-langfuse-integration-prj-017)
+14. [AnythingLLM Migration Plan](#-anythingllm-migration-plan)
+15. [Deployment Checklist](#-deployment-checklist)
+16. [Docker Compose](#-docker-compose)
+17. [Verification (#SmokeTest)](#-verification-smoketest)
+18. [Project Team](#-project-team)
+19. [@MAIT:#AIGateway Setup](#-maitaigateway-setup)
+20. [Risk Matrix](#-risk-matrix)
+21. [Relationship to Other Projects](#-relationship-to-other-projects)
+22. [Discovered By](#-discovered-by)
+23. [Related Documents](#-related-documents)
+24. [Version History](#-version-history)
 
 ---
 
@@ -48,14 +52,16 @@
 | Field | Value |
 |-------|-------|
 | Project ID | **PRJ-016** |
-| Title | **AI Gateway — LiteLLM Deployment** |
-| Type | Infrastructure — AI Traffic Management |
-| Priority | 🟠 P1 |
-| Owner | @GTM + @RMN |
-| Deployment | GB10-1 #NoDe (Northglenn, CO) |
-| Timeline | **W12-W13** (after PRJ-015 GB10 arrives) |
-| Depends on | PRJ-015 (GB10 hardware) |
-| #masterCCC | GTM_2026-W09_117 |
+| Title | **AI Gateway — LiteLLM** |
+| Type | Infrastructure — AI Gateway |
+| Priority | 🔴 **P0** (accelerated — cost emergency) |
+| Owner | @RMN (platform) + @GTM (governance) |
+| Deployment | **Phase 0: DO Droplet ATL1 (co-locate with Langfuse + Uptime Kuma)** |
+| Domain | **litellm.jAIMS.app** |
+| Timeline | **Phase 0: W10 (NOW — @RMN deploying)** |
+| Depends on | None (Phase 0 = no dependencies) |
+| Feeds into | PRJ-017 (Langfuse — via success_callback) |
+| #masterCCC | GTM_2026-W10_122 |
 | Selection | LiteLLM 🏆 (56/60 — AI Gateway Analysis GTM_2026-W09_115) |
 
 ---
@@ -84,7 +90,83 @@
 | **No caching** | Every request = API call | ✅ Semantic cache (20-40% reduction) |
 | **No rate limiting** | Any instance burns unlimited | ✅ Per-instance budgets |
 | **Cloud-only inference** | 100% OpenRouter | ✅ Route dev/test to local Ollama |
-| **No observability** | Blind to usage | ✅ OTEL → Phoenix traces |
+| **No observability** | Blind to usage | ✅ OTEL → Langfuse traces |
+
+---
+
+## 📋 Timeline Acceleration — W10
+
+### Original Plan (v3.1.4.1)
+
+| Phase | Timeline | Dependency |
+|-------|----------|-----------|
+| Deploy LiteLLM | W12-W13 | After GB10-1 (PRJ-015) |
+| Connect to Phoenix | W12-W13 | After Phoenix deployed (PRJ-017) |
+
+### Accelerated Plan (v3.2.1.1)
+
+| Phase | Timeline | Dependency | Trigger |
+|-------|----------|-----------|---------|
+| **Deploy LiteLLM** | **W10 (NOW)** | **None** | **$372/day cost emergency** |
+| **Connect to Langfuse** | **W10 (same deploy)** | **Co-located** | **Native callback** |
+
+### What Changed
+
+| Factor | v3.1.4.1 | v3.2.1.1 |
+|--------|----------|----------|
+| Deploy timeline | W12-W13 | **W10 (NOW)** |
+| Dependency | GB10-1 (PRJ-015) | **None** |
+| Observability | Phoenix (OTEL) | **Langfuse (native callback)** |
+| Location | GB10-1 #NoDe | **ATL1 jAIMSnet Droplet** |
+| Domain | N/A | **litellm.jAIMS.app** |
+| Trigger | Planned | **$372/day cost emergency** |
+| @RMN status | Planned | **DEPLOYING NOW** |
+
+### Why Accelerated
+
+| Fact | Value |
+|------|-------|
+| OpenRouter daily burn | **$372/day** |
+| LiteLLM caching savings | **50-65% (~$130-185/day)** |
+| MI300X approved but out of stock | LiteLLM = immediate savings |
+| @THY directive | "Drop everything and do that right now" |
+| @RMN status | "I'm ready to tackle this project" |
+
+---
+
+## 📋 Co-Location — jAIMSnet Droplet (ATL1)
+
+### Architecture
+
+```
+DO Droplet (ATL1 — "jAIMSnet Observability")
+├── LiteLLM (PRJ-016) — port 4000      ← THIS PROJECT
+├── Langfuse (PRJ-017) — port 3000
+├── Uptime Kuma (PRJ-017) — port 3001
+├── Caddy (reverse proxy + SSL)
+│   ├── litellm.jaims.app → :4000
+│   ├── langfuse.jaims.app → :3000
+│   └── kuma.jaims.app → :3001
+└── PostgreSQL connection → ATL1 managed cluster
+```
+
+### Why Co-Locate
+
+| Factor | Separate Droplets | Co-Located |
+|--------|------------------|-----------|
+| Cost | $18 + $18 = $36/mo | **$24/mo (1 Droplet)** |
+| Latency (LiteLLM → Langfuse) | Network hop | **localhost (~0ms)** |
+| Docker networking | Cross-host | **Same compose network** |
+| Management | 2 Droplets | **1 Droplet** |
+
+### Droplet Spec
+
+| Field | Value |
+|-------|-------|
+| Region | ATL1 |
+| Plan | Basic — 2 vCPU / 4 GB / 80 GB |
+| Cost | **$24/mo** (shared with PRJ-017) |
+| Services | LiteLLM + Langfuse + Uptime Kuma + Caddy |
 
 ---
 
@@ -111,14 +193,14 @@ INT-OG8 ──→ OpenRouter API Key #4 ──→ Claude Opus 4.6
 ```
 INT-P01 ──┐                                    ┌──→ OpenRouter → Claude (prod)
 INT-S003──┤                                    │
-INT-OG1 ──┼──→ LiteLLM Proxy (GB10-1 #NoDe) ──┼──→ Ollama → Llama 70B (dev)
+INT-OG1 ──┼──→ LiteLLM Proxy (ATL1) ──┼──→ Ollama → Llama 70B (dev)
 INT-P02 ──┤    Port: 4000                      │
 INT-OG8 ──┘    ├── Virtual Keys (per instance) ├──→ Ollama → Qwen3 4B (embed)
                ├── Redis Cache (semantic)       │
                ├── Cost Tracking (per-token)    └──→ [Future providers]
                ├── Rate Limiting (per-instance)
                ├── Failover (auto)
-               └── OTEL → Phoenix (Port: 6006)
+               └── OTEL → Langfuse (Port: 3000)
 
 ✅ Single control point
 ✅ One real API key (LiteLLM manages)
@@ -136,9 +218,9 @@ GB10-1: #NoDe (Northglenn, CO)
 ┌─────────────────────────────────────────────────────────┐
 │                                                          │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
-│  │  LiteLLM     │  │  Phoenix     │  │  Paperless   │  │
+│  │  LiteLLM     │  │  Langfuse     │  │  Paperless   │  │
 │  │  AI Gateway   │  │  Observability│  │  -ngx        │  │
-│  │  Port: 4000   │  │  Port: 6006   │  │  Port: 8000  │  │
+│  │  Port: 4000   │  │  Port: 3000   │  │  Port: 8000  │  │
 │  └──────┬───────┘  └──────────────┘  └──────────────┘  │
 │         │                                                │
 │  ┌──────┴───────┐  ┌──────────────┐  ┌──────────────┐  │
@@ -158,44 +240,79 @@ GB10-1: #NoDe (Northglenn, CO)
 
 ## 📋 Provider Configuration
 
-### LiteLLM Config (config.yaml)
+### Routing Targets (3-Layer — PRJ-015)
+
+| Layer | Provider | Model | Endpoint | Priority |
+|-------|----------|-------|----------|----------|
+| **1** | **MI300X (ATL1)** | Llama 3.1 70B | `http://mi300x.internal:8000` | 🔴 Primary (when available) |
+| **2** | **GB10-1 (Ollama)** | Llama 3.1 70B | `http://gb10-1:11434` | Dev/test + backup |
+| **3** | **OpenRouter** | Claude Opus 4.6 | `https://openrouter.ai/api/v1` | Fallback |
+
+### LiteLLM config.yaml (Updated)
 
 ```yaml
 model_list:
-  # Production — Claude Opus 4.6 via OpenRouter
-  - model_name: claude-opus-production
+  # Layer 1: MI300X — Primary Production (ATL1)
+  - model_name: llama-70b-production
     litellm_params:
-      model: openrouter/anthropic/claude-opus-4-6
-      api_key: os.environ/OPENROUTER_API_KEY
-      api_base: https://openrouter.ai/api/v1
+      model: vllm/meta-llama/Llama-3.1-70B-Instruct
+      api_base: http://mi300x.internal:8000
 
-  # Development — Llama 3.1 70B via local Ollama
+  # Layer 1: MI300X — Embedder
+  - model_name: qwen3-embedding
+    litellm_params:
+      model: vllm/Qwen/Qwen3-Embedding-4B
+      api_base: http://mi300x.internal:8000
+
+  # Layer 2: GB10-1 — Dev/Test
   - model_name: llama-70b-dev
     litellm_params:
       model: ollama/llama3.1:70b
-      api_base: http://localhost:11434
+      api_base: http://gb10-1:11434
 
-  # Embedding — Qwen3 4B via local Ollama
-  - model_name: qwen3-embedding
+  # Layer 3: OpenRouter — Fallback
+  - model_name: claude-opus-fallback
     litellm_params:
-      model: ollama/qwen3:4b
-      api_base: http://localhost:11434
-
-  # Fallback — Llama via Ollama (if OpenRouter down)
-  - model_name: claude-opus-production
-    litellm_params:
-      model: ollama/llama3.1:70b
-      api_base: http://localhost:11434
-    model_info:
-      fallback: true
+      model: openrouter/anthropic/claude-opus-4-6
+      api_key: os.environ/OPENROUTER_API_KEY
 
 router_settings:
-  routing_strategy: "least-busy"
-  num_retries: 3
-  timeout: 120
   fallbacks:
-    - claude-opus-production: [llama-70b-dev]
+    - llama-70b-production: [claude-opus-fallback]
+
+litellm_settings:
+  success_callback: ["langfuse"]
+  cache: true
+  cache_params:
+    type: "redis"
+    host: "redis"
+    port: 6379
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
 ```
+
+### Interim Config (W10 — Before MI300X Available)
+
+```yaml
+model_list:
+  # OpenRouter — Primary (interim)
+  - model_name: claude-opus
+    litellm_params:
+      model: openrouter/anthropic/claude-opus-4-6
+      api_key: os.environ/OPENROUTER_API_KEY
+
+litellm_settings:
+  success_callback: ["langfuse"]
+  cache: true
+  cache_params:
+    type: "redis"
+    host: "redis"
+    port: 6379
+```
+
+> **Interim: LiteLLM → OpenRouter with caching + Langfuse tracing. Saves 50-65%.**
+> **Full: LiteLLM → MI300X (primary) + OpenRouter (fallback) + Langfuse tracing. Saves 87%.**
 
 ### Provider Matrix
 
@@ -340,36 +457,41 @@ fallbacks:
 
 ## 📋 Observability Pipeline
 
-```
-LiteLLM ──→ OpenTelemetry SDK ──→ Phoenix (Port: 6006)
-                                    ├── Traces (per request)
-                                    ├── Spans (LLM call details)
-                                    ├── Metrics (tokens, latency, cost)
-                                    └── Dashboard (web UI)
-```
+### Langfuse Integration (PRJ-017)
 
-### What Gets Traced
+| Field | Value |
+|-------|-------|
+| Tool | **Langfuse** (MIT) |
+| Integration | **Native success_callback** |
+| Setup time | **5 minutes** |
+| Domain | **langfuse.jAIMS.app** |
+| Co-located | ✅ Same Docker compose |
 
-| Trace | Data |
-|-------|------|
-| LLM request | Model, provider, tokens in/out, latency, cost |
-| Cache hit/miss | Similarity score, cache key, TTL |
-| Failover event | Original provider, fallback provider, reason |
-| Rate limit event | Instance, current rate, limit |
-| Budget alert | Instance, current spend, budget |
-
-### LiteLLM → Phoenix Config
+### Configuration
 
 ```yaml
-# In LiteLLM config
 litellm_settings:
-  callbacks: ["otel"]
-  
+  success_callback: ["langfuse"]
+
 environment_variables:
-  OTEL_EXPORTER: "otlp_http"
-  OTEL_ENDPOINT: "http://localhost:6006/v1/traces"
-  OTEL_HEADERS: ""
+  LANGFUSE_PUBLIC_KEY: "pk-lf-..."
+  LANGFUSE_SECRET_KEY: "sk-lf-..."
+  LANGFUSE_HOST: "http://langfuse:3000"  # Internal Docker network
 ```
+
+### What Gets Traced (Automatically)
+
+| Data | Source |
+|------|--------|
+| Model used | LiteLLM routing decision |
+| Tokens (in/out) | LiteLLM |
+| Cost ($) | LiteLLM cost tracking |
+| Latency (ms) | LiteLLM |
+| Cache hit/miss | LiteLLM cache |
+| Failover events | LiteLLM routing |
+| Instance | LiteLLM metadata |
+| User | LiteLLM metadata |
+| Full prompt/response | LiteLLM (self-hosted = safe) |
 
 ---
 
@@ -385,7 +507,7 @@ environment_variables:
 | 4 | Update AnythingLLM API key | → LiteLLM virtual key |
 | 5 | Test: Send message in CCC workspace | Verify response |
 | 6 | Verify: Check LiteLLM dashboard | Request logged + cost tracked |
-| 7 | Verify: Check Phoenix | Trace visible |
+| 7 | Verify: Check Langfuse | Trace visible |
 | 8 | Done | Instance migrated ✅ |
 
 ### Migration Order
@@ -424,39 +546,30 @@ AFTER:
 
 | # | Step | Owner | Depends On | Status |
 |---|------|-------|-----------|--------|
-| 1 | GB10-1 #NoDe operational | @GTM | PRJ-015 | ⬜ |
-| 2 | Docker + Docker Compose installed | @GTM | Step 1 | ⬜ |
-| 3 | Ollama installed + Llama 70B downloaded | @GTM | Step 2 | ⬜ |
-| 4 | Create `litellm/` directory on GB10-1 | @GTM | Step 2 | ⬜ |
-| 5 | Create `config.yaml` (provider routing) | @GTM | Step 4 | ⬜ |
-| 6 | Create `docker-compose.yml` (LiteLLM + Redis) | @GTM | Step 4 | ⬜ |
-| 7 | Set environment variables (OPENROUTER_API_KEY) | @GTM | Step 5 | ⬜ |
-| 8 | `docker compose up -d` | @GTM | Steps 5-7 | ⬜ |
-| 9 | Verify LiteLLM dashboard (port 4000) | @GTM | Step 8 | ⬜ |
-| 10 | Create 5 virtual keys | @GTM | Step 9 | ⬜ |
-| 11 | Configure budgets + rate limits | @GTM | Step 10 | ⬜ |
-| 12 | Configure OTEL → Phoenix | @RMN | Step 9 | ⬜ |
-| 13 | Test: curl to LiteLLM proxy | @GTM | Step 8 | ⬜ |
-| 14 | Test: OpenRouter routing | @GTM | Step 13 | ⬜ |
-| 15 | Test: Ollama routing | @GTM | Step 13 | ⬜ |
-| 16 | Test: Failover (stop OpenRouter, verify Ollama) | @GTM | Step 14-15 | ⬜ |
-| 17 | Test: Cache hit (repeat same request) | @GTM | Step 13 | ⬜ |
-| 18 | Migrate INT-OG1 (test) | @GTM | Step 16-17 | ⬜ |
-| 19 | Migrate INT-OG8 (test) | @RMN | Step 18 | ⬜ |
-| 20 | Migrate INT-P01 (production) | @GTM | Step 19 | ⬜ |
-| 21 | Migrate INT-S003 (production) | @GTM | Step 20 | ⬜ |
-| 22 | Migrate INT-P02 (production) | @GTM | Step 21 | ⬜ |
-| 23 | Verify ALL instances via LiteLLM dashboard | @GTM | Step 22 | ⬜ |
-| 24 | Revoke old OpenRouter API keys | @GTM | Step 23 | ⬜ |
-| 25 | Create @MAIT:#AIGateway | @GTM | Step 23 | ⬜ |
-| 26 | FULL:SYNC:META | @GTM | Step 25 | ⬜ |
+| 1 | 🤖 jAIMS Network 🌐 Project on DO We Own Labs TEAM created | @GTM | None | ⬜ |
+| 2 | jAIMSnet Droplet provisioned (ATL1, 4 GB) | @RMN | Step 1 | ⬜ |
+| 3 | Docker + Docker Compose installed | @RMN | Step 2 | ⬜ |
+| 4 | Create litellm_config.yaml (interim — OpenRouter only) | @RMN | Step 3 | ⬜ |
+| 5 | Deploy LiteLLM + Redis containers | @RMN | Step 4 | ⬜ |
+| 6 | Configure DNS (litellm.jAIMS.app → Droplet) | @GTM | Step 2 | ⬜ |
+| 7 | Configure Caddy entry for litellm.jAIMS.app | @RMN | Step 6 | ⬜ |
+| 8 | Add Langfuse callback (3 env vars) | @RMN | PRJ-017 Langfuse running | ⬜ |
+| 9 | Point INT-OG1 → litellm.jAIMS.app (test) | @RMN | Step 5 | ⬜ |
+| 10 | Verify caching working (Redis) | @RMN | Step 9 | ⬜ |
+| 11 | Verify Langfuse traces appearing | @GTM | Step 8 | ⬜ |
+| 12 | Point ALL instances → litellm.jAIMS.app | @RMN | Step 10 + 11 | ⬜ |
+| 13 | Monitor cost reduction (target: 50-65%) | @GTM | Step 12 | ⬜ |
+| 14 | Add MI300X provider (when available) | @RMN | DO Sales + provisioning | ⬜ |
+| 15 | #SmokeTest (10-point) | @GTM | Step 12 | ⬜ |
+| 16 | FULL:SYNC:META | @GTM | Step 15 | ⬜ |
 
 ---
 
 ## 📋 Docker Compose
 
 ```yaml
-# docker-compose.yml — LiteLLM + Redis on GB10-1 #NoDe
+# docker-compose.yml — LiteLLM (PRJ-016) on jAIMSnet Droplet
+# Co-located with Langfuse + Uptime Kuma (PRJ-017)
 version: '3.8'
 
 services:
@@ -467,88 +580,92 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - ./config.yaml:/app/config.yaml
+      - ./litellm_config.yaml:/app/config.yaml
     environment:
-      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
+      - LANGFUSE_PUBLIC_KEY=${LANGFUSE_PUBLIC_KEY}
+      - LANGFUSE_SECRET_KEY=${LANGFUSE_SECRET_KEY}
+      - LANGFUSE_HOST=http://langfuse:3000
       - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
-      - LITELLM_LOG=DEBUG
+      - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - OTEL_EXPORTER=otlp_http
-      - OTEL_ENDPOINT=http://phoenix:6006/v1/traces
     command: ["--config", "/app/config.yaml", "--port", "4000"]
     depends_on:
       - redis
 
   redis:
     image: redis:7-alpine
-    container_name: litellm-redis
+    container_name: redis
     restart: unless-stopped
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
-    command: ["redis-server", "--maxmemory", "10gb", "--maxmemory-policy", "allkeys-lru"]
 
 volumes:
   redis_data:
 ```
 
-### Environment File (.env)
+### Caddyfile Entry (Added to PRJ-017 Caddyfile)
 
-```bash
-# .env — GB10-1 #NoDe
-LITELLM_MASTER_KEY=sk-litellm-master-xxxx
-OPENROUTER_API_KEY=sk-or-v1-xxxx
 ```
+litellm.jaims.app {
+    reverse_proxy litellm:4000
+}
+```
+
+> **LiteLLM + Redis = PRJ-016 services. Langfuse + Uptime Kuma + Caddy = PRJ-017 services. All in one Docker compose on jAIMSnet Droplet.**
 
 ---
 
 ## 📋 Verification (#SmokeTest)
 
-### LiteLLM #SmokeTest (8-Point)
+## 📋 #SmokeTest (10-Point)
 
-| # | Test | Command | Expected | Status |
-|---|------|---------|----------|--------|
-| 1 | LiteLLM running | `curl http://localhost:4000/health` | `{"status": "healthy"}` | ⬜ |
-| 2 | Redis running | `redis-cli ping` | `PONG` | ⬜ |
-| 3 | OpenRouter route | `curl -X POST http://localhost:4000/v1/chat/completions -H "Authorization: Bearer vk-..." -d '{"model":"claude-opus-production",...}'` | Claude response | ⬜ |
-| 4 | Ollama route | Same with `model: llama-70b-dev` | Llama response | ⬜ |
-| 5 | Failover | Stop OpenRouter env, retry | Falls back to Ollama | ⬜ |
-| 6 | Cache hit | Repeat identical request | Faster response + cache header | ⬜ |
-| 7 | Cost tracked | Check LiteLLM dashboard | Request logged with cost | ⬜ |
-| 8 | Phoenix trace | Check Phoenix UI (port 6006) | Trace visible | ⬜ |
+| # | Test | Expected | Status |
+|---|------|----------|--------|
+| 1 | LiteLLM running | https://litellm.jaims.app/health → 200 | ⬜ |
+| 2 | LLM call via LiteLLM | Chat request → response | ⬜ |
+| 3 | Caching working | Same prompt twice → 2nd = cache hit | ⬜ |
+| 4 | Cost tracked | Langfuse shows $ per request | ⬜ |
+| 5 | Langfuse trace | LLM call → trace in langfuse.jAIMS.app | ⬜ |
+| 6 | Model routing | Request routes to correct provider | ⬜ |
+| 7 | Failover | Block primary → falls back to secondary | ⬜ |
+| 8 | Redis persistence | Restart Redis → cache retained | ⬜ |
+| 9 | Master key auth | Request without key → 401 | ⬜ |
+| 10 | Multi-instance | INT-OG1 + INT-P01 both route through LiteLLM | ⬜ |
 
 ---
 
-## 📋 ROI Impact
+## 📋 Cost Impact
 
-### Cost Savings (From AI Gateway Analysis)
+### Interim (LiteLLM + OpenRouter — W10)
 
-| Source | Monthly Savings | Annual Savings |
-|--------|----------------|---------------|
-| Semantic caching (30%) | $1,000 | $12,000 |
-| Local inference (50%) | $1,667 | $20,000 |
-| **COMBINED** | **$2,667** | **$32,000** |
+| Metric | Before LiteLLM | After LiteLLM |
+|--------|---------------|--------------|
+| Daily cost | $372/day | **~$130-185/day** |
+| Monthly cost | $11,167/mo | **~$4,000-5,500/mo** |
+| Savings | — | **50-65%** |
+| Method | Direct API calls | **Caching + cost tracking** |
 
-### Revised PRJ-015 Payback (With LiteLLM)
+### Full (LiteLLM + MI300X — When Available)
 
-| Metric | Without LiteLLM | With LiteLLM |
-|--------|-----------------|-------------|
-| Monthly savings | $1,667 (local only) | **$2,667** (local + cache) |
-| GB10 payback | 4.7 months | **3.0 months** |
-| Year 1 NET | +$11,802 | **+$23,802** |
+| Metric | Before | After |
+|--------|--------|-------|
+| Daily cost | $372/day | **~$47/day** |
+| Monthly cost | $11,167/mo | **~$1,433/mo** |
+| Savings | — | **87%** |
+| Method | OpenRouter only | **MI300X primary + OpenRouter fallback** |
 
-### LiteLLM Cost
+### How LiteLLM Saves Money (Without GPU)
 
-| Item | Cost |
-|------|------|
-| Software | **$0** (MIT — FOSS) |
-| Infrastructure | $0 (runs on GB10-1 — already acquired) |
-| Redis | $0 (Docker container) |
-| **TOTAL LiteLLM cost** | **$0** |
-
-> **$0 cost. $2,667/mo savings. The ROI is infinite.** 🏆
+| Technique | Savings Est. |
+|-----------|-------------|
+| Prompt caching (Redis) | 20-40% |
+| Response caching | 10-20% |
+| Cost tracking → optimization | 5-10% |
+| Rate limiting | 5-10% |
+| **TOTAL** | **50-65%** |
 
 ---
 
@@ -557,7 +674,7 @@ OPENROUTER_API_KEY=sk-or-v1-xxxx
 | CCC | Role | Focus |
 |-----|------|-------|
 | **GTM** | **Owner** | Architecture, config, migration, testing, @MAIT |
-| **RMN** | **Platform** | LiteLLM config, Ollama routing, OTEL → Phoenix |
+| **RMN** | **Platform** | LiteLLM config, Ollama routing, OTEL → Langfuse |
 
 > **2-person project.** No @SHD needed (GB10-1 is local, not cloud). No @LDC needed (no custom code).
 
@@ -603,9 +720,11 @@ OPENROUTER_API_KEY=sk-or-v1-xxxx
 
 | PRJ | Relationship |
 |-----|-------------|
-| **PRJ-014** | LiteLLM routes traffic for INT-P01 + INT-S003 (deployed in PRJ-014) |
-| **PRJ-015** | LiteLLM deploys ON GB10-1 #NoDe (hardware from PRJ-015) |
-| **PRJ-013** | Paperless-ngx co-located on GB10-1 (shared Docker host) |
+| **PRJ-015** | **3-Layer #HybridArchitecture — LiteLLM routes to MI300X (Layer 1) + GB10 (Layer 2) + OpenRouter (Layer 3)** |
+| **PRJ-017** | **Langfuse — LiteLLM success_callback feeds ALL traces to langfuse.jAIMS.app; co-located on same Droplet** |
+| **PRJ-002** | AgencyPRO — connexOmni/Athena inference routed through LiteLLM |
+| PRJ-014 | All instances route through LiteLLM |
+| PRJ-024 | Infisical manages LiteLLM API keys + secrets |
 
 ### Project Dependency Chain
 
@@ -613,7 +732,7 @@ OPENROUTER_API_KEY=sk-or-v1-xxxx
 PRJ-015 (GB10 hardware)
     └── PRJ-016 (LiteLLM on GB10-1) ← THIS PROJECT
     └── PRJ-013 (Paperless-ngx on GB10-1)
-    └── Phoenix (Observability on GB10-1)
+    └── Langfuse (Observability on GB10-1)
 
 PRJ-014 (INT-S003 + INT-P01 evolution)
     └── PRJ-016 (LiteLLM routes traffic for both)
@@ -633,9 +752,11 @@ PRJ-014 (INT-S003 + INT-P01 evolution)
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| PRJ-015_HybridArchitecture-GB10 | v3.1.4.3 | GTM_2026-W09_104 | ⬜ @THY | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-015_HybridArchitecture-GB10.md) |
+| PRJ-015_HybridArchitecture | v3.2.1.1 | GTM_2026-W10_122 | GTM_2026-W10_125 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-015_HybridArchitecture.md) |
+| PRJ-017_Observability | v3.2.1.1 | GTM_2026-W10_122 | GTM_2026-W10_161 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-017_Observability.md) |
 | SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| LiteLLM Docs | — | — | — | [docs.litellm.ai](https://docs.litellm.ai/) |
+| LiteLLM Docs | — | — | — | [docs.litellm.ai](https://docs.litellm.ai) |
+| LiteLLM GitHub | — | — | — | [github.com/BerriAI/litellm](https://github.com/BerriAI/litellm) |
 | Gartner AI Gateway Report | G00839683 | — | — | gartner.com |
 
 ---
@@ -644,7 +765,8 @@ PRJ-014 (INT-S003 + INT-P01 evolution)
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
-| 3.1.4.1 | 2026-W09 | GTM_2026-W09_117 | GTM_2026-W09_119 | Initial project; LiteLLM AI Gateway deployment on GB10-1 #NoDe; 10 deliverables; provider config (OpenRouter + Ollama + Qwen3); virtual key matrix (5 instances); cost tracking + budgets; rate limiting; Redis semantic cache (20-40% savings); failover (OpenRouter → Ollama); OTEL → Phoenix observability; 5-instance migration plan; 26-step deployment checklist; Docker Compose (LiteLLM + Redis); 8-point #SmokeTest; ROI: $2,667/mo savings ($0 software cost); 8-risk matrix; @MAIT:#AIGateway setup |
+| 3.2.1.1 | 2026-W10 | GTM_2026-W10_122 | GTM_2026-W10_173 | Timeline accelerated W12-W13 → **W10** ($372/day cost emergency); deployment ATL1 jAIMSnet Droplet (co-locate with Langfuse + Uptime Kuma — PRJ-017); domain = litellm.jAIMS.app; Phoenix → **Langfuse** (native success_callback — replaces OTEL); +MI300X as routing target (PRJ-015 Layer 1); +Interim config (OpenRouter + caching — 50-65% savings); +Full config (MI300X primary + OpenRouter fallback — 87% savings); +Co-Location Architecture section; +Timeline Acceleration section; +Cost Impact section; Docker Compose updated (co-located + Redis); #SmokeTest updated (10-point); deployment checklist updated (16 steps); @RMN deploying NOW; FULL PRESERVE from v3.1.4.1 (L-097) |
+| 3.1.4.1 | 2026-W09 | GTM_2026-W09_117 | GTM_2026-W09_119 | Initial project; LiteLLM AI Gateway on GB10-1; routing (OpenRouter + Ollama); caching (Redis); cost tracking; OTEL → Phoenix; Docker Compose; deployment checklist; #SmokeTest; risk matrix |
 
 ---
 
