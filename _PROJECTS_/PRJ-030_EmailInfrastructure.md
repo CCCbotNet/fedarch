@@ -1,14 +1,15 @@
 # PRJ-030: Email Infrastructure — WeOwn.net Migration + Stalwart
 
-## 📋 PRJ-030_EmailInfrastructure_v3.2.1.1.md
+## 📋 PRJ-030_EmailInfrastructure_v3.2.1.2.md
 ## ♾️ WeOwnNet 🌐
 
 | Field | Value |
 |-------|-------|
 | Document | PRJ-030_EmailInfrastructure.md |
-| Version | 3.2.1.1 |
+| Version | 3.2.1.2 |
 | CCC-ID | GTM_2026-W10_130 |
 | Created | 2026-03-04 (W10) |
+| Updated | 2026-03-04 (W10) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | ✅ APPROVED |
 | Lifecycle Stage | ✅ APPROVED (#DocLifecycle) |
@@ -23,13 +24,13 @@
 1. [Project Identity](#-project-identity)
 2. [Current State](#-current-state)
 3. [The Problem](#-the-problem)
-4. [Phase 1: Proton Consolidation](#-phase-1-proton-consolidation)
+4. [Phase 1: Proton Business Suite](#-phase-1-proton-business-suite)
 5. [Phase 2-4: Stalwart (Long-Term)](#-phase-2-4-stalwart-long-term)
 6. [Address Matrix](#-address-matrix)
 7. [Functional Addresses](#-functional-addresses)
-8. [DNS Configuration](#-dns-configuration)
-9. [Migration Checklist](#-migration-checklist)
-10. [Cancellation Checklist](#-cancellation-checklist)
+8. [Proton Licenses](#-proton-licenses)
+9. [DNS Configuration](#-dns-configuration)
+10. [Migration Checklist](#-migration-checklist)
 11. [Cost Summary](#-cost-summary)
 12. [Timeline](#-timeline)
 13. [Risk Matrix](#-risk-matrix)
@@ -48,10 +49,11 @@
 | Type | Infrastructure — Email |
 | Priority | 🟠 P1 (Phase 1) / 🟡 P2 (Stalwart) |
 | Owner | @GTM |
-| Domain | **WeOwn.net** (primary) / WeOwn.email (alias) |
-| Interim Solution | Proton Unlimited ($10/mo) |
+| Domain | **WeOwn.net** (primary) / WeOwn.email (legacy) |
+| Phase 1 Solution | **Proton Business Suite ($42/mo — 6 licenses)** |
 | Long-Term Solution | Stalwart (FOSS — $6/mo self-hosted) |
-| Timeline | Phase 1: W10-W11 / Phase 2-4: S003 late - S004 |
+| Phase 1 Status | ✅ **COMPLETE** |
+| Timeline | Phase 1: W10 ✅ / Phase 2-4: S003 late - S004 |
 | #masterCCC | GTM_2026-W10_130 |
 
 ---
@@ -60,19 +62,19 @@
 
 > ⚠️ Email addresses redacted for public repository.
 
-### Two Proton Accounts
+### Two Proton Accounts (Both Kept)
 
-| Account | Plan | Service | Custom Domain | Issue |
-|---------|------|---------|---------------|-------|
-| `[REDACTED]@proton.me` | Proton Visionary (~$30/mo) | Email | WeOwn.email | ❌ Cannot add VPN |
-| `[REDACTED]@protonmail.com` | VPN Professional | VPN | N/A | ❌ No custom domain email |
+| Account | Plan | Service | Custom Domain | Status |
+|---------|------|---------|---------------|--------|
+| `[REDACTED]@proton.me` | Proton Visionary (~$30/mo) | Email | WeOwn.email | ✅ **KEPT** (legacy) |
+| `[REDACTED]@protonmail.com` | **Proton Business Suite ($42/mo)** | Email + VPN (6 licenses) | **WeOwn.net** | ✅ **NEW — Phase 1** |
 
-### Current Email Domain
+### Email Domains
 
 | Domain | Status | Used For |
 |--------|--------|----------|
-| **WeOwn.email** | ✅ Active | Key Staff email addresses |
-| **WeOwn.net** | ❌ No email | Web domain only |
+| **WeOwn.net** | ✅ **ACTIVE (Phase 1)** | Primary Key Staff email |
+| **WeOwn.email** | ✅ Active (legacy) | @RMN + historical addresses |
 
 ---
 
@@ -85,7 +87,7 @@
 | 3 | **VPN account has no custom email** | Cannot use primary brand domain |
 | 4 | **WeOwn.email ≠ primary brand domain** | Brand inconsistency |
 | 5 | **No unified admin** | 2 separate dashboards |
-| 6 | **$40/mo for fragmented service** | Overpaying for incomplete solution |
+| 6 | **No individual user accounts** | Shared login = security risk |
 
 ### Brand Alignment
 
@@ -98,42 +100,44 @@
 
 ---
 
-## 📋 Phase 1: Proton Consolidation
+## 📋 Phase 1: Proton Business Suite
 
 ### Strategy
 
-Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN account. Add WeOwn.net as custom domain. Unified email + VPN on one account.
+Deploy **Proton Business Suite** with 6 individual licenses on the VPN account. Add WeOwn.net as custom domain. Each Key Staff member gets their own login, email, and VPN.
 
-### Proton Plan Selection
+### Why Business Suite (Not Unlimited)
 
-| Plan | Email | VPN | Custom Domains | Cost/mo | Verdict |
-|------|-------|-----|----------------|---------|---------|
-| Proton Free | ✅ (1 addr) | ❌ | ❌ | $0 | ❌ |
-| Mail Plus | ✅ (10 addr) | ❌ | ✅ (1) | ~$4 | 🟡 No VPN |
-| **Unlimited** | ✅ (15 addr) | ✅ | ✅ (3) | **~$10** | ✅ **BEST FIT** |
-| Visionary | ✅ (unlimited) | ❌ | ✅ | ~$30 | ❌ No VPN |
-| Business | ✅ (per user) | ✅ | ✅ | ~$7/user | 🟡 $63/mo for 9 users |
+| Factor | Unlimited ($10/mo) | Business Suite ($42/mo) |
+|--------|-------------------|------------------------|
+| Addresses | 15 shared | **Per-user (individual logins)** |
+| VPN | 1 shared | **6 individual VPNs** |
+| Admin | Single account | **Per-user admin** |
+| Security | Shared login | **Individual credentials** |
+| Scalability | 15 max | **Add users as needed** |
+| Cost per user | $10 total | **$7/user** |
 
-### Why Unlimited
+### What Changed from Original Plan
 
-| Factor | Value |
-|--------|-------|
-| 15 addresses | Fits 9 individual + 5 functional + 1 spare |
-| 3 custom domains | WeOwn.net (primary) + WeOwn.email (alias) + 1 spare |
-| VPN included | ✅ Solves VPN gap |
-| $10/mo | **75% cheaper than current $40/mo** |
-| Single admin | One dashboard for everything |
+| Aspect | Original (v3.2.1.1) | Actual (v3.2.1.2) |
+|--------|---------------------|-------------------|
+| Plan | Proton Unlimited ($10/mo) | **Proton Business Suite ($42/mo)** |
+| Users | 15 shared addresses, 1 login | **6 individual licenses** |
+| VPN | 1 shared | **6 individual VPNs** |
+| Visionary | Cancel (W13) | **KEEP (legacy WeOwn.email)** |
+| Forwarding | WeOwn.email → WeOwn.net | **DEFERRED** |
+| Value prop | Cost savings ($30/mo) | **Individual accounts + VPN per user** |
 
-### What Changes
+### What Proton Business Suite Provides
 
-| Aspect | Before | After |
-|--------|--------|-------|
-| Accounts | 2 (fragmented) | **1 (unified)** |
-| Plan | Visionary + VPN Pro | **Unlimited** |
-| Cost | ~$40/mo | **$10/mo** |
-| Email domain | WeOwn.email | **WeOwn.net** (primary) + WeOwn.email (alias) |
-| VPN | Separate account | **Included** |
-| Admin | 2 dashboards | **1 dashboard** |
+| Feature | Per License |
+|---------|-------------|
+| Email | ✅ Individual @weown.net address |
+| VPN | ✅ Individual Proton VPN |
+| Calendar | ✅ Proton Calendar |
+| Drive | ✅ Proton Drive (15 GB/user) |
+| Admin | ✅ Individual login + 2FA |
+| Custom domain | ✅ WeOwn.net |
 
 ---
 
@@ -155,7 +159,7 @@ Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN a
 | Factor | Proton | Stalwart |
 |--------|--------|----------|
 | Data sovereignty | 🟡 Proton servers (Switzerland) | ✅ **Our servers (ATL1)** |
-| Cost | $10/mo (ongoing) | **~$6/mo** (DO Droplet) |
+| Cost | $42/mo (ongoing) | **~$6/mo** (DO Droplet) |
 | FOSS | ❌ Proprietary | ✅ **AGPL-3.0** |
 | Control | 🟡 Proton admin panel | ✅ **Full server control** |
 | Cooperative alignment | 🟡 Third-party service | ✅ **Priority #2 (FOSS) + #3 (Data Sovereignty)** |
@@ -175,13 +179,12 @@ Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN a
 
 ### Migration Path
 
-| Phase | Solution | Timeline | Action |
+| Phase | Solution | Timeline | Status |
 |-------|----------|----------|--------|
-| **Phase 1** | **Proton Unlimited** | **W10-W11** | **Consolidate NOW** |
-| Phase 2 | Evaluate Stalwart | W15-W18 | Test deployment |
-| Phase 3 | Deploy Stalwart (DO ATL1) | S003 late or S004 | Production deploy |
-| Phase 4 | Migrate Proton → Stalwart | After stable | Move all addresses |
-| Phase 5 | Cancel Proton | After verified | $0/mo email cost |
+| **Phase 1** | **Proton Business Suite** | **W10** | ✅ **COMPLETE** |
+| Phase 2 | Evaluate Stalwart | W15-W18 | ⬜ |
+| Phase 3 | Deploy Stalwart (DO ATL1) | S003 late or S004 | ⬜ |
+| Phase 4 | Migrate Proton → Stalwart | After stable | ⬜ |
 
 ---
 
@@ -191,38 +194,75 @@ Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN a
 
 ### Individual Addresses
 
-| CCC | @WeOwn.net (Primary) | @WeOwn.email (Alias) | Phase |
-|-----|---------------------|---------------------|-------|
-| GTM | `<CCC>@weown.net` | `<CCC>@weown.email` → forward | Phase 1 |
-| THY | `<CCC>@weown.net` | `<CCC>@weown.email` → forward | Phase 1 |
-| RMN | `<CCC>@weown.net` | `<CCC>@weown.email` → forward | Phase 1 |
-| LDC | `<CCC>@weown.net` | `<CCC>@weown.email` → forward | Phase 1 |
-| SHD | `<CCC>@weown.net` | `<CCC>@weown.email` → forward | Phase 1 |
-| IAL | `<CCC>@weown.net` | — | Phase 2 |
-| LFG | `<CCC>@weown.net` | — | Phase 2 |
-| CRO | `<CCC>@weown.net` | — | Phase 2 |
-| CEO | `<CCC>@weown.net` | — | Phase 2 |
+| CCC | @WeOwn.net (Primary) | @WeOwn.email (Legacy) | Phase | Status |
+|-----|---------------------|----------------------|-------|--------|
+| GTM | `<CCC>@weown.net` (×2 — admin + personal) | `<CCC>@weown.email` | Phase 1 | ✅ Confirmed |
+| THY | `<CCC>@weown.net` | `<CCC>@weown.email` | Phase 1 | ✅ Confirmed |
+| LDC | `<CCC>@weown.net` | `<CCC>@weown.email` | Phase 1 | ✅ Confirmed |
+| LFG | `<CCC>@weown.net` | — | Phase 1 | ✅ Confirmed |
+| SHD | `<CCC>@weown.net` | — | Phase 1 | ⬜ Pending creation |
+| RMN | — (stays on WeOwn.email) | `<CCC>@weown.email` | — | ✅ No change |
+| IAL | `<CCC>@weown.net` | — | Phase 2 | ⬜ |
+| CRO | `<CCC>@weown.net` | — | Phase 2 | ⬜ |
+| CEO | `<CCC>@weown.net` | — | Phase 2 | ⬜ |
+
+### @RMN Decision
+
+| Decision | Detail |
+|----------|--------|
+| @RMN stays on WeOwn.email | No Business Suite license needed |
+| VPN | Addressed separately if needed |
 
 ### Address Count
 
 | Type | Phase 1 | Phase 2 | Total |
 |------|---------|---------|-------|
-| Individual | 5 | +4 | 9 |
-| Functional | 5 | — | 5 |
-| **Total** | **10** | **14** | **14** |
-| **Unlimited slots** | 15 | 15 | **1 spare** |
+| Individual (WeOwn.net) | 5 (GTM×2, THY, LDC, LFG) + SHD pending | +3 (IAL, CRO, CEO) | 9 |
+| Functional | 4 | — | 4 |
+| **Total** | **~10** | **~13** | **~13** |
 
 ---
 
 ## 📋 Functional Addresses
 
-| Address | Purpose | Forwards To |
-|---------|---------|-------------|
-| `team@weown.net` | Core TEAM distribution | All Key Staff |
-| `admin@weown.net` | Administrative | Founders |
-| `dev@weown.net` | Developer team | Dev team members |
-| `support@weown.net` | Member support | Operations lead |
-| `info@weown.net` | General inquiries | Operations lead + Founders |
+| Address | Purpose | Status |
+|---------|---------|--------|
+| `admin@weown.net` | Administrative (**catch-all**) | ✅ Created |
+| `billing@weown.net` | Billing + financial | ✅ Created |
+| `dev@weown.net` | Developer team | ✅ Created |
+| `social@weown.net` | Social media accounts | ✅ Created |
+
+### Planned but Not Created (Deferred)
+
+| Address | Purpose | Status |
+|---------|---------|--------|
+| `team@weown.net` | Core TEAM distribution | ⬜ Deferred |
+| `support@weown.net` | Member support | ⬜ Deferred |
+| `info@weown.net` | General inquiries | ⬜ Deferred |
+
+---
+
+## 📋 Proton Licenses
+
+### Business Suite — 6 Licenses
+
+| # | License Name | Role | CCC | Status |
+|---|-------------|------|-----|--------|
+| 1 | WeOwn.net | Primary Admin | — | ✅ Active |
+| 2 | YonksTEAM | Member | GTM | ✅ Active |
+| 3 | [REDACTED] | Member | THY | ✅ Active |
+| 4 | [REDACTED] | Member | LDC | ✅ Active |
+| 5 | [REDACTED] | Member | LFG | ✅ Active |
+| 6 | [REDACTED] | Member | SHD | ✅ Active (email pending) |
+
+### Not Licensed (Phase 2)
+
+| CCC | Reason |
+|-----|--------|
+| RMN | Stays on WeOwn.email (no license needed) |
+| IAL | Phase 2 |
+| CRO | Phase 2 (was in original Phase 1 → moved) |
+| CEO | Phase 2 |
 
 ---
 
@@ -246,91 +286,94 @@ Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN a
 | Field | Value |
 |-------|-------|
 | Registrar | Porkbun |
-| DNS hosting | Porkbun (or DigitalOcean if migrated per PRJ-012 pattern) |
+| **DNS hosting** | **DigitalOcean** (nameservers migrated) |
 | Owner | @GTM |
 
 ### Deliverability Checklist
 
-| # | Check | Purpose |
-|---|-------|---------|
-| 1 | MX records resolve | Mail routing works |
-| 2 | SPF passes | Sender authentication |
-| 3 | DKIM passes | Email integrity |
-| 4 | DMARC configured | Anti-spoofing policy |
-| 5 | Test email (send + receive) | End-to-end verification |
-| 6 | Check mail-tester.com | Deliverability score |
+| # | Check | Purpose | Status |
+|---|-------|---------|--------|
+| 1 | MX records resolve | Mail routing works | ✅ |
+| 2 | SPF passes | Sender authentication | ✅ |
+| 3 | DKIM passes | Email integrity | ✅ |
+| 4 | DMARC configured | Anti-spoofing policy | ✅ |
+| 5 | Test email (send + receive) | End-to-end verification | ✅ |
+| 6 | Check mail-tester.com | Deliverability score | ⬜ |
 
 ---
 
 ## 📋 Migration Checklist
 
-### Phase 1: Proton Consolidation (14 Steps)
+### Phase 1: Proton Business Suite (13 Steps)
 
 | # | Step | Owner | Est. Time | Status |
 |---|------|-------|-----------|--------|
-| 1 | Upgrade VPN account → Proton Unlimited ($10/mo) | @GTM | 5 min | ⬜ |
-| 2 | Add WeOwn.net as custom domain in Proton | @GTM | 10 min | ⬜ |
-| 3 | Get DNS records from Proton dashboard | @GTM | 5 min | ⬜ |
-| 4 | Add DNS records at Porkbun (MX + SPF + DKIM + DMARC + verify) | @GTM | 20 min | ⬜ |
-| 5 | Wait for DNS propagation | — | 1-48 hrs | ⬜ |
-| 6 | Verify domain in Proton | @GTM | 5 min | ⬜ |
-| 7 | Create 5 individual addresses (Phase 1 contributors) | @GTM | 10 min | ⬜ |
-| 8 | Create 5 functional addresses | @GTM | 5 min | ⬜ |
-| 9 | Configure WeOwn.email → WeOwn.net forwarding | @GTM | 10 min | ⬜ |
-| 10 | Notify Key Staff via Signal | @GTM | 5 min | ⬜ |
-| 11 | Each Key Staff tests send/receive | ALL | 10 min | ⬜ |
-| 12 | Update external services (DO accounts, etc.) | @LDC + ALL | 15 min | ⬜ |
-| 13 | Verify all addresses working (2-4 weeks) | @GTM | Ongoing | ⬜ |
-| 14 | Cancel Visionary account (after verification) | @GTM | W13 | ⬜ |
+| 1 | Upgrade VPN account → Proton Business Suite ($42/mo, 6 licenses) | @GTM | 5 min | ✅ |
+| 2 | Add WeOwn.net as custom domain in Proton | @GTM | 10 min | ✅ |
+| 3 | Get DNS records from Proton dashboard | @GTM | 5 min | ✅ |
+| 4 | Add DNS records at DigitalOcean (MX + SPF + DKIM + DMARC + verify) | @GTM | 20 min | ✅ |
+| 5 | Wait for DNS propagation | — | 1-48 hrs | ✅ |
+| 6 | Verify domain in Proton | @GTM | 5 min | ✅ |
+| 7 | Create individual addresses (5 confirmed + 1 pending) | @GTM | 10 min | ✅ |
+| 8 | Create functional addresses (4 created) | @GTM | 5 min | ✅ |
+| 9 | Configure WeOwn.email → WeOwn.net forwarding | @GTM | — | ⬜ **DEFERRED** |
+| 10 | Notify Key Staff via Signal | @GTM | 5 min | ✅ |
+| 11 | Each Key Staff tests send/receive | ALL | 10 min | ✅ |
+| 12 | Update external services (DO accounts, etc.) | ALL | Ongoing | 🔄 |
+| 13 | Verify all addresses working | @GTM | Ongoing | 🔄 |
 
-**Total estimated time: ~2-3 hours** (excluding DNS propagation)
-
----
-
-## 📋 Cancellation Checklist
-
-### Before Cancelling Visionary Account
-
-| # | Check | Verified? |
-|---|-------|-----------|
-| 1 | All WeOwn.email addresses forwarding to WeOwn.net | ☐ |
-| 2 | All external services updated to @weown.net | ☐ |
-| 3 | All Key Staff confirmed receiving on @weown.net | ☐ |
-| 4 | No critical services tied to Visionary account | ☐ |
-| 5 | Export any data from Visionary account | ☐ |
-
-> **Do NOT cancel until ALL 5 checks pass.** Overlap period = ~$30 for 2-4 weeks. Worth the safety margin.
+**Phase 1 Status: ✅ COMPLETE** (Steps 1-8, 10-11 done. Step 9 deferred. Steps 12-13 ongoing.)
 
 ---
 
 ## 📋 Cost Summary
 
-| Phase | Solution | Monthly | Annual | vs Current |
-|-------|----------|---------|--------|-----------|
-| **Current** | Visionary + VPN Pro | **~$40/mo** | **~$480/yr** | — |
-| **Phase 1** | **Proton Unlimited** | **$10/mo** | **$120/yr** | **-$360/yr** |
-| **Phase 3+** | **Stalwart (self-hosted)** | **~$6/mo** | **~$72/yr** | **-$408/yr** |
+| Service | Entity | Monthly | Annual | Pre-existing? |
+|---------|--------|---------|--------|--------------|
+| Proton Business Suite (6 × $14.99) | ♾️ WeOwnNet 🌐 | **$89.94** | **$1,079.28** | ❌ NEW (PRJ-030) |
+| VPN Professional (dedicated IP) | ♾️ WeOwnNet 🌐 | **$73.79** | **$885.48** | ✅ Pre-existing |
+| **TOTAL (♾️ WeOwnNet 🌐)** | | **$163.73/mo** | **$1,964.76/yr** | |
+| Proton Visionary (~$30/mo) | YonksTEAM LLC | — | — | ❌ EXCLUDED |
 
-### Savings
+### Net New Cost from PRJ-030
 
-| Transition | Monthly Savings | Annual Savings |
-|-----------|----------------|---------------|
-| Current → Phase 1 (Proton Unlimited) | **$30/mo** | **$360/yr** |
-| Phase 1 → Phase 3 (Stalwart) | **$4/mo** | **$48/yr** |
-| **Current → Phase 3 (total)** | **$34/mo** | **$408/yr** |
+| Metric | Value |
+|--------|-------|
+| Net new monthly | **$89.94/mo** (Business Suite only) |
+| Net new annual | **$1,079.28/yr** |
+| VPN Professional | Pre-existing — NOT a PRJ-030 cost |
+| Proton Visionary | YonksTEAM LLC — NOT a ♾️ WeOwnNet 🌐 cost |
+
+### Future Optimization
+
+| Optimization | Potential Savings |
+|-------------|------------------|
+| Annual billing (Business Suite) | ~$30/mo (~$360/yr) |
+| Evaluate VPN Pro necessity | $73.79/mo ($885/yr) — Business Suite includes VPN |
+| Stalwart (Phase 3) | Replace Business Suite → $6/mo |
+
+### Long-Term Cost Path
+
+| Phase | Solution | Monthly (WeOwnNet) |
+|-------|----------|-------------------|
+| **Pre-PRJ-030** | VPN Professional only | $73.79 |
+| **Phase 1 (current)** | **Business Suite + VPN Pro** | **$163.73** |
+| **Phase 1 (optimized)** | Annual billing + VPN Pro | ~$133 |
+| **Phase 3+** | Stalwart + VPN Pro | ~$79.79 |
+| **Phase 3+ (no VPN Pro)** | Stalwart only | ~$6 |
 
 ---
 
 ## 📋 Timeline
 
-| Phase | Action | Timeline | Priority |
-|-------|--------|----------|----------|
-| **Phase 1** | **Proton → Unlimited + WeOwn.net** | **W10-W11** | 🟠 **P1** |
-| Phase 1b | Cancel Visionary | W13 | 🟡 |
-| Phase 2 | Evaluate Stalwart (test deploy) | W15-W18 | 🟡 P2 |
-| Phase 3 | Deploy Stalwart on DO ATL1 | S003 late or S004 | 🟡 P2 |
-| Phase 4 | Migrate Proton → Stalwart | After Stalwart stable | 🟡 P2 |
-| Phase 5 | Cancel Proton Unlimited | After migration verified | 🟢 P3 |
+| Phase | Action | Timeline | Priority | Status |
+|-------|--------|----------|----------|--------|
+| **Phase 1** | **Proton Business Suite + WeOwn.net** | **W10** | 🟠 P1 | ✅ **COMPLETE** |
+| Phase 1b | @SHD email creation | W10-W11 | 🟠 P1 | ⬜ |
+| Phase 1c | External services updated | W10-W13 | 🟡 P2 | 🔄 |
+| Phase 2 | Evaluate Stalwart (test deploy) | W15-W18 | 🟡 P2 | ⬜ |
+| Phase 3 | Deploy Stalwart on DO ATL1 | S003 late or S004 | 🟡 P2 | ⬜ |
+| Phase 4 | Migrate Proton → Stalwart | After Stalwart stable | 🟡 P2 | ⬜ |
 
 ---
 
@@ -338,12 +381,13 @@ Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN a
 
 | # | Risk | Prob | Impact | Mitigation |
 |---|------|------|--------|------------|
-| 1 | DNS propagation delay | Low | Medium | Configure early; 48h buffer |
-| 2 | WeOwn.email forwarding breaks | Low | Medium | Test before cancelling Visionary |
-| 3 | Proton Unlimited 15-address limit | Low | Low | 14 needed; 1 spare; Business plan available |
+| 1 | DNS propagation delay | Low | Medium | ✅ RESOLVED — propagated |
+| 2 | WeOwn.email forwarding not configured | Low | Low | DEFERRED — not urgent; legacy addresses still work |
+| 3 | Business Suite 6-license limit | Low | Low | Add licenses as needed ($7/user) |
 | 4 | Stalwart deliverability (new IP) | Medium | Medium | Warm IP gradually; SPF/DKIM/DMARC |
 | 5 | Self-hosted email complexity | Medium | Medium | Phase 2 evaluation before commitment |
-| 6 | Key Staff don't update external services | Medium | Low | Forwarding catches missed updates |
+| 6 | Key Staff don't update external services | Medium | Low | Legacy addresses still receiving; gradual transition |
+| 7 | Combined cost ($72/mo) higher than planned | Low | Low | Value justifies — individual accounts + VPN; Stalwart reduces long-term |
 
 ---
 
@@ -351,7 +395,7 @@ Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN a
 
 | CCC | Contributor | Role | Context |
 |-----|-------------|------|---------|
-| GTM | [yonks](https://GitHub.com/YonksTEAM) | Co-Founder / Chief Digital Alchemist | Identified fragmented Proton accounts; proposed WeOwn.net consolidation + Stalwart long-term; $408/yr savings |
+| GTM | [yonks](https://GitHub.com/YonksTEAM) | Co-Founder / Chief Digital Alchemist | Identified fragmented Proton accounts; proposed WeOwn.net consolidation + Stalwart long-term; executed Phase 1 (Business Suite) |
 
 ---
 
@@ -367,6 +411,7 @@ Consolidate both Proton accounts into one **Proton Unlimited** plan on the VPN a
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.2.1.2 | 2026-W10 | GTM_2026-W10_130 | GTM_2026-W10_153 | Phase 1 COMPLETE; Proton Unlimited → Business Suite (6 × $14.99 = $89.94/mo); VPN Professional ($73.79/mo) pre-existing; total ♾️ WeOwnNet 🌐 = $163.73/mo; Visionary = YonksTEAM LLC (excluded); Visionary NOT cancelling; WeOwn.email forwarding DEFERRED; 5 individual addresses confirmed + SHD pending; 4 functional addresses (admin catch-all, billing, dev, social); @CRO → Phase 2; @RMN stays on WeOwn.email; +Proton Licenses section; DNS = DigitalOcean; -Cancellation Checklist; FULL PRESERVE (L-097); all emails REDACTED |
 | 3.2.1.1 | 2026-W10 | GTM_2026-W10_130 | GTM_2026-W10_132 | Initial project; email infrastructure consolidation; 2 Proton accounts → 1 Unlimited ($10/mo); WeOwn.net primary domain; 9 individual + 5 functional addresses; WeOwn.email → WeOwn.net forwarding; 14-step migration checklist; 5-item cancellation checklist; Phase 2-4 Stalwart (FOSS self-hosted $6/mo); DNS config (redacted); $408/yr total savings; 6-risk matrix; all email addresses REDACTED for public GH |
 
 ---
