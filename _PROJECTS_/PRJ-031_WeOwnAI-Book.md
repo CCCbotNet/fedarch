@@ -1,18 +1,18 @@
-# PRJ-031: 📚 We Own AI 🤖 — The NEW American Dream
+# PRJ-031: 📚 We Own AI 🤖 — The New American Dream
 
-## 📋 PRJ-031_WeOwnAI-Book_v3.2.1.2.md
+## 📋 PRJ-031_WeOwnAI-Book_v3.2.1.3.md
 ## ♾️ WeOwnNet 🌐 | 🔥 BurnedOut Media 🔀
 
 | Field | Value |
 |-------|-------|
 | Document | PRJ-031_WeOwnAI-Book.md |
-| Version | 3.2.1.2 |
+| Version | 3.2.1.3 |
 | CCC-ID | GTM_2026-W10_203 |
 | Created | 2026-03-05 (W10) |
-| Updated | 2026-03-05 (W10) |
+| Updated | 2026-03-06 (W10) |
 | Season | #WeOwnSeason003 🚀 |
-| Status | ✅ APPROVED |
-| Lifecycle Stage | ✅ APPROVED (#DocLifecycle) |
+| Status | ✅ 🔒 APPROVED |
+| Lifecycle Stage | ✅ 🔒 APPROVED (#DocLifecycle) |
 | Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-031_WeOwnAI-Book.md) |
 | Tags | #WeOwnAI #Kickstarter #BurnedOutAdvisor #ZeroTo100 #eBookNFT #FlowsBros |
 
@@ -21,37 +21,38 @@
 ## 📖 Table of Contents
 
 1. [Project Identity](#-project-identity)
-2. [What Changed (v3.2.1.1 → v3.2.1.2)](#-what-changed)
+2. [What Changed (v3.2.1.1 → v3.2.1.2)](#-what-changed-v3211--v3212)
 3. [Campaign Dates](#-campaign-dates)
 4. [The Book — Updated](#-the-book--updated)
-5. [Co-Authors + Contributors](#-co-authors--contributors)
-6. [Strategic Value — AgencyPRO Funnel](#-strategic-value--agencypro-funnel)
-7. [Reward Tiers (6)](#-reward-tiers-6)
-8. [Funding Goals + Stretch Goals](#-funding-goals--stretch-goals)
-9. [Revenue Projections](#-revenue-projections)
-10. [Retreats — Specific Dates](#-retreats--specific-dates)
-11. [eBookNFT — Ecosystem Brand](#-ebooknft--ecosystem-brand)
-12. [Project Team](#-project-team)
-13. [Pre-Launch Phase (W10-W15)](#-pre-launch-phase-w10-w15)
-14. [Launch Week (W16)](#-launch-week-w16)
-15. [Week 2 — Paid Advertising (W17)](#-week-2--paid-advertising-w17)
-16. [Week 3 — Mid-Campaign Push (W18)](#-week-3--mid-campaign-push-w18)
-17. [Week 4 — Final Push (W19-W20)](#-week-4--final-push-w19-w20)
-18. [Post-Campaign (W21-W29)](#-post-campaign-w21-w29)
-19. [Email Sequences (8 Emails)](#-email-sequences-8-emails)
-20. [LinkedIn Ad Creatives (3)](#-linkedin-ad-creatives-3)
-21. [Ad Budget](#-ad-budget)
-22. [LinkedIn Content Calendar](#-linkedin-content-calendar)
-23. [Kickstarter Page Sections](#-kickstarter-page-sections)
-24. [Affiliate Program — Kickbooster.me](#-affiliate-program--kickboosterme)
-25. [@LFG Execution Plan](#-lfg-execution-plan)
-26. [Tracking + Metrics](#-tracking--metrics)
-27. [Budget Summary](#-budget-summary)
-28. [Risk Matrix](#-risk-matrix)
-29. [Relationship to Other Projects](#-relationship-to-other-projects)
-30. [Discovered By](#-discovered-by)
-31. [Related Documents](#-related-documents)
-32. [Version History](#-version-history)
+5. [Kickstarter Framing — NFT-Free Language](#-kickstarter-framing--nft-free-language)
+6. [Co-Authors + Contributors](#-co-authors--contributors)
+7. [Strategic Value — AgencyPRO Funnel](#-strategic-value--agencypro-funnel)
+8. [Reward Tiers (6)](#-reward-tiers-6)
+9. [Funding Goals + Stretch Goals](#-funding-goals--stretch-goals)
+10. [Revenue Projections](#-revenue-projections)
+11. [Retreats — Specific Dates](#-retreats--specific-dates)
+12. [eBookNFT — Ecosystem Brand](#-ebooknft--ecosystem-brand)
+13. [Project Team](#-project-team)
+14. [Pre-Launch Phase (W10-W15)](#-pre-launch-phase-w10-w15)
+15. [Launch Week (W16)](#-launch-week-w16)
+16. [Week 2 — Paid Advertising (W17)](#-week-2--paid-advertising-w17)
+17. [Week 3 — Mid-Campaign Push (W18)](#-week-3--mid-campaign-push-w18)
+18. [Week 4 — Final Push (W19-W20)](#-week-4--final-push-w19-w20)
+19. [Post-Campaign (W21-W29)](#-post-campaign-w21-w29)
+20. [Email Sequences (8 Emails)](#-email-sequences-8-emails)
+21. [LinkedIn Ad Creatives (3)](#-linkedin-ad-creatives-3)
+22. [Ad Budget](#-ad-budget)
+23. [LinkedIn Content Calendar](#-linkedin-content-calendar)
+24. [Kickstarter Page Sections](#-kickstarter-page-sections)
+25. [Affiliate Program — Kickbooster.me](#-affiliate-program--kickboosterme)
+26. [@LFG Execution Plan](#-lfg-execution-plan)
+27. [Tracking + Metrics](#-tracking--metrics)
+28. [Budget Summary](#-budget-summary)
+29. [Risk Matrix](#-risk-matrix)
+30. [Relationship to Other Projects](#-relationship-to-other-projects)
+31. [Discovered By](#-discovered-by)
+32. [Related Documents](#-related-documents)
+33. [Version History](#-version-history)
 
 ---
 
@@ -60,10 +61,10 @@
 | Field | Value |
 |-------|-------|
 | Project ID | **PRJ-031** |
-| Title | **📚 We Own AI 🤖 — The NEW American Dream** |
+| Title | **📚 We Own AI 🤖 — The New American Dream** |
 | Type | Product — Book + Kickstarter Campaign |
 | Priority | 🔴 **P0** |
-| Product | **"📚 We Own AI 🤖 - The NEW American Dream"** |
+| Product | **"📚 We Own AI 🤖 — The New American Dream"** |
 | Model | **$47/yr subscription NFT** (digital) + hardcopy upcharge |
 | Platform | **Kickstarter** |
 | Funding Goal | **$5K min / $35K target / $54K stretch** |
@@ -85,7 +86,7 @@
 | # | Pivot | Before (v3.2.1.1) | After (v3.2.1.2) |
 |---|-------|-------------------|-------------------|
 | 1 | **Book model** | Single author (@THY) | **Crowd-created** (multiple contributors) |
-| 2 | **Book title** | "The Burned Out Advisor's Guide to AI" | **"📚 We Own AI 🤖 - The NEW American Dream"** |
+| 2 | **Book title** | "The Burned Out Advisor's Guide to AI" | **"📚 We Own AI 🤖 — The New American Dream"** |
 | 3 | **Business model** | $48 one-time (Kickstarter) | **$47/yr subscription NFT (digital) + hardcopy upcharge** |
 | 4 | **Scope** | Financial Advisors only | **Multi-vertical** (RE, Fractional C-Suite, Higher Ed, Communities) |
 | 5 | **Retreats** | Vague | **2 retreats with specific date options** |
@@ -124,22 +125,22 @@
 
 | Field | Value |
 |-------|-------|
-| Title | **📚 We Own AI 🤖 - The NEW American Dream** |
-| Model | **$47/yr subscription NFT** (digital ONLY access) |
+| Title | **📚 We Own AI 🤖 — The New American Dream** |
+| Model | **$47/yr subscription** (digital ONLY access) |
 | Hard copy | **UPCHARGE** ($TBD — print-on-demand) |
 | Rationale | Annual subscription ensures content stays current with rapidly evolving Agentic AI |
 | NFT | Access token — aligns with cooperative ownership model |
 | Format | Multi-vertical, crowd-created |
 
-### Why Subscription NFT
+### Why Annual Subscription Model
 
-| Factor | One-Time Purchase | $47/yr Subscription NFT |
+| Factor | One-Time Purchase | $47/yr Subscription |
 |--------|-------------------|------------------------|
 | Content freshness | ❌ Static — outdated in 6 months | ✅ **Updated annually** |
 | AI evolution | ❌ Can't keep up | ✅ **New chapters as AI evolves** |
 | Community | ❌ Transaction done | ✅ **Ongoing membership** |
 | Revenue | One-time | ✅ **Recurring** |
-| Cooperative alignment | 🟡 | ✅ **NFT = ownership stake** |
+| Cooperative alignment | 🟡 | ✅ **ownership stake** |
 
 ### Why Crowd-Created
 
@@ -153,6 +154,44 @@
 
 ---
 
+## 📋 Kickstarter Framing — NFT-Free Language
+
+### ⚠️ CRITICAL: Kickstarter Bans NFT Projects
+
+Kickstarter's policy prohibits NFT, token, blockchain, Web3, and crypto references on campaign pages. **ANY mention = campaign rejection or removal.**
+
+> @GTM: "I am #ALLin on reducing #MentalFriction around #crypto + #blockchain to gain early momentum here in 2026!!"
+
+### Translation Table — Internal vs Kickstarter
+
+| Internal (PRJ-031 / Team) | Kickstarter Page (Public) |
+|---------------------------|--------------------------|
+| $47/yr subscription | **$47/yr annual digital subscription** |
+| NFT access token | **Digital access key** |
+| eBookNFT | ❌ **DO NOT MENTION on KS** |
+| Blockchain delivery | **Digital delivery** |
+| Cooperative ownership | **Community membership** |
+| Web3 | ❌ **DO NOT MENTION on KS** |
+| Token | ❌ **DO NOT MENTION on KS** |
+| Crypto | ❌ **DO NOT MENTION on KS** |
+
+### Rule
+
+**ALL Kickstarter-facing content (page, emails, ads, press) MUST use the RIGHT column.** Internal docs (PRJ-031, team comms) may use either.
+
+### Affected Sections
+
+| Section | What Changes |
+|---------|-------------|
+| Reward Tiers | Add note: "KS = annual digital subscription" |
+| Emails (LD-1, F-1) | NFT → digital subscription |
+| Ads (B-02) | NFT → digital subscription |
+| KS Page Sections | Zero NFT/Web3 language |
+| FAQ | +Q: "How does digital access work?" |
+| Risk Matrix | +Risk #9: KS rejection |
+
+---
+
 ## 📋 Co-Authors + Contributors
 
 ### Confirmed Co-Authors
@@ -160,7 +199,7 @@
 | Contributor | CCC | Vertical | Status |
 |-------------|-----|----------|--------|
 | **@THY** Tyler Younker (MrsYonks) | THY | Real Estate / Financial Advisors | ✅ Confirmed |
-| **@GTM** yonks｜🤖🏛️🪙｜Jason Younker ♾️ | GTM | Techology (documentation) with Agentic AI | ✅ Confirmed |
+| **@GTM** yonks｜🤖🏛️🪙｜Jason Younker ♾️ | GTM | Technology (documentation) with Agentic AI | ✅ Confirmed |
 | **@CEO** (Stephanie Warlick) | CEO | xCEO / xCOO — Agentic AI for Fractional C-Suite | ✅ Confirmed |
 
 ### Potential Contributors
@@ -177,7 +216,7 @@
 | **Real Estate** | @THY | AI for RE professionals — listings, CRM, compliance |
 | **Financial Advisors** | @THY | AI for FAs — portfolio analysis, client comms |
 | **Fractional C-Suite** | @CEO | AI for fractional executives — xCEO, xCOO, xCFO |
-| **Technology** | @GTM | #ResponsibleAgenticAI for technology executives - xCTO, xCSO, xCAIO |
+| **Technology** | @GTM | #ResponsibleAgenticAI for technology executives — xCTO, xCSO, xCAIO |
 | **Higher Education** | Brian W Piper (TBC) | AI for higher ed — admissions, content, admin |
 | **Online Communities** | Lou Kerner (TBC) | AI for community building — engagement, moderation |
 
@@ -213,11 +252,13 @@
 | Tier | Name | Price | What They Get | Limit | Est. Margin |
 |------|------|-------|---------------|-------|-------------|
 | ☕ | Supporter | $10 | Name in acknowledgments + digital thank you | Unlimited | $10 |
-| 📚 | **THE BOOK** | **$47** | **Subscription NFT (1yr digital) + acknowledgments** | **Unlimited** | **$32** |
-| 🎯 | Advisor Bundle | $88 | NFT + hardcopy + 60-min group Q&A + community (3 months) | 100 | $55 |
+| 📚 | **THE BOOK** | **$47** | **Subscription (1yr digital) + acknowledgments** | **Unlimited** | **$32** |
+| 🎯 | Advisor Bundle | $88 | Digital access + hardcopy + 60-min group Q&A + community (3 months) | 100 | $55 |
 | 🏆 | VIP Advisor | $248 | Everything in Bundle + 30-min 1-on-1 with co-author + "Founding" page | 25 | $180 |
 | 🤝 | Cooperative Patron | $488 | Everything in VIP + ♾️ WeOwn.Agency membership (1yr) + AgencyPRO early access | 12 | $300 |
 | 🏛️ | Founding Sponsor | $4,888 | Everything in Patron + FULL AgencyPRO BUNDLE + retreat seat + logo in book | 6 | $2,500+ |
+
+> **Kickstarter language:** "Annual digital subscription" (NOT "subscription NFT"). See [Kickstarter Framing](#-kickstarter-framing--nft-free-language).
 
 ---
 
@@ -235,7 +276,7 @@
 
 | Amount | Unlock | Description |
 |--------|--------|-------------|
-| $5,000 | ✅ FUNDED | eBookNFT gets published |
+| $5,000 | ✅ FUNDED | 📚 We Own AI 🤖 [BOOK] gets published |
 | $20,000 | 🎧 Audiobook | AI narration |
 | $30,000 | 📋 Workbook | Companion: "Your AI Practice Audit" (PDF) |
 | $40,000 | 🎥 Video Course | 5-module: "AI Setup for Professionals" |
@@ -312,11 +353,11 @@
 
 | CCC | Contributor | PRJ-031 Role |
 |-----|-------------|-------------|
+| **GTM** | yonks | **Technologist / Co-Author**, infrastructure, Kickbooster |
 | **THY** | mrsyonks | **Co-Author** (RE/FA vertical), Kickstarter account, personal outreach |
 | **CEO** | Stephanie Warlick | **Co-Author** (Fractional C-Suite vertical), GTM strategy, ad management, press |
-| **LFG** | CoachLFG | **Creative / #MemeLord 👑** (~250 hrs committed), all graphics, social, video |
-| **GTM** | yonks | **Publisher / Tech**, NFT infrastructure, FluentCRM, landing page, Kickbooster |
-| **LDC** | Dhruv | **#AgenticAI Lead** — #AgencyPRO integration, connexOmni/Athena demos |
+| **LFG** | CoachLFG | **Creative / #MemeLord 👑** (~250 hrs committed), landing page, all graphics, social, video |
+| **LDC** | Dhruv | **#AgenticAI Lead** — #AgencyPRO integration, connexOmni/Athena demos, **FluentCRM + Connex on INT-P05** |
 
 ---
 
@@ -339,10 +380,10 @@
 | 1 | Finalize book outline (chapters per vertical) | @THY + @CEO | W11 |
 | 2 | Write 2 sample chapters (for backer preview) | @THY + @CEO | W12 |
 | 3 | Define book specs: paperback, ~200 pages, 6×9, ISBN | @THY | W11 |
-| 4 | Identify print-on-demand partner (Amazon KDP or IngramSpark) | @GTM | W11 |
-| 5 | Determine eBook/NFT format | @GTM | W11 |
+| 4 | Identify print-on-demand partner (Amazon KDP or IngramSpark) | @THY | W11 |
+| 5 | Determine digital access workflow | @GTM | W11 |
 | 6 | Commission cover design (3 concepts) | @LFG | W12 |
-| 7 | Select final cover | @THY | W13 |
+| 7 | Select final cover | ♾️ WeOwnNet 🌐 Core TEAM | W13 |
 | 8 | Create 3D book mockup renders | @LFG | W13 |
 | 9 | Reach out to Brian W Piper (Higher Ed) | @GTM | W11 |
 | 10 | Reach out to Lou Kerner (Communities) | @GTM | W11 |
@@ -352,17 +393,19 @@
 | Section | Content | Owner |
 |---------|---------|-------|
 | Hero video (2-3 min) | Co-authors on camera: "Why we wrote this book" | @THY + @CEO (script) + @LFG (edit) |
-| Headline | "📚 We Own AI 🤖 - The NEW American Dream" | @THY |
+| Headline | "📚 We Own AI 🤖 — The New American Dream" | @THY |
 | Subheadline | "A crowd-created guide to AI for professionals — by practitioners, for practitioners" | @THY |
 | The Problem | Burnout across verticals — RE, FA, C-Suite, Higher Ed | @CEO |
-| The Book | Multi-vertical chapters, subscription NFT model | @THY |
+| The Book | Multi-vertical chapters, annual digital subscription model | @THY |
 | Who This Is For | Professionals across 4+ verticals | @CEO |
 | Co-Authors | @THY + @CEO bios + contributor bios | @THY + @CEO |
-| Reward Tiers | 7 tiers ($10 → $4,888) | @CEO |
-| Stretch Goals | 5 goals ($15K → $50K) | @CEO |
+| Reward Tiers | 6 tiers ($10 → $4,888) | @CEO |
+| Stretch Goals | 5 goals ($5K → $50K) | @CEO |
 | Retreats | 2 retreats with date options | @GTM |
-| FAQ | 10 questions (including NFT/subscription model) | @CEO |
+| FAQ | 10 questions (including digital access model) | @CEO |
 | Risks + Challenges | Honest section (Kickstarter requires) | @THY |
+
+> **⚠️ ZERO NFT/Web3/blockchain/token/crypto language on Kickstarter page.** See [Kickstarter Framing](#-kickstarter-framing--nft-free-language).
 
 ### PL-4: Pre-Launch Email List
 
@@ -370,8 +413,8 @@
 |---|------|-------|----------|
 | 1 | Create Kickstarter pre-launch page (collect emails) | @THY | W12 |
 | 2 | Create landing page: weown.net/book | @GTM | W12 |
-| 3 | FluentCRM tag: book-prelaunch | @GTM | W12 |
-| 4 | FluentCRM list: Book Pre-Launch | @GTM | W12 |
+| 3 | FluentCRM tag: book-prelaunch | **@LDC** | W12 |
+| 4 | FluentCRM list: Book Pre-Launch | **@LDC** | W12 |
 | 5 | Pre-launch email sequence (3 emails) | @CEO | W13 |
 | 6 | LinkedIn organic posts (5 posts over 2 weeks) | @LFG | W14 → W15 |
 | 7 | Personal outreach: @THY emails 50 contacts | @THY | W14 |
@@ -435,18 +478,18 @@
 | 4 | Press outreach: 10 financial media contacts | @CEO |
 | 5 | Book co-authors on 2-3 podcasts | @CEO |
 | 6 | "Share + tag 2 professionals" LinkedIn post | @LFG |
-| 7 | Live Q&A: LinkedIn Live (30 min) | @THY + @CEO + @LFG |
+| 7 | **#FlowsBros episode on WeOwn.FM** — scheduled via ♾️ WeOwn.Events 📆 + Luma; @THY + @CEO + @LFG; clipped for social | @THY + @CEO + @LFG |
 
 ### Press Outreach Template
 
 ```
-SUBJECT: Kickstarter Book — "We Own AI: The NEW American Dream" —
+SUBJECT: Kickstarter Book — "📚 We Own AI 🤖 — The New American Dream" —
 $XX,XXX Raised, XXX Backers
 
 BODY: First crowd-created book about AI adoption across professional
 verticals — Real Estate, Financial Advisory, Fractional C-Suite,
 Higher Education. Multiple co-authors, each a practitioner.
-$47/yr subscription NFT model. Cooperative ownership.
+$47/yr annual digital subscription model. Cooperative ownership.
 Review copy, interview, or details available.
 ```
 
@@ -532,7 +575,7 @@ Review copy, interview, or details available.
 | Field | Value |
 |-------|-------|
 | SUBJECT | IT'S LIVE |
-| BODY | "📚 We Own AI 🤖" now on Kickstarter. Early Bird $28 (200 only). Subscription NFT $47/yr. 3 ways to help: back, share, comment. |
+| BODY | "📚 We Own AI 🤖" now on Kickstarter. Early Bird $28 (200 only). **Annual digital subscription $47/yr.** 3 ways to help: back, share, comment. |
 
 ### Mid-Campaign (2 Emails)
 
@@ -557,7 +600,7 @@ Review copy, interview, or details available.
 | Field | Value |
 |-------|-------|
 | SUBJECT | 24 hours left |
-| BODY | After tomorrow: no Early Bird, no $47 NFT, no Founding page. Last chance. |
+| BODY | After tomorrow: no Early Bird, no **$47 digital subscription**, no Founding page. Last chance. |
 
 **Email F-2 — Final Hours**
 
@@ -584,7 +627,7 @@ Review copy, interview, or details available.
 | Field | Value |
 |-------|-------|
 | HEADLINE | 73% of Professionals Report Burnout. This Book Is the Response. |
-| BODY | Written by practitioners, for practitioners. No hype. No jargon. $47/yr subscription NFT on Kickstarter. |
+| BODY | Written by practitioners, for practitioners. No hype. No jargon. **$47/yr annual digital subscription** on Kickstarter. |
 | CTA | Get Your Copy → |
 | UTM | `utm_source=linkedin&utm_medium=paid&utm_campaign=kickstarter-book&utm_content=ad-b02-stat` |
 
@@ -631,15 +674,23 @@ Review copy, interview, or details available.
 | Section | Content | Owner |
 |---------|---------|-------|
 | Hero video (2-3 min) | Co-authors on camera | @THY + @CEO + @LFG |
-| Headline | "📚 We Own AI 🤖 - The NEW American Dream" | @THY |
+| Headline | "📚 We Own AI 🤖 — The New American Dream" | @THY |
 | The Problem | Burnout across verticals | @CEO |
-| The Book | Multi-vertical, crowd-created, subscription NFT | @THY |
+| The Book | Multi-vertical, crowd-created, **annual digital subscription** | @THY |
 | Co-Authors | @THY + @CEO + contributor bios | ALL |
-| Reward Tiers | 7 tiers ($10 → $4,888) | @CEO |
+| Reward Tiers | 6 tiers ($10 → $4,888) | @CEO |
 | Retreats | 2 retreats with dates | @GTM |
-| Stretch Goals | 5 goals ($15K → $50K) | @CEO |
-| FAQ | 10 questions (incl. NFT model) | @CEO |
+| Stretch Goals | 5 goals ($5K → $50K) | @CEO |
+| FAQ | 10 questions (incl. digital access model) | @CEO |
 | Risks + Challenges | Honest section | @THY |
+
+> **⚠️ ZERO NFT/Web3/blockchain/token/crypto language on Kickstarter page.** See [Kickstarter Framing](#-kickstarter-framing--nft-free-language).
+
+### FAQ — Digital Access Question
+
+| # | Question | Answer |
+|---|---------|--------|
+| NEW | **"How does digital access work?"** | When you back the $47/yr tier, you receive a **digital access key** via email within 48 hours of campaign close. This key unlocks the full book (PDF + web reader) for 12 months. Renew annually to keep access and receive all updates — the book evolves as AI evolves. No apps to install. No blockchain required. Just a key and a link. |
 
 ---
 
@@ -702,7 +753,7 @@ Review copy, interview, or details available.
 |---|------|-------------|--------|
 | 1 | New covers | Updated title + multi-vertical branding | ⬜ |
 | 2 | New mockups | 3D renders with updated cover | ⬜ |
-| 3 | Wireframe | Kickstarter page layout | ⬜ |
+| 3 | Wireframe | Kickstarter page layout + **#FlowsBros episode format** | ⬜ |
 
 ### Dependencies Identified (11)
 
@@ -713,9 +764,9 @@ Review copy, interview, or details available.
 | 3 | Retreat dates finalized | @GTM |
 | 4 | NFT model details | @GTM |
 | 5 | Kickstarter page copy | @THY + @CEO |
-| 6 | Video script | @THY |
+| 6 | **#FlowsBros episode format + script** | @THY |
 | 7 | Tier pricing finalized | @CEO |
-| 8 | Stretch goal details | @CEO |
+| 8 | **Stripe + FluentCRM integration** | **@LDC** |
 | 9 | Brand guidelines (eBookNFT) | @GTM |
 | 10 | Affiliate page design | @GTM |
 | 11 | Press kit requirements | @CEO |
@@ -761,7 +812,7 @@ Review copy, interview, or details available.
 
 | # | Risk | Prob | Impact | Mitigation |
 |---|------|------|--------|------------|
-| 1 | Don't hit $15K minimum | Low | High | Conservative goal + strong pre-launch list |
+| 1 | Don't hit $5K minimum | Low | High | Conservative goal + strong pre-launch list |
 | 2 | Co-author manuscripts delayed | Medium | High | 2 sample chapters pre-campaign; outline locked |
 | 3 | Low Day 1 momentum | Medium | High | 500 pre-launch emails + personal outreach |
 | 4 | Ad underperformance | Medium | Medium | Organic-first Week 1; ads = supplement |
@@ -769,6 +820,7 @@ Review copy, interview, or details available.
 | 6 | @LFG creative capacity | Low | Medium | Cover + mockups prioritized W12-W13; 250 hrs committed |
 | 7 | NFT model confusion (backers) | Medium | Medium | Clear FAQ + explainer video |
 | 8 | Potential co-authors decline | Medium | Low | Book works with 2 confirmed co-authors |
+| 9 | **KS campaign rejection (NFT language)** | Low | **Critical** | NFT-Free Framing section — ALL KS content scrubbed; translation table enforced; team review before submit |
 
 ---
 
@@ -779,8 +831,9 @@ Review copy, interview, or details available.
 | **PRJ-002** | AgencyPRO — book = top of sales funnel; Founding Sponsor includes BUNDLE | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-002_AgencyPRO.md) |
 | **PRJ-012** | BurnedOutAdvisor.com — primary sales/distribution channel | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-012_BurnedOutAdvisor.md) |
 | **PRJ-019** | Webinar — backers → webinar → AgencyPRO pipeline | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-019_Webinar.md) |
-| **PRJ-029** | Events — retreat seats in Founding Sponsor tier | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-029_WeOwn-Events.md) |
-| **PRJ-030** | Email Infrastructure — FluentCRM for campaign emails | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-030_EmailInfrastructure.md) |
+| **PRJ-029** | ♾️ WeOwn.Events 📆 — #FlowsBros scheduling via Luma; retreat seats in Founding Sponsor tier | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-029_WeOwn-Events.md) |
+| **PRJ-030** | Email Infrastructure — FluentCRM managed by **@LDC on INT-P05** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-030_EmailInfrastructure.md) |
+| **WeOwn.FM** | #FlowsBros #LiveStream / #podcast — W18 episode | — |
 
 ---
 
@@ -788,10 +841,10 @@ Review copy, interview, or details available.
 
 | CCC | Contributor | Role | Context |
 |-----|-------------|------|---------|
-| GTM | [yonks](https://GitHub.com/YonksTEAM) | Co-Founder / Chief Digital Alchemist |  eBookNFT model & concept, Kickbooster & affiliate strategy |
-| THY | mrsyonks | Co-Founder / CEO / CFO | Co-author, Kickstarter strategy, campaign dates |
+| GTM | [yonks](https://GitHub.com/YonksTEAM) | Co-Founder / Chief Digital Alchemist |  Book concept, NFT model, eBookNFT domains, Kickbooster, pivots, #FlowsBros on WeOwn.FM |
+| THY | mrsyonks | Co-Founder / CEO / CFO | Co-author, book concept, Kickstarter strategy, campaign dates, NFT-free KS framing |
+| CEO | Stephanie Warlick | xCEO | Co-author, GTM strategy, tier pricing, press outreach |
 | LFG | CoachLFG | Co-Host / Coach / #MemeLord 👑 | Full execution plan (~250 hrs), creative, social |
-| CEO | Stephanie Warlick | xCEO | Co-author, strategy execution, press outreach |
 
 ---
 
@@ -800,7 +853,7 @@ Review copy, interview, or details available.
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
 | SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| PRJ-002 (AgencyPRO) | v3.2.1.1 | GTM_2026-W10_109 | ⬜ | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-002_AgencyPRO.md) |
+| PRJ-002 (AgencyPRO) | v3.2.1.1 | GTM_2026-W10_109 | GTM_2026-W10_115 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-002_AgencyPRO.md) |
 
 ---
 
@@ -808,6 +861,7 @@ Review copy, interview, or details available.
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.2.1.3 | 2026-W10 | GTM_2026-W10_203 | GTM_2026-W10_261 | Title LOCKED: "📚 We Own AI 🤖 — The New American Dream" (three words — aligns with "We Own" brand family / We Own Co-op PBC LCA); +NFT-Free Kickstarter Framing section (KS bans NFT — translation table: internal vs KS language); ALL KS-facing content scrubbed of NFT/Web3/blockchain/token/crypto; +Risk #9 (KS campaign rejection); Live Q&A → #FlowsBros series on WeOwn.FM via Luma + ♾️ WeOwn.Events; FluentCRM → @LDC (PRJ-002 + INT-P05 + Connex — not @SHD/@GTM); +WeOwn.FM + Events.WeOwn.tools in cross-references; Email LD-1 + F-1 + Ad B-02 updated (NFT → digital subscription); FAQ +digital access Q; @GTM role updated (removed FluentCRM); +@THY NFT-free framing in Discovered By; source: THY_2026-W10_047 + GTM_2026-W10_253/254/256; FULL PRESERVE from v3.2.1.2 (L-097) |
 | 3.2.1.2 | 2026-W10 | GTM_2026-W10_203 | GTM_2026-W10_232 | **8 PIVOTS:** crowd-created model (multi-author); title → "📚 We Own AI 🤖 - The NEW American Dream"; $47/yr subscription NFT (digital) + hardcopy upcharge; multi-vertical scope (RE, C-Suite, Higher Ed, Communities); +2 retreats with specific dates (CO Jun, FL Nov); +Kickbooster.me affiliate program; +@LDC as #AgenticAI Lead; +eBookNFT ecosystem brand (4 domains $216); +Co-Authors section (@THY + @CEO confirmed, 2 potential); +@LFG Execution Plan (~250 hrs, 305 content pieces); +Affiliate Program section; +eBookNFT section; +Retreats section; +What Changed section; ads updated (Advisors → Professionals); +2 risks (NFT confusion + co-author decline); budget +$916 (domains + Kickbooster est.); +@LFG + @GTM in Discovered By; FULL PRESERVE campaign dates + email sequences + ad structure from v3.2.1.1 (L-097) |
 | 3.2.1.1 | 2026-W10 | GTM_2026-W10_203 | ⬜ AWAITING | Initial project; single author (@THY); "The Burned Out Advisor's Guide to AI"; $48 one-time; Kickstarter Apr 14 → May 17; 7 tiers; $15K-$54K; 8 emails; 3 ads; ~120 tasks; source: THY_2026-W10_011 |
 
