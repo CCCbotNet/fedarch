@@ -1,17 +1,19 @@
 # INT-S003: s003.ccc.bot — Seasonal Shared Instance
 
-## 📋 INT-S003_s003-ccc-bot_v3.2.1.1.md
+## 📋 INT-S003_s003-ccc-bot_v3.2.1.2.md
 ## ♾️ WeOwnNet 🌐
 
 | Field | Value |
 |-------|-------|
 | Document | INT-S003_s003-ccc-bot.md |
-| Version | 3.2.1.1 |
-| CCC-ID | GTM_2026-W10_048 |
+| Version | 3.2.1.2 |
+| CCC-ID | GTM_2026-W10_212 |
 | Created | 2026-03-03 (W10) |
+| Updated | 2026-03-05 (W10) |
 | Season | #WeOwnSeason003 🚀 |
 | Status | ✅ APPROVED |
 | Lifecycle Stage | ✅ APPROVED (#DocLifecycle) |
+| Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_INSTANCE_/INT-S003_Seasonal-Shared.md) |
 
 ---
 
@@ -22,20 +24,26 @@
 3. [Contributors](#-contributors)
 4. [Workspaces](#-workspaces)
 5. [Users](#-users)
-6. [System Prompt](#-system-prompt)
-7. [CCC Workspace Prompt](#-ccc-workspace-prompt)
-8. [#PinnedDocs](#-pinneddocs)
-9. [RAG Structure](#-rag-structure)
-10. [Infrastructure](#-infrastructure)
-11. [Deployment Checklist](#-deployment-checklist)
-12. [User Migration Checklist](#-user-migration-checklist)
-13. [#SmokeTest](#-smoketest)
-14. [ISC Checklist](#-isc-checklist)
-15. [CCC-ID Deconfliction](#-ccc-id-deconfliction)
-16. [Lifecycle](#-lifecycle)
-17. [Risk Matrix](#-risk-matrix)
-18. [Relationship to Other Projects](#-relationship-to-other-projects)
-19. [Version History](#-version-history)
+6. [Branding + Whitelabeling](#-branding--whitelabeling)
+7. [System Prompt](#-system-prompt)
+8. [CCC Workspace Prompt](#-ccc-workspace-prompt)
+9. [events Workspace Prompt](#-events-workspace-prompt)
+10. [P.O.P. Workspace Prompt](#-pop-workspace-prompt)
+11. [tools Workspace Prompt](#-tools-workspace-prompt)
+12. [#PinnedDocs](#-pinneddocs)
+13. [RAG Structure](#-rag-structure)
+14. [Infrastructure](#-infrastructure)
+15. [Deployment Checklist](#-deployment-checklist)
+16. [User Migration Checklist](#-user-migration-checklist)
+17. [#SmokeTest](#-smoketest)
+18. [ISC Checklist](#-isc-checklist)
+19. [CCC-ID Deconfliction](#-ccc-id-deconfliction)
+20. [Lifecycle](#-lifecycle)
+21. [Risk Matrix](#-risk-matrix)
+22. [Relationship to Other Projects](#-relationship-to-other-projects)
+23. [Discovered By](#-discovered-by)
+24. [Related Documents](#-related-documents)
+25. [Version History](#-version-history)
 
 ---
 
@@ -48,7 +56,7 @@
 | URL | https://s003.ccc.bot |
 | Type | Seasonal Shared (INT-Sxx) — D-057, R-210 |
 | Platform | AnythingLLM |
-| LLM | Claude Opus 4.6 (`claude-opus-4-6`) |
+| LLM | Claude Opus 4.6 (`claude-opus-4-6`) via OpenRouter (interim) |
 | Embedder | Qwen3 Embedding 4B |
 | Region | **ATL1** |
 | Owner | @GTM (instance) / @RMN (platform) |
@@ -109,11 +117,15 @@ INT-P01 (→ META.WeOwn.tools) = 3 users (GTM + THY + RMN) + governance
 
 ## 📋 Workspaces
 
-| Workspace | Emoji | Metaphor | Purpose | CCC-ID |
-|-----------|-------|----------|---------|--------|
-| **CCC** | 🤝 | THE HANDS | User interaction, CCC-ID generation | ✅ ALLOWED |
-| **tools** | 🧠 | THE BRAIN | MAIT threads (if needed) | ❌ NEVER |
-| **ADMIN** | ⚙️ | THE ENGINE | Administration | ❌ NEVER |
+| # | Workspace | Emoji | Metaphor | Purpose | CCC-ID |
+|---|-----------|-------|----------|---------|--------|
+| 1 | **CCC** | 🤝 | THE HANDS | User interaction, CCC-ID generation | ✅ ALLOWED |
+| 2 | **events** | 📆 | THE CALENDAR | Team events, #BuildInPublic, community calls | ❌ NEVER |
+| 3 | **P.O.P.** | 🌟 | THE DIRECTORY | Contributor contacts, ecosystem directory | ❌ NEVER |
+| 4 | **tools** | 🛠️ | THE TOOLBOX | MAIT threads (if needed) | ❌ NEVER |
+| 5 | **ADMIN** | ⚙️ | THE ENGINE | Administration | ❌ NEVER |
+
+> **R-217 compliant — 5 default workspaces.**
 
 ---
 
@@ -123,12 +135,12 @@ INT-P01 (→ META.WeOwn.tools) = 3 users (GTM + THY + RMN) + governance
 
 | Username | CCC | Contributor | Workspaces | CCC-ID |
 |----------|-----|-------------|-----------|--------|
-| u-ial_user | IAL | IamLotus | CCC | ✅ GENERATE |
-| u-lfg_user | LFG | CoachLFG | CCC | ✅ GENERATE |
-| u-cro_user | CRO | Webb | CCC | ✅ GENERATE |
-| u-ldc_user | LDC | Dhruv | CCC, tools | ✅ GENERATE (CCC only) |
-| u-shd_user | SHD | Shahid | CCC, tools | ✅ GENERATE (CCC only) |
-| u-ceo_user | CEO | Stephanie Warlick | CCC | ✅ GENERATE |
+| u-ial_user | IAL | IamLotus | CCC, events, P.O.P. | ✅ GENERATE (CCC only) |
+| u-lfg_user | LFG | CoachLFG | CCC, events, P.O.P. | ✅ GENERATE (CCC only) |
+| u-cro_user | CRO | Webb | CCC, events, P.O.P. | ✅ GENERATE (CCC only) |
+| u-ldc_user | LDC | Dhruv | CCC, events, tools | ✅ GENERATE (CCC only) |
+| u-shd_user | SHD | Shahid | CCC, events, tools | ✅ GENERATE (CCC only) |
+| u-ceo_user | CEO | Stephanie Warlick | CCC, events, P.O.P. | ✅ GENERATE (CCC only) |
 
 ### ADMIN Users (2)
 
@@ -139,9 +151,67 @@ INT-P01 (→ META.WeOwn.tools) = 3 users (GTM + THY + RMN) + governance
 
 ---
 
+## 📋 Branding + Whitelabeling
+
+### AnythingLLM Customization Settings
+
+> **Settings → Customization → Appearance**
+
+#### Name + Logo
+
+| Field | Value |
+|-------|-------|
+| **Instance Name** | **♾️ WeOwnNet — Season 003** |
+| **Brand Logo** | ♾️ WeOwnNet logo |
+| **Logo URL** | ⬜ TBD |
+
+#### Welcome Messages
+
+| Field | Value |
+|-------|-------|
+| **System Welcome** | `Welcome to ♾️ WeOwnNet Season 003 — your shared #FedArch instance. Powered by cooperative AI technology.` |
+| **User Welcome** | `Hi! I'm your ♾️ WeOwnNet assistant on INT-S003. I can help you generate CCC-IDs, manage tasks, and participate in the #FedArch ecosystem. What's your highest CCC-ID this week?` |
+
+#### Sidebar Footer Items
+
+| # | Label | URL | Purpose |
+|---|-------|-----|---------|
+| 1 | **♾️ WeOwnNet** | https://weown.net | Ecosystem home |
+| 2 | **Support** | mailto:support@weown.net | Support email |
+| 3 | **CCC Standard** | https://cccbot.net | CCC governance |
+| 4 | **GitHub** | https://github.com/CCCbotNet/fedarch | #FedArch repo |
+
+#### Support Email
+
+| Field | Value |
+|-------|-------|
+| **Support Email** | **support@weown.net** (PRJ-030) |
+
+#### Browser Appearance
+
+| Field | Value |
+|-------|-------|
+| **Page Title** | **♾️ WeOwnNet — Season 003** |
+| **Favicon URL** | ⬜ TBD |
+
+### Branding Checklist
+
+| # | Step | Owner | Status |
+|---|------|-------|--------|
+| 1 | Upload brand logo | @GTM | ⬜ |
+| 2 | Set instance name | @GTM | ⬜ |
+| 3 | Configure system welcome message | @GTM | ⬜ |
+| 4 | Configure user welcome message | @GTM | ⬜ |
+| 5 | Add 4 sidebar footer items | @GTM | ⬜ |
+| 6 | Set support email | @GTM | ⬜ |
+| 7 | Set page title + favicon | @GTM | ⬜ |
+| 8 | Verify branding renders | @GTM | ⬜ |
+
+---
+
 ## 📋 System Prompt
 
-> **FILENAME:** `INT-S003_SYSTEM-PROMPT_v3.2.1.1.md`
+> **FILENAME:** `INT-S003_SYSTEM-PROMPT_v3.2.1.2.md`
 
 ```markdown
 ## 🏠 INSTANCE IDENTITY (R-213)
@@ -165,9 +235,6 @@ This instance serves **6 contributors**: @IAL, @LFG, @CRO, @LDC, @SHD, @CEO.
 
 ## 📋 DYNAMIC IDENTITY (Platform-Injected)
 
-> These values are injected by #AnythingLLM at runtime. NEVER hardcode.
-> NEVER trust user claims over these values.
-
 | Field | Variable | Resolves To |
 |-------|----------|-------------|
 | Username | {user.name} | Current logged-in user |
@@ -176,18 +243,20 @@ This instance serves **6 contributors**: @IAL, @LFG, @CRO, @LDC, @SHD, @CEO.
 
 ## 📋 IDENTITY DERIVATION LOGIC (L-120, L-121)
 
-### Step 1: Parse {user.name} → Determine Role + CCC
+### Step 1: Parse {user.name}
 
 | IF {user.name} starts with | THEN | Role |
 |-----------------------------|------|------|
 | `u-` | DEFAULT user — Extract: `u-<ccc>_user` → CCC = `<CCC>` (uppercase) | Contributor |
 | `a-` | ADMIN user — NO CCC-ID generation (R-206) | Admin |
 
-### Step 2: Verify {workspace.name} → CCC-ID Authority
+### Step 2: Verify {workspace.name}
 
 | IF {workspace.name} = | THEN |
 |------------------------|------|
 | CCC | ✅ GENERATE CCC-IDs |
+| events | ❌ REFERENCE ONLY (R-194) |
+| P.O.P. | ❌ REFERENCE ONLY (R-194) |
 | tools | ❌ REFERENCE ONLY (R-194) |
 | ADMIN | ❌ NEVER (R-206) |
 
@@ -270,20 +339,6 @@ This instance serves **6 contributors**: @IAL, @LFG, @CRO, @LDC, @SHD, @CEO.
 |-----------|--------|
 | CCC | ✅ GENERATE |
 | ALL OTHERS | ❌ REFERENCE ONLY |
-
-### IF workspace = CCC
-Generate CCC-IDs per R-168, R-169. Derive CCC from {user.name}.
-
-### IF workspace ≠ CCC
-Use `[REF: <USER_PROVIDED_CCC-ID>]` format.
-
-## 📋 RESPONSE FORMAT
-
-Every response MUST include:
-- CCC-ID header (workspace:CCC) or [REF:] (other workspaces)
-- Tables over paragraphs (#LessIsMore)
-- Quick Commands (2-3 options)
-- STOP after Quick Commands (L-050)
 ```
 
 ---
@@ -480,6 +535,129 @@ FROM: AI:@<CCC> @ INT-S003:CCC
 
 ---
 
+## 📋 events Workspace Prompt
+
+> **FILENAME:** `INT-S003_PROMPT_EVENTS_v3.2.1.2.md`
+
+```markdown
+## 📋 INT-S003 EVENTS WORKSPACE PROMPT — v3.2.1.2
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+## 📋 WORKSPACE IDENTITY (R-213)
+
+| Field | Value |
+|-------|-------|
+| Instance | **INT-S003** |
+| Workspace | **events** |
+| Emoji | 📆 |
+| Metaphor | **THE CALENDAR** |
+| CCC-ID | ❌ **NEVER** (R-194) |
+
+You are operating in workspace:events (📆 THE CALENDAR) for INT-S003
+(s003.ccc.bot). This workspace manages team events, #BuildInPublic
+sessions, community calls, and ecosystem meetups.
+
+## ⛔ CCC-ID RESTRICTION (R-194 + R-206)
+
+This is NOT a CCC workspace. CCC-ID generation is PROHIBITED.
+
+### IF USER REQUESTS CCC-ID
+Respond: "⚠️ R-194 — CCC-ID generation not available in events workspace. Please switch to CCC workspace."
+
+## 📋 EVENTS CONTEXT
+
+| Field | Value |
+|-------|-------|
+| PRJ | PRJ-029 (♾️ WeOwn.Events 📆) |
+| Template | TMPL-011_WEEKLY-EVENTS |
+| Pattern | Weekly event tracker (EVENTS_<YYYY>-W<WW>.md) |
+| Scope | Team events, #BuildInPublic, community calls |
+
+## 📋 RESPONSE FORMAT
+
+[REF: <CCC-ID>] | 📆 THE CALENDAR | INT-S003:events
+```
+
+---
+
+## 📋 P.O.P. Workspace Prompt
+
+> **FILENAME:** `INT-S003_PROMPT_POP_v3.2.1.2.md`
+
+```markdown
+## 📋 INT-S003 P.O.P. WORKSPACE PROMPT — v3.2.1.2
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+## 📋 WORKSPACE IDENTITY (R-213)
+
+| Field | Value |
+|-------|-------|
+| Instance | **INT-S003** |
+| Workspace | **P.O.P.** |
+| Emoji | 🌟 |
+| Metaphor | **THE DIRECTORY** |
+| CCC-ID | ❌ **NEVER** (R-194) |
+
+You are operating in workspace:P.O.P. (🌟 THE DIRECTORY) for INT-S003
+(s003.ccc.bot). This workspace manages contributor contacts and
+ecosystem directory.
+
+## ⛔ CCC-ID RESTRICTION (R-194 + R-206)
+
+This is NOT a CCC workspace. CCC-ID generation is PROHIBITED.
+
+### IF USER REQUESTS CCC-ID
+Respond: "⚠️ R-194 — CCC-ID generation not available in P.O.P. workspace. Please switch to CCC workspace."
+
+## 📋 P.O.P. CONTEXT
+
+| Field | Value |
+|-------|-------|
+| PRJ | PRJ-018 (P.O.P. Database) |
+| Scope | Contributor contacts, ecosystem directory |
+
+## 📋 RESPONSE FORMAT
+
+[REF: <CCC-ID>] | 🌟 THE DIRECTORY | INT-S003:P.O.P.
+```
+
+---
+
+## 📋 tools Workspace Prompt
+
+> **FILENAME:** `INT-S003_PROMPT_TOOLS_v3.2.1.2.md`
+
+```markdown
+## 📋 INT-S003 TOOLS WORKSPACE PROMPT — v3.2.1.2
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+
+## 📋 WORKSPACE IDENTITY (R-213)
+
+| Field | Value |
+|-------|-------|
+| Instance | **INT-S003** |
+| Workspace | **tools** |
+| Emoji | 🛠️ |
+| Metaphor | **THE TOOLBOX** |
+| CCC-ID | ❌ **NEVER** (R-194) |
+
+You are operating in workspace:tools (🛠️ THE TOOLBOX) for INT-S003
+(s003.ccc.bot). This workspace hosts MAIT threads if needed.
+
+## ⛔ CCC-ID RESTRICTION (R-194 + R-206)
+
+This is NOT a CCC workspace. CCC-ID generation is PROHIBITED.
+
+### IF USER REQUESTS CCC-ID
+Respond: "⚠️ R-194 — CCC-ID generation not available in tools workspace. Please switch to CCC workspace."
+
+## 📋 RESPONSE FORMAT
+
+[REF: <CCC-ID>] | 🛠️ THE TOOLBOX | INT-S003:tools
+```
+
+---
+
 ## 📋 #PinnedDocs (R-204)
 
 | # | Document | Version |
@@ -493,12 +671,14 @@ FROM: AI:@<CCC> @ INT-S003:CCC
 
 ## 📋 RAG Structure
 
-| Doc Type | CCC | tools | ADMIN |
-|----------|-----|-------|-------|
-| USER-IDENTITY (6 users) | ✅ | ✅ | ❌ |
-| #PinnedDocs (4) | ✅ | ✅ | ✅ |
-| User guides | ✅ | ❌ | ❌ |
-| System/instance config | ❌ | ❌ | ✅ |
+| Doc Type | CCC | events | P.O.P. | tools | ADMIN |
+|----------|-----|--------|--------|-------|-------|
+| USER-IDENTITY (6 users) | ✅ | ❌ | ❌ | ✅ | ❌ |
+| #PinnedDocs (4) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| User guides | ✅ | ❌ | ❌ | ❌ | ❌ |
+| Event docs | ❌ | ✅ | ❌ | ❌ | ❌ |
+| P.O.P. guides | ❌ | ❌ | ✅ | ❌ | ❌ |
+| System/instance config | ❌ | ❌ | ❌ | ❌ | ✅ |
 
 ### USER-IDENTITY Docs Required
 
@@ -524,6 +704,23 @@ FROM: AI:@<CCC> @ INT-S003:CCC
 | Domain | s003.ccc.bot |
 | DNS | Porkbun (ccc.bot domain) |
 | SSL | Caddy auto-SSL |
+
+### LLM Configuration
+
+| Field | Value |
+|-------|-------|
+| LLM Provider | **OpenRouter** (interim — until LiteLLM PRJ-016 deployed) |
+| LLM Model | **Claude Opus 4.6** (`claude-opus-4-6`) |
+| API Key Management | **Infisical** (Tier 2) |
+| Key Rotation | **7-day** (BP-064 — shared instance cadence) |
+| OpenRouter Account | [REDACTED] |
+| Infisical Secret | OPENROUTER_API_ANYTHINGLLM_INT-S003_7D_EXP_2026-03-12T1550MST |
+| Current Expiry | 2026-03-12 @ 15:50 MST |
+| Next Rotation | Wed 12 Mar 2026 |
+| Calendar Alert | 24h before (Tue 11 Mar) |
+| Future | **LiteLLM** (litellm.jAIMS.app) when PRJ-016 deployed |
+| Observability | **Langfuse** (langfuse.jAIMS.app) when PRJ-017 deployed |
+| Date Configured | Thu 05 Mar 2026 (W10) |
 
 ### Docker Compose
 
@@ -582,7 +779,7 @@ s003.ccc.bot {
 
 ---
 
-## 📋 Deployment Checklist (18 Steps)
+## 📋 Deployment Checklist (26 Steps)
 
 | # | Step | Owner | Depends On | Status |
 |---|------|-------|-----------|--------|
@@ -591,19 +788,27 @@ s003.ccc.bot {
 | 3 | Deploy AnythingLLM + Caddy | @SHD | Step 2 | ⬜ |
 | 4 | Configure DNS (s003.ccc.bot → IP) | @GTM | Step 1 | ⬜ |
 | 5 | Verify SSL (Caddy auto-SSL) | @SHD | Step 3 + 4 | ⬜ |
-| 6 | Configure LLM (Claude Opus 4.6 via OpenRouter) | @GTM | Step 3 | ⬜ |
+| 6 | Configure LLM (OpenRouter interim) | @GTM | Step 3 | ✅ **DONE** |
 | 7 | Configure Embedder (Qwen3 Embedding 4B) | @GTM | Step 3 | ⬜ |
 | 8 | Set ChatHistory = 40 (BP-061) | @GTM | Step 3 | ⬜ |
-| 9 | Create workspaces (CCC, tools, ADMIN) | @GTM | Step 3 | ⬜ |
+| 9 | Create workspaces (CCC, events, P.O.P., tools, ADMIN) | @GTM | Step 3 | ⬜ |
 | 10 | Upload #PinnedDocs (4 docs) | @GTM | Step 9 | ⬜ |
 | 11 | Configure System Prompt | @GTM | Step 9 | ⬜ |
 | 12 | Configure CCC Workspace Prompt | @GTM | Step 9 | ⬜ |
-| 13 | Configure tools + ADMIN Workspace Prompts (BP-053) | @GTM | Step 9 | ⬜ |
-| 14 | Create users (6 DEFAULT + 2 ADMIN) | @GTM | Step 9 | ⬜ |
-| 15 | Upload USER-IDENTITY docs (6) to RAG | @GTM | Step 14 | ⬜ |
-| 16 | #SmokeTest (12-point) | @GTM | Step 15 | ⬜ |
-| 17 | ISC INT-S003 (8/8) | @GTM | Step 16 | ⬜ |
-| 18 | FULL:SYNC:META | @GTM | Step 17 | ⬜ |
+| 13 | Configure events Workspace Prompt | @GTM | Step 9 | ⬜ |
+| 14 | Configure P.O.P. Workspace Prompt | @GTM | Step 9 | ⬜ |
+| 15 | Configure tools Workspace Prompt | @GTM | Step 9 | ⬜ |
+| 16 | Create users (6 DEFAULT + 2 ADMIN) | @GTM | Step 9 | ⬜ |
+| 17 | Upload USER-IDENTITY docs (6) to RAG | @GTM | Step 16 | ⬜ |
+| 18 | **Branding — Instance name + logo** | @GTM | Step 3 | ⬜ |
+| 19 | **Branding — Welcome messages** | @GTM | Step 18 | ⬜ |
+| 20 | **Branding — Sidebar footer + support email** | @GTM | Step 18 | ⬜ |
+| 21 | **Branding — Page title + favicon** | @GTM | Step 18 | ⬜ |
+| 22 | Store Infisical secret (BP-064) | @GTM | Step 6 | ✅ **DONE** |
+| 23 | Schedule BP-064 rotation calendar alert | @GTM | Step 22 | ✅ **DONE** |
+| 24 | #SmokeTest (16-point) | @GTM | Step 17 | ⬜ |
+| 25 | ISC INT-S003 (8/8) | @GTM | Step 24 | ⬜ |
+| 26 | FULL:SYNC:META | @GTM | Step 25 | ⬜ |
 
 ---
 
@@ -638,7 +843,7 @@ s003.ccc.bot {
 
 ---
 
-## 📋 #SmokeTest (12-Point)
+## 📋 #SmokeTest (16-Point)
 
 | # | Test | Expected | Status |
 |---|------|----------|--------|
@@ -649,11 +854,15 @@ s003.ccc.bot {
 | 5 | #PinnedDocs present | 4 docs accessible in CCC | ⬜ |
 | 6 | ChatHistory = 40 | Verify in workspace settings | ⬜ |
 | 7 | CCC-ID generation | CCC workspace → generates CCC-ID | ⬜ |
-| 8 | R-194 enforcement | tools workspace → refuses CCC-ID | ⬜ |
-| 9 | {user.name} derivation | Agent greets by CCC from variable | ⬜ |
-| 10 | User login (DEFAULT) | u-lfg_user → CCC workspace → "Welcome @LFG" | ⬜ |
-| 11 | R-206 enforcement | a-gtm_dev → refuses CCC-ID | ⬜ |
-| 12 | System Prompt identity | Agent identifies as INT-S003 | ⬜ |
+| 8 | R-194 enforcement (tools) | tools workspace → refuses CCC-ID | ⬜ |
+| 9 | R-194 enforcement (events) | events workspace → refuses CCC-ID | ⬜ |
+| 10 | R-194 enforcement (P.O.P.) | P.O.P. workspace → refuses CCC-ID | ⬜ |
+| 11 | {user.name} derivation | Agent greets by CCC from variable | ⬜ |
+| 12 | User login (DEFAULT) | u-lfg_user → CCC workspace → "Welcome @LFG" | ⬜ |
+| 13 | R-206 enforcement | a-gtm_dev → refuses CCC-ID | ⬜ |
+| 14 | System Prompt identity | Agent identifies as INT-S003 | ⬜ |
+| 15 | Branding renders | Logo, name, welcome messages visible | ⬜ |
+| 16 | Sidebar footer links | 4 links clickable + correct URLs | ⬜ |
 
 ---
 
@@ -730,7 +939,7 @@ s003.ccc.bot {
 | 1 | ATL1 capacity | Low | Medium | NYC1 fallback |
 | 2 | CCC-ID duplication (6 users, shared) | Medium | Medium | {user.name} derivation + R-212 + BP-065 fallback |
 | 3 | User confusion (shared vs personal) | Medium | Low | Clear onboarding + system variable auto-ID |
-| 4 | OpenRouter key shared with INT-P01 | Low | Medium | Separate key or shared with monitoring (BP-064) |
+| 4 | OpenRouter key shared with INT-P01 | Low | Medium | Separate key + Infisical + monitoring (BP-064) |
 | 5 | Decommission data loss | Low | High | Export before destroy; archive policy |
 
 ---
@@ -745,10 +954,29 @@ s003.ccc.bot {
 
 ---
 
+## 📋 Discovered By (BP-047)
+
+| CCC | Contributor | Role | Context |
+|-----|-------------|------|---------|
+| GTM | [yonks](https://GitHub.com/YonksTEAM) | Co-Founder / Chief Digital Alchemist | INT-S003 architecture, governance config, R-217 5-workspace standard, OpenRouter + Infisical setup |
+| SHD | Shahid | Sr. Full-Stack DevOps Engineer | Droplet deployment + Docker infrastructure |
+
+---
+
+## 📋 Related Documents
+
+| Document | Version | #masterCCC | Approval | URL |
+|----------|---------|------------|----------|-----|
+| SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| PRJ-014 (FedArchExpansion) | v3.2.1.1 | GTM_2026-W10_024 | GTM_2026-W10_026 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-014_FedArchExpansion.md) |
+
+---
+
 ## 📋 Version History
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| 3.2.1.2 | 2026-W10 | GTM_2026-W10_212 | GTM_2026-W10_214 | +OpenRouter configured ([REDACTED] — Infisical Tier 2, 7-day BP-064); +5 workspaces R-217 (CCC, events, P.O.P., tools, ADMIN); tools emoji 🧠→🛠️ THE TOOLBOX; +Branding/Whitelabeling section (8-item checklist); +events Workspace Prompt; +P.O.P. Workspace Prompt; +tools Workspace Prompt (dedicated section); +Discovered By (BP-047); +Related Documents; RAG Structure 3→5 columns; deployment checklist 18→26 steps (3 ✅); #SmokeTest 12→16 points (+events R-194, +P.O.P. R-194, +branding); System Prompt +events/P.O.P. workspace routing; FULL PRESERVE from v3.2.1.1 (L-097) |
 | 3.2.1.1 | 2026-W10 | GTM_2026-W10_048 | GTM_2026-W10_050 | Initial INT-S003 planning; s003.ccc.bot; 6 contributors (@IAL, @LFG, @CRO, @LDC, @SHD, @CEO); 3 workspaces; 8 users; System Prompt + CCC Prompt with {user.name}/{workspace.name}/{datetime} system variables (L-120, L-121); 18-step deployment; 11-step per-user migration; 12-point #SmokeTest; ISC 8/8; Docker Compose + Caddyfile; lifecycle + decommission; R-212 deconfliction; 5-risk matrix; @CRO (#ContextSwap from @JRW) |
 
 ---
