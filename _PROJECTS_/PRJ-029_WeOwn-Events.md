@@ -16,7 +16,7 @@
 | **#LLMmodel** | **Qwen3.5-397B-A17B (AI.YonksTEAM.xyz @GTM)** |
 | **#LLMmodel** | **Claude Opus 4.6 (meta.WeOwn.tools #MetaAgent)** |
 | Tags | #WeOwnEvents #Luma #Eventbrite #Events #FlowsBros |
-| Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-029_WeOwn-Events_v3.2.1.1.md) |
+| Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-029_WeOwn-Events.md) |
 
 ---
 
