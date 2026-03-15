@@ -1,7 +1,7 @@
 # ♾️ WeOwn.Events 📆 — 2026-W11
 
 ## 📋 EVENTS_2026-W11_v3.2.2.1.md
-## PRJ-029 — ♾️ WeOwn.Events 📆
+## PRJ-029 — ♾️ WeOwn.Events 📆 | A Co-op Framework for Event Builders
 
 | Field | Value |
 |-------|-------|
