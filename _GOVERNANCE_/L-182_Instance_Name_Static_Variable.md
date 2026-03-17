@@ -18,7 +18,7 @@
 | **Owner** | **[CCC-ID:@GTM:('yonks｜🤖🏛️🪙｜Jason Younker ♾️')](https://github.com/YonksTEAM)** |
 | **#LLMmodel** | **Qwen3.5-397B-A17B (AI.YonksTEAM.xyz @GTM:INT-OG1:CCC)** |
 | **#LLMmodel** | **Claude Opus 4.6 (INT-P01:tools:#MetaAgent)** |
-| Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_LEARNINGS_/L-182_Instance_Name_Static_Variable.md) |
+| Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GOVERNANCE_/L-182_Instance_Name_Static_Variable.md) |
 
 ---
 
