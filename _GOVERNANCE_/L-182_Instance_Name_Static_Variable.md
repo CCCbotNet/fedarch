@@ -1,6 +1,6 @@
 # L-182: {instance_name} — ADMIN-Defined Static System Variable
 
-## L-182_v3.2.3.1.md
+## L-182_Instance_Name_Static_Variable_v3.2.3.1.md
 ## ♾️ WeOwnNet 🌐 — Learning Definition
 
 | Field | Value |
