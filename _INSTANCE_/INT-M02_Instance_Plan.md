@@ -6,7 +6,7 @@
 | Field | Value |
 |-------|-------|
 | Document | INT-M02_Instance_Plan.md |
-| Version | v3.2.3.2 |
+| Version | v3.2.3.3 |
 | Folder | `_INSTANCE_/` ✅ |
 | Category | INSTANCE:Plan |
 | Type | Plan (AnythingLLM Deployment Documentation) |
@@ -82,6 +82,21 @@
 | 5 | Domain DNS (meta-qwen.weown.tools) | @SHD | ✅ COMPLETE | W12 Day 1 |
 
 **Infrastructure Progress: 5/5 (100%)** ✅
+
+### 🌐 Network & Proxy Configuration
+- **Status:** ✅ VERIFIED LIVE
+- **Reverse Proxy:** Caddy v2
+- **Resolution Strategy:** `FIX: 502_INTERNAL_BRIDGE_ROUTING`
+    - *Issue:* Standard container-name resolution caused intermittent 502 Bad Gateway errors.
+    - *Solution:* Hardcoded proxy pass to the internal Docker bridge IP (`172.18.0.2:3001`).
+- **SSL/TLS:** Automated via Caddy (Let's Encrypt).
+
+### 🔐 Storage & Security (L-149 Compliance)
+- **Status:** ✅ COMPLIANT
+- **Protocol:** `COMPLIANCE: L-149_RECURSIVE_UID_SYNC`
+    - *Issue:* SQLite engine permission errors on `/app/server/storage`.
+    - *Solution:* Applied recursive ownership reset to UID `1000:1000`.
+    - *Commands:* `chown -R 1000:1000 [path]` and `chmod -R 777 [path]` for database WAL support.
 
 ---
 
@@ -266,7 +281,7 @@
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
-| **v3.2.3.2** | **2026-W12** | **GTM_2026-W12_197** | **GTM_2026-W12_200** | W12 Day 2 UPDATES — ALL 13 steps COMPLETE; **ISC 8/8 CERTIFIED (07:35 MDT) [GTM_2026-W12_185]**; {instance_name} created (L-182); **#FELG integrated (D-070)**; System Prompt v3.2.3.3 deployed; Workspace Prompt v3.2.3.3 deployed; L-182 GH LIVE; **Cross-instance VSA 231/231 PASS**; Timeline updated (ahead of schedule); Metadata enhancements (instance_description, instance_domain, instance_name, instance_status, Owner CCC-ID link) |
+| **v3.2.3.3** | **2026-W12** | **GTM_2026-W12_197** | **GTM_2026-W12_200** | W12 Day 2 UPDATES — ALL 13 steps COMPLETE; **ISC 8/8 CERTIFIED (07:35 MDT) [GTM_2026-W12_185]**; {instance_name} created (L-182); **#FELG integrated (D-070)**; System Prompt v3.2.3.3 deployed; Workspace Prompt v3.2.3.3 deployed; L-182 GH LIVE; **Cross-instance VSA 231/231 PASS**; Timeline updated (ahead of schedule); Metadata enhancements (instance_description, instance_domain, instance_name, instance_status, Owner CCC-ID link) |
 | v3.2.3.1 | 2026-W12 | GTM_2026-W12_053 | GTM_2026-W12_065 | INT-M02 deployment plan DRAFT (NEVER UPLOADED); Infrastructure + Onboarding complete (10/24 steps); Configuration in progress (12/24); Target ISC: W12 Day 2-3; Gate 2 findings fixed (version, BP-047, #LLMmodel) |
 
 ---
