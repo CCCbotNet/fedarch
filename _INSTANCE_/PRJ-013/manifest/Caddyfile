@@ -1,0 +1,11 @@
+# PRJ-013 Paperless-ngx Hub
+# Domain: docs.weown.net
+
+docs.weown.net {
+    # Direct Bridge to Internal IP to resolve 502 Gateway Errors
+    reverse_proxy 172.18.0.2:8000
+    
+    log {
+        output file /data/access.log
+    }
+}

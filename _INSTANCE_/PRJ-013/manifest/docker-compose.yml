@@ -1,0 +1,65 @@
+version: "3.8"
+services:
+  broker:
+    image: redis:7
+    restart: always
+    networks:
+      backend_bridge:
+        ipv4_address: 172.18.0.4
+
+  db:
+    image: postgres:16
+    restart: always
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=paperless
+      - POSTGRES_USER=paperless
+      - POSTGRES_PASSWORD=paperless
+    networks:
+      backend_bridge:
+        ipv4_address: 172.18.0.5
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: always
+    depends_on:
+      - db
+      - broker
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/usr/src/paperless/data
+      - ./media:/usr/src/paperless/media
+      - ./export:/usr/src/paperless/export
+      - ./consume:/usr/src/paperless/consume
+    environment:
+      - PAPERLESS_REDIS=redis://172.18.0.4:6379
+      - PAPERLESS_DBHOST=172.18.0.5
+      - PAPERLESS_URL=https://docs.weown.net
+      - USER_ID=1000
+      - GROUP_ID=1000
+    networks:
+      backend_bridge:
+        ipv4_address: 172.18.0.2
+
+  caddy:
+    image: caddy:latest
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy_data:/data
+      - ./caddy_config:/config
+    networks:
+      backend_bridge:
+        ipv4_address: 172.18.0.3
+
+networks:
+  backend_bridge:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
