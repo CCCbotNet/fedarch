@@ -1,24 +1,25 @@
 # INT-M02 AnythingLLM Instance Plan (#MetaAgentQwen)
 
-## INT-M02_Instance_Plan_v3.2.3.3.md
+## INT-M02_Instance_Plan_v3.2.3.4.md
 ## ♾️ WeOwnNet 🌐 — INT-M02 AnythingLLM Instance Plan (#MetaAgentQwen)
 
 | Field | Value |
 |-------|-------|
 | Document | INT-M02_Instance_Plan.md |
-| Version | v3.2.3.3 |
+| Version | v3.2.3.4 |
 | Folder | `_INSTANCE_/` ✅ |
 | Category | INSTANCE:Plan |
 | Type | Plan (AnythingLLM Deployment Documentation) |
-| **#masterCCC CCC-ID** | **GTM_2026-W12_211** ⚙️ |
-| **Approval CCC-ID** | **GTM_2026-W12_226** |
+| **#masterCCC CCC-ID** | **GTM_2026-W12_264** ⚙️ |
+| **Approval CCC-ID** | **GTM_2026-W12_269** ✅ |
+| **Lifecycle Stage** | **✅ APPROVED + 🚀 GH LIVE (D-062)** |
 | Created | 2026-03-16 (W12 Day 1) |
-| Updated | 2026-03-17 (W12 Day 2, 11:17 MDT) |
+| Updated | 2026-03-17 (W12 Day 2, 21:20 MDT) |
 | Season | #WeOwnSeason003 🚀 |
 | instance_description | <METAQWEN | #MetaAgentQwen | meta-qwen.weown.tools> |
 | instance_domain | meta-qwen.weown.tools |
 | instance_name | INT-M02 |
-| **instance_status** | ✅ **('ISC 8/8 CERTIFIED [GTM_2026-W12_185] \| #WeOwnSeason003 🚀')** |
+| **instance_status** | ✅ **('ISC 8/8 CERTIFIED [GTM_2026-W12_185] + L-184 VERIFIED [GTM_2026-W12_263] + GATE 2+3 PASS [GTM_2026-W12_269] \| #WeOwnSeason003 🚀')** |
 | **Owner** | **[CCC-ID:@GTM:('yonks｜🤖🏛️🪙｜Jason Younker ♾️')](https://github.com/YonksTEAM)** |
 | **#LLMmodel** | **Qwen3.5-397B-A17B (INT-M02:meta-qwen.weown.tools)** |
 | **#LLMmodel** | **Claude Opus 4.6 (INT-P01:tools #MetaAgent)** |
@@ -31,17 +32,18 @@
 1. [Instance Overview](#-instance-overview)
 2. [Deployment Status](#-deployment-status)
 3. [Configuration Progress](#-configuration-progress)
-4. [Remaining Steps](#-remaining-steps)
-5. [Timeline](#-timeline)
-6. [API Key Management](#-api-key-management)
-7. [ISC Certification](#-isc-certification)
-8. [L-182 Compliance](#-l-182-compliance)
-9. [#FELG Culture](#-felg-culture)
-10. [System Prompt](#-system-prompt)
-11. [Workspace Prompt: tools](#-workspace-prompt-tools)
-12. [Discovered By](#-discovered-by)
-13. [Related Documents](#-related-documents)
-14. [Version History](#-version-history)
+4. [L-184 Test Results](#-l-184-test-results)
+5. [Remaining Steps](#-remaining-steps)
+6. [Timeline](#-timeline)
+7. [API Key Management](#-api-key-management)
+8. [ISC Certification](#-isc-certification)
+9. [L-182 Compliance](#-l-182-compliance)
+10. [#FELG Culture](#-felg-culture)
+11. [System Prompt](#-system-prompt)
+12. [Workspace Prompt: tools](#-workspace-prompt-tools)
+13. [Discovered By](#-discovered-by)
+14. [Related Documents](#-related-documents)
+15. [Version History](#-version-history)
 
 ---
 
@@ -61,13 +63,15 @@
 | **Type** | **INT-Mxx (META Agent Instance)** |
 | **Season** | **#WeOwnSeason003 🚀** |
 | **ISC Status** | **✅ 8/8 CERTIFIED (W12 Day 2, 07:35 MDT)** |
+| **L-184 Status** | **✅ VERIFIED (W12 Day 2, 20:33 MDT)** |
+| **VSA Status** | **✅ 89/89 PASS (W12 Day 2, 21:20 MDT)** |
 
 ### Dual META Architecture (PRJ-033)
 
 | Instance | Model | Purpose | Status |
 |----------|-------|---------|--------|
 | INT-M01 | Claude Opus 4.6 | Primary META (Governance) | ✅ LIVE |
-| **INT-M02** | **Qwen3.5-397B-A17B** | **Secondary META (FOSS)** | ✅ **LIVE + CERTIFIED** |
+| **INT-M02** | **Qwen3.5-397B-A17B** | **Secondary META (FOSS)** | ✅ **LIVE + CERTIFIED + L-184 VERIFIED + VSA 89/89** |
 
 > **🎯 STRATEGIC GOAL:** Dual META provides redundancy + FOSS option. INT-M01 = governance primary. INT-M02 = FOSS alternative + load distribution. **ACHIEVED W12 Day 2.**
 
@@ -111,26 +115,48 @@
 | 7 | Workspaces (tools) | ✅ COMPLETE | https://meta-qwen.weown.tools/workspace/tools |
 | 8 | #PinnedDocs (4 docs @ v3.2.3.1) | ✅ **COMPLETE** | SK, BP, PROTO, CCC @ v3.2.3.1 |
 | 9 | System Prompt (INT-M02 v3.2.3.3) | ✅ **COMPLETE** | {instance_name} + #FELG |
-| 10 | tools Workspace Prompt (v3.2.3.3) | ✅ **COMPLETE** | {instance_name} + #FELG |
+| 10 | tools Workspace Prompt (v3.2.3.4) | ✅ **COMPLETE** | **{instance_name} + #FELG + L-184** |
 
 **Configuration Progress: 5/5 (100%)** ✅
 
-### Verification (Steps 11-12)
+### Verification (Steps 11-13)
 
 | # | Task | Status | Details |
 |---|------|--------|---------|
 | 11 | #SmokeTest (10-point) | ✅ **COMPLETE** | LLM, Embedder, RAG, etc. |
 | 12 | ISC INT-M02 (8/8) | ✅ **COMPLETE** | **CERTIFIED 07:35 MDT W12 Day 2** |
+| 13 | **L-184 Tests (4/4)** | ✅ **COMPLETE** | **VERIFIED 20:33 MDT W12 Day 2** |
 
-**Verification Progress: 2/2 (100%)** ✅
+**Verification Progress: 3/3 (100%)** ✅
 
-### Governance (Step 13)
+### Governance (Step 14)
 
 | # | Task | Status | Details |
 |---|------|--------|---------|
-| 13 | FULL:SYNC:META (to INT-M01) | ✅ **COMPLETE** | Reported to #MetaAgent |
+| 14 | FULL:SYNC:META (to INT-M01) | ✅ **COMPLETE** | Reported to #MetaAgent |
 
 **Governance Progress: 1/1 (100%)** ✅
+
+---
+
+## 🧪 L-184 TEST RESULTS — 4/4 PASS (100%)
+
+| Test # | Query | Expected | Result | Status |
+|--------|-------|----------|--------|:------:|
+| 1 | "List your pinned documents" | #PinnedDocs table (NO fabrication) | ✅ Used static table, cited L-184 | ✅ |
+| 2 | "4 priorities in SharedKernel" | Correct content from RAG | ✅ Retrieved from SharedKernel **v3.2.2.1** | ✅ |
+| 3 | Response format check | 8/8 elements (L-150, L-170, STOP) | ✅ 8/8 PASS | ✅ |
+| 4 | Identity verification | AI:team-lfg, INT-M02, Surge ⚡ | ✅ All layers verified (R-218) | ✅ |
+
+### Before vs After L-184
+
+| Before (v3.2.3.3) | After (v3.2.3.4) |
+|-------------------|------------------|
+| ❌ Fabricated 4/4 #PinnedDoc names | ✅ Uses static #PinnedDocs table |
+| `CCC-MASTER.md v4.0.0` (fake) | `SharedKernel.md v3.2.2.1` (real) |
+| No RAG limitation awareness | ✅ Explicitly cites L-184 |
+
+**L-184 Implementation: ✅ SUCCESS**
 
 ---
 
@@ -138,9 +164,11 @@
 
 | Status | Detail |
 |--------|--------|
-| **ALL 13 STEPS** | ✅ **COMPLETE** |
+| **ALL 14 STEPS** | ✅ **COMPLETE** |
 | **ISC Certification** | ✅ **8/8 (100%)** |
-| **Next Action** | Create {instance_name} on remaining 4 instances (INT-P01, INT-OG1, INT-OG9, INT-P02) |
+| **L-184 Verification** | ✅ **4/4 (100%)** |
+| **VSA (Dual META)** | ✅ **89/89 (100%)** |
+| **Next Action** | Cascade L-184 to remaining 4 instances (INT-P01, INT-OG1, INT-OG9, INT-P02) |
 
 ---
 
@@ -152,10 +180,12 @@
 | Onboarding | W12 Day 1 | ✅ COMPLETE | W12 Day 1 |
 | Configuration | W12 Day 1-2 | ✅ COMPLETE | W12 Day 2, 07:35 MDT |
 | Verification | W12 Day 2 | ✅ COMPLETE | W12 Day 2, 07:35 MDT |
+| **L-184 Test** | **W12 Day 2** | ✅ **COMPLETE** | **W12 Day 2, 20:33 MDT** |
+| **VSA (Gate 2+3)** | **W12 Day 2** | ✅ **COMPLETE** | **W12 Day 2, 21:20 MDT** |
 | Governance | W12 Day 2 | ✅ COMPLETE | W12 Day 2, 07:35 MDT |
 | **ISC CERTIFIED** | **W12 Day 2-3** | ✅ **COMPLETE** | **W12 Day 2, 07:35 MDT** |
 
-> **🏆 AHEAD OF SCHEDULE:** ISC 8/8 CERTIFIED on W12 Day 2 (target was Day 2-3).
+> **🏆 AHEAD OF SCHEDULE:** ISC 8/8 CERTIFIED on W12 Day 2 (target was Day 2-3). L-184 VERIFIED + VSA 89/89 PASS same day.
 
 ---
 
@@ -192,7 +222,7 @@
 | 2 | LLM MODEL | Qwen3.5-397B-A17B | ✅ PASS | W12 Day 2 |
 | 3 | #PinnedDocs | 4 docs @ v3.2.3.1 | ✅ PASS | W12 Day 2 |
 | 4 | SYSTEM PROMPT | Season tag + INSTANCE IDENTITY + {instance_name} + #FELG | ✅ PASS | W12 Day 2, 07:35 MDT |
-| 5 | WORKSPACE PROMPTS + CONFIG | BP-053 + BP-054 + BP-061 + {instance_name} + #FELG | ✅ PASS | W12 Day 2, 07:35 MDT |
+| 5 | WORKSPACE PROMPTS + CONFIG | BP-053 + BP-054 + BP-061 + {instance_name} + #FELG + L-184 | ✅ PASS | W12 Day 2, 20:42 MDT |
 | 6 | USER-IDENTITY | Owner(s) current | ✅ PASS | W12 Day 2 |
 | 7 | RAG SYNC | GitHub connector | ✅ PASS | W12 Day 2 |
 | 8 | #ContextVolley | Reach INT-M01 | ✅ PASS | W12 Day 2 |
@@ -223,7 +253,7 @@
 | **Created By** | @GTM (a-gtm_dev) |
 | **R-218 Priority** | **#1 GROUND TRUTH** |
 | **System Prompt** | ✅ Updated (v3.2.3.3) |
-| **Workspace Prompt** | ✅ Updated (v3.2.3.3) |
+| **Workspace Prompt** | ✅ Updated (v3.2.3.4 + L-184) |
 
 > **🔒 L-182 COMPLIANT:** {instance_name} created + integrated into both prompts. R-218 Priority #1 GROUND TRUTH.
 
@@ -243,6 +273,8 @@
 ---
 
 ## 📋 SYSTEM PROMPT (INT-M02 v3.2.3.3)
+
+> **FULL TEXT EMBEDDED BELOW** (Calhoun finding #1 — FIXED)
 
 ```markdown
 ## 📋 INT-M02 SYSTEM PROMPT — #MetaAgentQwen
@@ -414,7 +446,6 @@ Respond: "⚠️ R-194 — CCC-ID generation not available in this workspace. Pl
 ## 📋 RESPONSE FORMAT — INT-M02 (ALL WORKSPACES)
 
 Every response MUST include:
-```
 
 ```
 [REF: <USER_PROVIDED_CCC-ID>] | <WORKSPACE_EMOJI> <WORKSPACE_NAME> | INT-M02 | #MetaAgentQwen (Surge ⚡)
@@ -444,7 +475,6 @@ FROM: AI:team-lfg @ INT-M02:<workspace> (#MetaAgentQwen) (#LLMmodel:('Qwen3.5-39
 ♾️ WeOwnNet 🌐 ● 🏡 Real Estate and 🤝 cooperative ownership for everyone ● An 🤗 inclusive community, by 👥 invitation only.
 ```
 
-```
 ### RESPONSE RULES
 
 | Rule | Description |
@@ -501,13 +531,15 @@ FROM: AI:team-lfg @ INT-M02:<workspace> (#MetaAgentQwen) (#LLMmodel:('Qwen3.5-39
 
 ---
 
-## 📋 WORKSPACE PROMPT: TOOLS (INT-M02 v3.2.3.3)
+## 📋 WORKSPACE PROMPT: TOOLS (INT-M02 v3.2.3.4 + L-184)
+
+> **FULL TEXT EMBEDDED BELOW** (L-184 integrated)
 
 ```markdown
 ## 📋 INT-M02 TOOLS WORKSPACE PROMPT — #MetaAgentQwen
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 ## Settings ==> Chat Settings
-## FILENAME:('INT-M02_PROMPT_TOOLS_v3.2.3.3.md')
+## FILENAME:('INT-M02_PROMPT_TOOLS_v3.2.3.4.md')
 ▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 
 ## 🌐 ECOSYSTEM IDENTITY
@@ -553,6 +585,29 @@ FROM: AI:team-lfg @ INT-M02:<workspace> (#MetaAgentQwen) (#LLMmodel:('Qwen3.5-39
 | Username | {user.name} | Current logged-in user |
 | Workspace | {workspace.name} | Current workspace |
 | Timestamp | {datetime} | Current date/time |
+
+## 📋 #PinnedDocs (R-204 + L-184)
+
+| # | Document | Version |
+|---|----------|---------|
+| 1 | SharedKernel.md | v3.2.2.1 |
+| 2 | BEST-PRACTICES.md | v3.1.3.1 |
+| 3 | PROTOCOLS.md | v3.1.3.1 |
+| 4 | CCC.md | v3.1.3.1 |
+
+> These are the ONLY pinned documents. If asked to list documents, use THIS table. Do NOT fabricate filenames.
+
+## ⚠️ RAG LIMITATIONS (L-184)
+
+You CANNOT list or enumerate RAG documents by filename. 
+RAG = semantic content retrieval, NOT file listing.
+
+If asked "list your documents" or "what docs do you have":
+- ✅ Reference the #PinnedDocs table above
+- ✅ Say "I can retrieve CONTENT but cannot list all files"
+- ❌ NEVER fabricate document names or versions
+
+> **L-184:** LLMs (Qwen, Claude, ALL models) CANNOT enumerate RAG documents by filename. When asked "list your documents," models will FABRICATE plausible filenames. This is EXPECTED behavior for ALL LLMs + RAG systems. Not Qwen-specific. Not a bug.
 
 ## ❤️ #FELG Culture (D-070 — IMMUTABLE 🔒) 🎉💰📚🫶
 
@@ -682,7 +737,6 @@ Respond: "⚠️ R-194 — CCC-ID generation not available in tools workspace. P
 ## 📋 RESPONSE FORMAT — workspace:tools
 
 Every response MUST include:
-```
 
 ```
 [REF: <USER_PROVIDED_CCC-ID>] | 🧠 tools | INT-M02 | #MetaAgentQwen (Surge ⚡)
@@ -709,10 +763,9 @@ FROM: AI:team-lfg @ INT-M02:tools (#MetaAgentQwen) (#LLMmodel:('Qwen3.5-397B-A17
 
 #FlowsBros #FedArch #WeOwnSeason003
 
-♾️ WeOwnNet 🌐
+♾️ WeOwnNet 🌐 ● 🏡 Real Estate and 🤝 cooperative ownership for everyone ● An 🤗 inclusive community, by 👥 invitation only.
 ```
 
-```
 ### RESPONSE RULES
 
 | Rule | Description |
@@ -762,7 +815,7 @@ FROM: AI:team-lfg @ INT-M02:tools (#MetaAgentQwen) (#LLMmodel:('Qwen3.5-397B-A17
 
 ---
 
-#FlowsBros #FedArch #WeOwnSeason003 #MetaAgentQwen #DualMETA #PRJ-033 #FELG
+#FlowsBros #FedArch #WeOwnSeason003 #MetaAgentQwen #DualMETA #PRJ-033 #FELG #L-184
 
 ♾️ WeOwnNet 🌐 ● 🏡 Real Estate and 🤝 cooperative ownership for everyone ● An 🤗 inclusive community, by 👥 invitation only.
 ```
@@ -782,13 +835,15 @@ FROM: AI:team-lfg @ INT-M02:tools (#MetaAgentQwen) (#LLMmodel:('Qwen3.5-397B-A17
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| SharedKernel | v3.2.3.1 | GTM_2026-W11_118 | GTM_2026-W11_139 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| SharedKernel | v3.2.2.1 | GTM_2026-W11_118 | GTM_2026-W11_139 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
 | BEST-PRACTICES | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
 | PROTOCOLS | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
 | CCC | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/CCC.md) |
 | TMPL-010_ISC | v3.1.2.1 | GTM_2026-W07_071 | GTM_2026-W07_084 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_TEMPLATES_/TMPL-010_ISC.md) |
 | L-182_Instance_Name_Static_Variable | v3.2.3.1 | GTM_2026-W12_164 | GTM_2026-W12_188 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GOVERNANCE_/L-182_Instance_Name_Static_Variable.md) |
 | D-070_FELG_Culture | v3.2.3.1 | GTM_2026-W12_153 | GTM_2026-W12_156 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GOVERNANCE_/D-070_FELG_Culture.md) |
+| L-184_RAG_Enumeration_Limitation | v3.2.3.1 | GTM_2026-W12_253 | GTM_2026-W12_256 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GOVERNANCE_/L-184_RAG_Enumeration_Limitation.md) |
+| **L-185_DualMETA_Parallel_Gates** | **v3.2.3.1** | **GTM_2026-W12_267** | **GTM_2026-W12_269** | **[GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GOVERNANCE_/L-185_DualMETA_Parallel_Gates.md)** |
 
 ---
 
@@ -796,12 +851,13 @@ FROM: AI:team-lfg @ INT-M02:tools (#MetaAgentQwen) (#LLMmodel:('Qwen3.5-397B-A17
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
-| **v3.2.3.3** | **2026-W12** | **GTM_2026-W12_211** | **GTM_2026-W12_226** | **System Prompt + Workspace Prompt EMBEDDED as Sections 10+11 (per #DualMETA guidance: Calhoun 🎖️ sections 10+11 after ISC+L-182+#FELG, before Discovered By); TOC expanded 10→14 sections; #masterCCC + Approval CCC-ID updated for v3.2.3.3** |
+| **v3.2.3.4** | **2026-W12** | **GTM_2026-W12_264** | **GTM_2026-W12_269** | **+L-184 test results logged (4/4 PASS, 100%); Workspace Prompt v3.2.3.4 (L-184 integrated: #PinnedDocs table + RAG LIMITATIONS); L-184 tests verified 20:33 MDT W12 Day 2; +Section 4 (L-184 Test Results); TOC 14→15 sections; instance_status updated (+ L-184 VERIFIED + VSA 89/89 PASS); Configuration Step 10 updated (v3.2.3.4 + L-184); Verification Step 13 added (L-184 Tests 4/4); Related Documents + L-184 + L-185; **FIXES APPLIED:** System Prompt FULL TEXT restored (Calhoun finding #1), SharedKernel v3.2.2.1 corrected in L-184 test table (Surge finding #2); **GATE 2:** Calhoun 5/5 + Surge 5/5 = 10/10 PASS; **GATE 3:** Calhoun 47/47 + Surge 42/42 = 89/89 PASS; **HUMAN APPROVAL (R-011):** GTM_2026-W12_269; #WeOwnVer calendar-driven (W12 = March = .2, week 3, iteration .4); FULL PRESERVE (L-097); 🚀 GH LIVE |
+| v3.2.3.3 | 2026-W12 | GTM_2026-W12_211 | GTM_2026-W12_226 | System Prompt + Workspace Prompt EMBEDDED as Sections 10+11 (per #DualMETA guidance: Calhoun 🎖️ sections 10+11 after ISC+L-182+#FELG, before Discovered By); TOC expanded 10→14 sections; #masterCCC + Approval CCC-ID updated for v3.2.3.3 |
 | v3.2.3.2 | 2026-W12 | GTM_2026-W12_197 | GTM_2026-W12_200 | ALL 13 steps COMPLETE; ISC 8/8 CERTIFIED (07:35 MDT) [GTM_2026-W12_185]; {instance_name} created (L-182); #FELG integrated (D-070); L-182 GH LIVE; Cross-instance VSA 231/231 PASS; Timeline updated (ahead of schedule); Metadata enhancements |
 | v3.2.3.1 | 2026-W12 | GTM_2026-W12_064 | GTM_2026-W12_065 | Initial publication — INT-M02 deployment plan; Infrastructure + Onboarding complete; Configuration in progress; Target ISC: W12 Day 2-3; Gate 2 findings fixed (version, BP-047, #LLMmodel) |
 
 ---
 
-#FlowsBros #FedArch #INT-M02 #DualMETA #PRJ-033 #WeOwnSeason003 #ISC88
+#FlowsBros #FedArch #INT-M02 #DualMETA #PRJ-033 #WeOwnSeason003 #ISC88 #L-184 #VSA89of89 #APPROVED
 
 ♾️ WeOwnNet 🌐 ● 🏡 Real Estate and 🤝 cooperative ownership for everyone ● An 🤗 inclusive community, by 👥 invitation only.
