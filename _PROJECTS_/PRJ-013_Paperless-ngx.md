@@ -1,17 +1,24 @@
 # PRJ-013: Paperless-ngx — Document Management Hub
 
-## 📋 PRJ-013_Paperless-ngx_v3.1.4.1.md
+## 📋 PRJ-013_Paperless-ngx_v3.2.3.1.md
 ## ♾️ WeOwnNet 🌐
 
 | Field | Value |
 |-------|-------|
 | Document | PRJ-013_Paperless-ngx.md |
-| Version | 3.1.4.1 |
+| Version | **3.2.3.1** (REGENERATED W12) |
+| Folder | `_PROJECTS_/` ✅ |
+| Category | PROJECT:Document Management |
+| Type | Document Management + AnythingLLM Data Connector |
 | CCC-ID | GTM_2026-W09_065 |
+| Regeneration CCC-ID | GTM_2026-W12_302 |
+| **Approval CCC-ID** | **GTM_2026-W12_304** |
 | Created | 2026-02-27 (W09) |
+| Regenerated | 2026-03-18 (W12 Day 3) |
 | Season | #WeOwnSeason003 🚀 |
-| Status | 📝 DRAFT |
-| Lifecycle Stage | 📝 DRAFT (#DocLifecycle) |
+| Lifecycle Stage | ✅ 🔒 APPROVED + 🚀 GH LIVE (D-062)** |
+| **#LLMmodel** | **Qwen3.5-397B-A17B (INT-OG1:CCC @GTM)** |
+| **#LLMmodel** | **Claude Opus 4.6 (INT-P01:tools #MetaAgent)** |
 | Tags | #Paperless #DocumentManagement #FOSS #FlowsBros |
 
 ---
@@ -43,7 +50,7 @@
 | Project ID | **PRJ-013** |
 | Title | **Paperless-ngx — Document Management Hub** |
 | Type | Infrastructure — Document Management |
-| Priority | 🟠 P1 |
+| Priority | 🔴 P0 |
 | Owner | @GTM |
 | Domain | docs.weown.net |
 | #masterCCC | GTM_2026-W09_065 |
@@ -387,26 +394,28 @@ Configuration:
 
 ---
 
-## 📋 Deployment Scope (W10-W12)
+## 📋 Deployment Scope (W12-W14)
 
 ### Single Phase — Merged (was Phase 1 + Phase 2)
 
-| # | Deliverable | Owner | Priority | Week |
-|---|-------------|-------|----------|------|
-| 1 | **Verify AnythingLLM v1.9.1+** on all instances | @RMN | 🔴 P0 | W10 |
-| 2 | Provision DO Droplet (ATL1) | @SHD | 🔴 P0 | W10 |
-| 3 | Deploy Paperless-ngx via Docker Compose | @SHD | 🔴 P0 | W10 |
-| 4 | Configure domain + SSL | @SHD | 🔴 P0 | W10 |
-| 5 | Create 9 correspondents (CCC mapping) | @GTM | 🟠 P1 | W10 |
-| 6 | Configure tag schema | @GTM | 🟠 P1 | W10 |
-| 7 | **Configure native AnythingLLM connector (INT-P01)** | @GTM / @RMN | 🔴 P0 | W11 |
-| 8 | **Verify RAG sync (Paperless → AnythingLLM)** | @GTM | 🔴 P0 | W11 |
-| 9 | Set up email ingestion (summaries@weown.net) | @SHD | 🟠 P1 | W11 |
-| 10 | Test upload workflow (web + email + mobile) | @GTM | 🟠 P1 | W11 |
-| 11 | **Configure connector on remaining instances** (INT-OG1, INT-OG8, INT-P02) | @RMN | 🟠 P1 | W11 |
-| 12 | Pilot — onboard @LFG or @THY | @GTM | 🟠 P1 | W12 |
-| 13 | **Onboard ALL 9 contributors** | @GTM | 🟠 P1 | W12 |
-| 14 | Document contributor workflow (GUIDE-XXX) | @GTM | 🟡 P2 | W12 |
+| # | Deliverable | Owner | Priority | Week | Status |
+|---|-------------|-------|----------|------|--------|
+| 1 | **Verify AnythingLLM v1.11.1+** on all instances | @GTM | 🔴 P0 | W12 | ⬜ TODO |
+| 2 | Provision DO Droplet (ATL1) | @SHD | 🔴 P0 | W12 | ⬜ TODO |
+| 3 | Deploy Paperless-ngx via Docker Compose | @SHD | 🔴 P0 | W12 | ⬜ TODO |
+| 4 | Configure domain + SSL | @SHD | 🔴 P0 | W12 | ⬜ TODO |
+| 5 | Create 9 correspondents (CCC mapping) | @GTM | 🟠 P1 | W12 | ⬜ TODO |
+| 6 | Configure tag schema | @GTM | 🟠 P1 | W12 | ⬜ TODO |
+| 7 | **Configure native AnythingLLM connector (INT-P01)** | @CTO / @GTM / @RMN | 🔴 P0 | W13 | ⬜ TODO |
+| 8 | **Verify RAG sync (Paperless → AnythingLLM)** | @GTM | 🔴 P0 | W13 | ⬜ TODO |
+| 9 | Set up email ingestion (anythingllm@weown.net) | @SHD | 🟠 P1 | W13 | ⬜ TODO |
+| 10 | Test upload workflow (web + email + mobile) | @GTM | 🟠 P1 | W13 | ⬜ TODO |
+| 11 | **Configure connector on remaining instances** (INT-OG1, INT-OG8, INT-P02) | @LDC | 🟠 P1 | W13 | ⬜ TODO |
+| 12 | Pilot — onboard @LFG or @THY | @LFG | 🟠 P1 | W14 | ⬜ TODO |
+| 13 | **Onboard ALL 9 contributors** | @LFG | 🟠 P1 | W14 | ⬜ TODO |
+| 14 | Document contributor workflow (GUIDE-XXX) | @GTM | 🟡 P2 | W14 | ⬜ TODO |
+
+> **⚠️ Timeline Note:** Timeline reflects original W09 plan. Actual deployment: ⬜ NOT STARTED (blocked by other W10-W12 priorities including PRJ-039, L-184 cascade, INT-P01 stability).
 
 ### Deployment Timeline
 
@@ -476,24 +485,27 @@ W12 (Mar 16-22):   Onboarding
 
 ---
 
-## 📋 Related Documents
+## 📋 Related Documents (BP-045)
 
 | Document | Version | #masterCCC | Approval | URL |
 |----------|---------|------------|----------|-----|
-| SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| SharedKernel | v3.2.2.1 | GTM_2026-W11_118 | GTM_2026-W11_139 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
+| BEST-PRACTICES | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/BEST-PRACTICES.md) |
+| PROTOCOLS | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/PROTOCOLS.md) |
 | AnythingLLM Changelog v1.9.1 | — | — | — | [docs.anythingllm.com/changelog/v1.9.1](https://docs.anythingllm.com/changelog/v1.9.1) |
 | Paperless-ngx Docs | — | — | — | [docs.paperless-ngx.com](https://docs.paperless-ngx.com/) |
 
 ---
 
-## 📋 Version History
+## 📋 Version History (BP-045)
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
+| **3.2.3.1** | **2026-W12** | **GTM_2026-W09_065** | **GTM_2026-W12_304** | **REGENERATION + CALHOUN FIXES: #WeOwnVer updated (v3.1.4.1 → v3.2.3.1 — calendar-driven L-094/L-115); +dual #LLMmodel header (L-166); +deployment timeline reality note (Calhoun Finding #2); lifecycle → ✅ APPROVED + 🚀 GH LIVE; 39/41 VSA PASS (VSA_GTM_W12_303); ALL content PRESERVED (L-097); Calhoun Gate 2+3 audit complete; @GTM MANUALLY UPDATED TIMELINE** |
 | 3.1.4.1 | 2026-W09 | GTM_2026-W09_065 | GTM_2026-W09_068 | Initial project; Paperless-ngx deployment; AnythingLLM v1.9.1 NATIVE connector (eliminates custom build); Phase 1+2 MERGED into W10-W12; 8 use cases; ATL1 infrastructure ($18/mo); tag schema + 9 CCC correspondents; email ingestion; 14 deliverables; 7-risk matrix; FOSS alignment verified |
 
 ---
 
-#FlowsBros #FedArch #Paperless #DocumentManagement #FOSS #WeOwnSeason003
+#FlowsBros #FedArch #Paperless #DocumentManagement #FOSS #WeOwnSeason003 #PRJ-013
 
 ♾️ WeOwnNet 🌐 ● 🏡 Real Estate and 🤝 cooperative ownership for everyone ● An 🤗 inclusive community, by 👥 invitation only.
