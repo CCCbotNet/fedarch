@@ -1,19 +1,21 @@
-# PRJ-025_jAIMSnet-Platform-Engineering.md
+# PRJ-025_jAIMSnet-Research-Roadmap.md
 
 ## 📋 Document Metadata
 
 | Field | Value |
 |-------|-------|
-| **Document** | PRJ-025_jAIMSnet-Platform-Engineering.md |
-| **Version** | **v3.2.3.1** |
-| **CCC-ID** | RMN_2026-W12_071 |
+| **Document** | PRJ-025_jAIMSnet-Research-Roadmap.md |
+| **Version** | **v3.2.3.2** |
+| **CCC-ID** | RMN_2026-W12_077 |
 | **Approval CCC-ID** | GTM_2026-W11_330 |
 | **Created** | 2026-W12 |
 | **Updated** | **2026-03-19 (W12)** |
 | **Season** | #WeOwnSeason003 🚀 |
 | **Status** | 🔄 IN PROGRESS — Roadmap ~50% Complete (SDLC: Research + Design Required) |
 | **#LLMmodel** | Claude Sonnet 4.6 |
-| **Source of Truth** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-025_jAIMSnet-Platform-Engineering.md) |
+| **Source of Truth** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-025_jAIMSnet-Research-Roadmap.md) |
+
+> **⚠️ SCOPE CLARIFICATION:** This document covers the foundational **research and roadmap** for jAIMSnet. It is NOT the implementation guide — full implementation details, deployment instructions, and technical specifications for each track will live in dedicated downstream PRJ documents that stem from this research. This research must be completed before implementation of any dependent PRJs can begin.
 
 ---
 
@@ -21,22 +23,24 @@
 
 1. [Project Identity](#-project-identity)
 2. [Executive Summary](#-executive-summary)
-3. [SDLC Status — Research + Design Required](#-sdlc-status--research--design-required)
-4. [jAIMSnet Architecture — Current State](#-jaimsnet-architecture--current-state)
-5. [Repository Structure (Monorepo)](#-repository-structure-monorepo)
-6. [Namespace Architecture](#-namespace-architecture)
-7. [Platform Status — All Tools by Phase](#-platform-status--all-tools-by-phase)
-8. [Tool Evaluation — Locked vs Under Evaluation](#-tool-evaluation--locked-vs-under-evaluation)
-9. [Architecture Decisions — Hub vs Tenant](#-architecture-decisions--hub-vs-tenant)
-10. [8 Research Tracks — Full Research Plan](#-8-research-tracks--full-research-plan)
-11. [ISO/IEC 42001 Alignment](#-isoiec-42001-alignment)
-12. [Domains — Current + Planned](#-domains--current--planned)
-13. [Integration with Other PRJs](#-integration-with-other-prjs)
-14. [Roadmap Completion Status](#-roadmap-completion-status)
-15. [Version History](#-version-history)
-16. [Related Documents](#-related-documents)
-17. [Discovered By (BP-047)](#-discovered-by-bp-047)
-18. [Governance Compliance](#-governance-compliance)
+3. [Why This Research is Critical — Ecosystem Priority](#-why-this-research-is-critical--ecosystem-priority)
+4. [Dependent PRJs — What This Unlocks](#-dependent-prjs--what-this-unlocks)
+5. [SDLC Status — Research + Design Required](#-sdlc-status--research--design-required)
+6. [jAIMSnet Architecture — Current State](#-jaimsnet-architecture--current-state)
+7. [Repository Structure (Monorepo)](#-repository-structure-monorepo)
+8. [Namespace Architecture](#-namespace-architecture)
+9. [Platform Status — All Tools by Phase](#-platform-status--all-tools-by-phase)
+10. [Tool Evaluation — Locked vs Under Evaluation](#-tool-evaluation--locked-vs-under-evaluation)
+11. [Architecture Decisions — Hub vs Tenant](#-architecture-decisions--hub-vs-tenant)
+12. [8 Research Tracks — Full Research Plan](#-8-research-tracks--full-research-plan)
+13. [ISO/IEC 42001 Alignment](#-isoiec-42001-alignment)
+14. [Domains — Current + Planned](#-domains--current--planned)
+15. [Integration with Other PRJs](#-integration-with-other-prjs)
+16. [Roadmap Completion Status](#-roadmap-completion-status)
+17. [Version History](#-version-history)
+18. [Related Documents](#-related-documents)
+19. [Discovered By (BP-047)](#-discovered-by-bp-047)
+20. [Governance Compliance](#-governance-compliance)
 
 ---
 
@@ -45,9 +49,9 @@
 | Field | Value |
 |-------|-------|
 | Project ID | **PRJ-025** |
-| Title | **jAIMSnet Platform Engineering** |
-| Type | Infrastructure + Governance — Platform Engineering Roadmap |
-| Priority | 🔴 P0 (self-hosted AnythingLLM in production) |
+| Title | **jAIMSnet — Research + Roadmap** |
+| Type | Infrastructure + Governance — Foundational Research + Platform Roadmap |
+| Priority | 🔴 **P0 — HIGHEST PRIORITY IN ECOSYSTEM** |
 | Owner | @RMN (Roman Di Domizio) |
 | Status | 🔄 IN PROGRESS — Roadmap ~50% Complete (SDLC: Research + Design Required) |
 | #masterCCC | GTM_2026-W10_026 |
@@ -57,6 +61,16 @@
 
 ## 📋 Executive Summary
 
+### What Is This Document?
+
+This document captures the **foundational research and roadmap** for jAIMSnet — the AI Management Systems platform for the ♾️ WeOwnNet 🌐 ecosystem. It is the **prerequisite** to all downstream jAIMSnet implementation projects and many other ecosystem PRJs.
+
+> **⚠️ IMPORTANT — Scope of This Document:**
+> - ✅ This document = **Research plan, tool evaluation, architecture decisions, and roadmap**
+> - ❌ This document ≠ Implementation guide, deployment instructions, or technical specs
+> - 📋 Implementation details for each area will live in **dedicated downstream PRJs** that stem from each research track's findings
+> - 🔒 No further implementation should happen until this research is substantially complete
+
 ### What Is jAIMSnet?
 
 | Field | Value |
@@ -65,7 +79,7 @@
 | **Meaning** | j + **AIMS** (AI Management Systems) + net (network) |
 | **ISO Reference** | **ISO/IEC 42001:2023** — AI Management Systems |
 | **ISO URL** | [iso.org/standard/81230.html](https://www.iso.org/standard/81230.html) |
-| **Positioning** | Open-source AI observability & management infrastructure |
+| **Positioning** | Full-stack platform engineering, including fully open-source AI observability & management infrastructure |
 | **Relationship** | Ecosystem brand under ♾️ WeOwnNet 🌐 |
 | **Primary Domain** | jAIMS.network |
 | **GitHub Org** | [github.com/jAIMSnet](https://github.com/jAIMSnet) |
@@ -92,11 +106,11 @@
 | **Phase 2** | 📋 ~50% planned (pending research tracks 4-5) |
 | **Phase 3** | 📋 ~25% planned (pending research tracks 6-7) |
 | **Phase 4** | 📋 ~0% planned (pending research tracks 7-8) |
-| **Priority** | 🔴 HIGH — Self-hosted AnythingLLM instances in production |
+| **Priority** | 🔴 **HIGHEST PRIORITY** — self-hosted AnythingLLM in production + most downstream PRJs blocked |
 
 ### ⚠️ SDLC Alert — Implementation Paused
 
-> **Issues occurred during initial implementation (LiteLLM/Redis, Langfuse, Infisical by @RMN; OpenTofu by @LDC) because there was no finished roadmap, design, or plan to follow.** jAIMSnet is a very complex platform engineering stack with many tools and a hub + tenant architecture. Per SDLC best practices, proper research, analysis, design, and planning MUST be completed before any further implementation, or there will be many issues, wasted dev time, and things needing to be fixed. This is very high priority given self-hosted AnythingLLM instances in production.
+> **Issues occurred during initial implementation (LiteLLM/Redis, Langfuse, Infisical by @RMN; OpenTofu by @LDC) because there was no finished roadmap, design, or plan to follow.** jAIMSnet is the most complex platform engineering project in the ecosystem with many tools and a hub + tenant architecture. Per SDLC best practices, proper research, analysis, design, and planning MUST be completed before any further implementation, or there will be many issues, wasted dev time, and things needing to be fixed. This is very high priority given self-hosted AnythingLLM instances in production.
 
 ### Deployed Infrastructure (W10 — Live)
 
@@ -120,6 +134,72 @@
 | **Phase 2 🟠** | **~$112+/mo** | Phase 1 + autoscale node + GPU Droplet (MI300X/MI325X) |
 | **Phase 3 🟡** | **~$120+/mo** | Phase 2 + additional tooling overhead |
 | **Phase 4 🟢** | **TBD** | Phase 3 + customer platform infrastructure |
+
+---
+
+## 📋 Why This Research is Critical — Ecosystem Priority
+
+### PRJ-025 = Foundational to the Entire Platform
+
+> **This is the most complex and most important research + design project in the ♾️ WeOwnNet 🌐 ecosystem.** The jAIMSnet platform is the backbone for all AI infrastructure, tooling, security, observability, and automation that every other PRJ relies on.
+
+### Complexity Factors
+
+| Factor | Detail |
+|--------|--------|
+| **Multi-tool stack** | 40+ tools being evaluated across 8 research tracks |
+| **Hub + Tenant architecture** | Two deployment paradigms (DOKS clusters + Docker Droplets) |
+| **Multi-tenancy** | Internal + SMB + Enterprise + Trial/Demo tenant types |
+| **Cross-PRJ dependencies** | 8+ existing PRJs + multiple new PRJs blocked on this research |
+| **SDLC violation risk** | Implementation without research = wasted effort + rework (already proven W10) |
+| **Production impact** | Self-hosted AnythingLLM instances in production RIGHT NOW |
+| **Compliance requirements** | ISO 42001, ISO 27001, SOC 2 all dependent on architecture decisions |
+
+### Why It Must Be Done First
+
+| Without PRJ-025 Research | With PRJ-025 Research Complete |
+|--------------------------|-------------------------------|
+| ❌ Wasted implementation effort (proven W10) | ✅ Confident, correct implementation |
+| ❌ Rework and technical debt | ✅ Clean, tested, production-ready |
+| ❌ Security gaps from ad-hoc decisions | ✅ Security-by-design from the start |
+| ❌ Blocked downstream PRJs | ✅ Downstream PRJs can proceed in sequence |
+| ❌ Multiple tools deployed that may not fit | ✅ Right tools chosen for right use cases |
+| ❌ Compliance gaps | ✅ Compliance-ready architecture from day 1 |
+
+---
+
+## 📋 Dependent PRJs — What This Unlocks
+
+### Existing PRJs Directly Dependent on PRJ-025 Research
+
+> These PRJs exist but have incomplete implementation or design decisions that are blocked pending PRJ-025 research completion.
+
+| PRJ | Title | Dependency | What PRJ-025 Unlocks |
+|-----|-------|------------|---------------------|
+| **PRJ-015** | HybridArchitecture (GB10 + MI300X/MI325X) | Track 2, 3 | OpenTofu modules for GPU provisioning, deployment architecture decisions |
+| **PRJ-016** | LiteLLM AI Gateway | Track 4, 3 | Routing strategy, Redis vs alternatives, tenant isolation model |
+| **PRJ-017** | Observability (Langfuse + LGTM) | Track 5 | Hub + Spoke observability architecture, agent deployment per tenant type |
+| **PRJ-023** | Context Persistence (mem0) | Track 4, 3 | Memory architecture per tenant, hub vs per-tenant mem0 |
+| **PRJ-024** | Secrets Management (Infisical) | Track 2, 6 | OpenTofu + Ansible secret management automation, per-tier secrets |
+| **PRJ-026** | Cybersecurity Frameworks + ISMS | Track 6, 3 | Security tooling per tier, compliance controls per deployment type |
+| **PRJ-032** | OpenTofu IaC | Track 2 | OpenTofu module structure, state backend, DO provider config, Ansible handoff |
+| **PRJ-035** | Semaphore UI | Track 2, 3 | CI/CD pipeline architecture, deployment automation strategy |
+
+### Future PRJs That Will Stem From PRJ-025 Research
+
+> These PRJ documents do not yet exist but will be created once each research track is complete. PRJ-025 is the seed from which all platform implementation PRJs grow.
+
+| Research Track | Expected New PRJs | Type |
+|----------------|-------------------|------|
+| **Track 2** (OpenTofu + Ansible) | PRJ-032 implementation docs | Implementation |
+| **Track 3** (Deployment Architecture) | PRJ-0XX_Hub-Tenant-Architecture.md | Implementation |
+| **Track 4** (Core Infrastructure) | PRJ-0XX_Redis-Config.md, PRJ-0XX_LGTM-Stack.md | Implementation |
+| **Track 5** (Observability Hub + Spoke) | PRJ-0XX_Observability-Hub.md, PRJ-0XX_Observability-Spokes.md | Implementation |
+| **Track 6** (Security + Compliance) | PRJ-0XX_K8s-Security-Stack.md, PRJ-0XX_Compliance-Automation.md | Implementation |
+| **Track 7** (Platform + Portal) | PRJ-0XX_Backstage.md, PRJ-0XX_Keycloak.md | Implementation |
+| **Track 8** (AI + Testing) | PRJ-0XX_AI-Ops-Agents.md, PRJ-0XX_Load-Chaos-Testing.md | Implementation |
+
+> **Each research track completion = new PRJ documents created for its implementation.** PRJ-025 is the mother document; the research tracks give birth to implementation PRJs.
 
 ---
 
@@ -249,80 +329,46 @@ jaimsnet/
 │   │   ├── overview.md                # System overview
 │   │   ├── deployment-model.md        # Create after Track 3 complete
 │   │   ├── hub-spoke-topology.md      # Create after Track 6 complete
-│   │   └── diagrams/                  # Architecture diagrams
+│   │   └── diagrams/
 │   │       ├── hub-cluster.drawio
 │   │       └── spoke-agents.drawio
 │   ├── guides/                        # How-To + Tutorials (Diátaxis)
-│   │   ├── getting-started.md         # Onboarding (Tutorial)
-│   │   ├── deploy-cluster.md          # Create after Track 2 complete (How-To)
-│   │   ├── deploy-droplet.md          # Create after Track 2 complete (How-To)
-│   │   ├── add-client.md              # Create after multi-tenancy defined (How-To)
-│   │   └── troubleshoot-common.md     # Create after operations mature (How-To)
+│   │   ├── getting-started.md
+│   │   ├── deploy-cluster.md          # Create after Track 2 complete
+│   │   ├── deploy-droplet.md          # Create after Track 2 complete
+│   │   ├── add-client.md              # Create after multi-tenancy defined
+│   │   └── troubleshoot-common.md
 │   ├── reference/                     # Technical Reference (Diátaxis)
-│   │   ├── api-reference.md           # Create if API exposed
-│   │   ├── configuration-options.md   # Create after tools configured
+│   │   ├── api-reference.md
+│   │   ├── configuration-options.md
 │   │   ├── weownver-standard.md       # L-094, L-115 reference
-│   │   └── glossary.md                # Terminology
+│   │   └── glossary.md
 │   ├── compliance/                    # ISO 42001 evidence
 │   │   ├── control-mapping.md         # Create after Track 6 complete
 │   │   ├── evidence-collection.md     # Create after Track 6 complete
 │   │   └── audit-checklist.md         # Create after Track 6 complete
 │   └── research/                      # Research notes (temporary)
 │       ├── track1-summary.md          # Track 1 research summary
-│       ├── track2/                    # Track 2 research notes
-│       ├── track3/                    # Track 3 research notes
-│       └── ...                        # Additional tracks
-├── gateway/
-│   ├── README.md                      # LiteLLM overview
-│   └── ...
-├── observability/
-│   ├── README.md                      # Observability stack overview
-│   └── ...
-├── iac/
-│   ├── README.md                      # OpenTofu/Ansible overview
-│   ├── tofu/                          # OpenTofu modules
-│   └── ansible/                       # Ansible playbooks + roles
-├── security/
-│   ├── README.md                      # Security tooling overview
-│   └── ...
-├── compliance/
-│   ├── README.md                      # Compliance framework overview
-│   └── ...
-├── testing/
-│   ├── README.md                      # Testing framework overview
-│   └── ...
-├── cluster/
-│   ├── README.md                      # Cluster configs overview
-│   └── ...
-├── ingress/
-│   ├── README.md                      # Ingress config overview
-│   └── ...
-├── secrets/
-│   ├── README.md                      # Secrets management overview
-│   └── ...
-├── gitops/
-│   ├── README.md                      # GitOps config overview
-│   └── ...
-├── gpu/
-│   ├── README.md                      # GPU inference overview
-│   └── ...
-├── portal/
-│   ├── README.md                      # Backstage config overview (Phase 4)
-│   └── ...
-├── identity/
-│   ├── README.md                      # Keycloak config overview
-│   └── ...
-├── cost/
-│   ├── README.md                      # OpenCost config overview
-│   └── ...
-├── memory/
-│   ├── README.md                      # mem0/Zep config overview (PRJ-023)
-│   └── ...
-├── mcp/
-│   ├── README.md                      # MCP servers overview
-│   └── ...
-└── scripts/
-    └── README.md                      # Utility scripts overview
+│       ├── track2/
+│       ├── track3/
+│       └── ...
+├── gateway/         # LiteLLM overview
+├── observability/   # Observability stack overview
+├── iac/             # OpenTofu modules + Ansible playbooks
+├── security/        # Security tooling overview
+├── compliance/      # Compliance framework overview
+├── testing/         # Testing framework overview
+├── cluster/         # Cluster configs overview
+├── ingress/         # Ingress config overview
+├── secrets/         # Secrets management overview
+├── gitops/          # GitOps config overview
+├── gpu/             # GPU inference overview
+├── portal/          # Backstage config overview (Phase 4)
+├── identity/        # Keycloak config overview
+├── cost/            # OpenCost config overview
+├── memory/          # mem0 config overview (PRJ-023)
+├── mcp/             # MCP servers overview
+└── scripts/         # Utility scripts overview
 ```
 
 ---
@@ -478,6 +524,8 @@ jaimsnet/
 ## 📋 8 Research Tracks — Full Research Plan
 
 > **Research Track 1 is COMPLETE (✅). Tracks 2-8 are PLANNED with detailed context. Overall roadmap = ~50% complete.**
+>
+> **Each completed research track will produce one or more new downstream PRJ documents with full implementation details. This document is the roadmap — not the implementation guide.**
 
 ### Research Track 1: Repository & Team Structure — ✅ COMPLETE
 
@@ -487,7 +535,8 @@ jaimsnet/
 | ADR-006: Branch Strategy (GitHub Flow) | ✅ EXISTS |
 | ADR-007: CI/CD Architecture (Hybrid) | ✅ EXISTS |
 | ADR-008: Documentation Structure (Diátaxis) | ✅ EXISTS |
-| Repo structure (above) | ✅ DEFINED |
+| Repo structure | ✅ DEFINED |
+| **New PRJs created** | None (foundational structure, not standalone PRJ) |
 
 ### Research Track 2: OpenTofu + Ansible Provisioning — 🔄 IN PROGRESS (Not Blocked)
 
@@ -502,8 +551,7 @@ jaimsnet/
 | Ansible Role Organization | 📋 Planned | Role inventory + templates |
 | Ansible Inventory Management | 📋 Planned | Inventory config + DO integration |
 | Ansible Docker Setup | 📋 Planned | Docker role + CIS benchmark integration |
-| Ansible + Watchtower Integration | 📋 Planned | Watchtower role + config |
-| OpenTofu → Ansible Handoff | 📋 Planned | Integration pattern + examples |
+| **Expected New PRJ** | **PRJ-032_OpenTofu-IaC.md** | Implementation guide |
 
 ### Research Track 3: Deployment Architecture — 🔴 BLOCKED (@GTM/@THY)
 
@@ -514,6 +562,7 @@ jaimsnet/
 | Shared vs Dedicated Infrastructure | 🔴 Blocked | Isolation requirements + compliance |
 | Multi-Region Architecture | 🔴 Blocked | If/when multi-region required |
 | Client Tenancy Model | 🔴 Blocked | Product definitions |
+| **Expected New PRJs** | Hub-Tenant-Architecture.md | Implementation guide |
 
 ### Research Track 4: Core Infrastructure — 🟠 Partially Blocked
 
@@ -524,6 +573,7 @@ jaimsnet/
 | Long-term Metrics (Mimir vs Thanos vs VictoriaMetrics) | 📋 Planned (not blocked) | Tool selection |
 | Log Collection (Alloy vs Fluent Bit vs OTel) | 📋 Planned (not blocked) | Tool selection |
 | GitOps for Droplets (Watchtower vs GH Actions) | 📋 Planned (not blocked) | Tool selection |
+| **Expected New PRJs** | Redis-Config.md, LGTM-Stack-Config.md | Implementation guides |
 
 ### Research Track 5: Observability Hub & Spoke — 🟠 Partially Blocked
 
@@ -535,6 +585,7 @@ jaimsnet/
 | Data Forwarding | 📋 Planned (not blocked) | Data pipeline architecture |
 | Retention Policies | 🔴 Blocked (compliance per tier) | Retention policy ADR |
 | Dashboard + Alerting Strategy | 📋 Planned (not blocked) | Alerting architecture |
+| **Expected New PRJs** | Observability-Hub.md, Observability-Spokes.md | Implementation guides |
 
 ### Research Track 6: Security & Compliance — 🟠 Partially Blocked
 
@@ -547,6 +598,7 @@ jaimsnet/
 | Compliance Evidence Mapping | 🔴 Blocked (compliance reqs per tier) | Evidence matrix |
 | Network Policy (Cilium vs Calico) | 📋 Planned (not blocked) | Tool selection + policy examples |
 | CIS Benchmarking Automation | 📋 Planned (not blocked) | Benchmark automation scripts |
+| **Expected New PRJs** | K8s-Security-Stack.md, Compliance-Automation.md | Implementation guides |
 
 ### Research Track 7: Platform & Portal — 📋 Planned (Mostly Not Blocked)
 
@@ -556,6 +608,7 @@ jaimsnet/
 | SSO/Identity (Keycloak vs Auth0 vs ZITADEL) | 📋 Planned (not blocked) | Tool selection + integration |
 | Cost Optimization (OpenCost vs Kubecost) | 📋 Planned (not blocked) | Tool selection + metrics |
 | Portal Access Model | ⚠️ Partially blocked (product tier access) | Access control architecture |
+| **Expected New PRJs** | Backstage-IDP.md, Keycloak-SSO.md | Implementation guides |
 
 ### Research Track 8: AI & Testing — 📋 Planned (Not Blocked)
 
@@ -567,30 +620,19 @@ jaimsnet/
 | AI Agents for Ops (Kagent vs k8sGPT) | 📋 Planned | Tool selection + use cases |
 | MCP Servers | 📋 Planned | MCP strategy ADR |
 | Integration Testing (Testkube) | 📋 Planned | Tool selection + test suite |
+| **Expected New PRJs** | AI-Ops-Agents.md, Load-Chaos-Testing.md | Implementation guides |
 
 ### Research Prioritization
 
 | Phase | Tracks | Status | When |
 |-------|--------|--------|------|
-| **Phase A (Start Now)** | Track 1, Track 2, Track 4, Track 5 (hub), Track 8 | 🟢 Not Blocked | Immediately |
+| **Phase A (Start Now)** | Track 1 ✅, Track 2, Track 4, Track 5 (hub), Track 8 | 🟢 Not Blocked | Immediately |
 | **Phase B (Continue)** | Track 5 (spoke), Track 6, Track 7 | 🟠 Partially Blocked | While awaiting @GTM/@THY |
 | **Phase C (After Answers)** | Track 3, Tier-specific Track 2/5 | 🔴 Blocked | After @GTM/@THY respond |
 
 ---
 
 ## 📋 ISO/IEC 42001 Alignment
-
-### What Is ISO/IEC 42001?
-
-| Field | Value |
-|-------|-------|
-| **Standard** | ISO/IEC 42001:2023 |
-| **Title** | Artificial Intelligence Management Systems (AIMS) |
-| **Purpose** | Framework for responsible AI development and deployment |
-| **Relevance** | jAIMSnet is purpose-built for ISO 42001 compliance |
-| **URL** | [iso.org/standard/81230.html](https://www.iso.org/standard/81230.html) |
-
-### ISO 42001 Requirements → jAIMSnet Implementation
 
 | ISO 42001 Requirement | jAIMSnet Implementation | Phase |
 |----------------------|------------------------|-------|
@@ -647,17 +689,18 @@ jaimsnet/
 
 ## 📋 Integration with Other PRJs
 
-| PRJ | Title | Integration Point | Namespace |
-|-----|-------|-------------------|-----------|
-| **PRJ-015** | HybridArchitecture (GB10 + MI300X/MI325X) | GPU inference backend (Phase 2) | `gpu` |
-| **PRJ-016** | LiteLLM AI Gateway | Deployed IN jAIMSnet DOKS | `gateway` |
-| **PRJ-017** | Observability (Langfuse + LGTM) | Langfuse deployed IN jAIMSnet | `observability` |
-| **PRJ-018** | P.O.P. Database | PostgreSQL cluster used by jAIMSnet services | Shared (VPC) |
-| **PRJ-021** | PostgreSQL Operations | DO cluster, LB, Managed PG infrastructure | Shared (VPC) |
-| **PRJ-023** | Context Persistence (mem0) | mem0 deployed IN jAIMSnet | `memory` |
-| **PRJ-024** | Secrets Management (Infisical) | Infisical Operator IN jAIMSnet | `secrets` |
-| **PRJ-026** | Cybersecurity Frameworks + ISMS | jAIMSnet security tools enable compliance | `security` |
-| **PRJ-035** | Semaphore UI | CI automation IN jAIMSnet | `automation` |
+| PRJ | Title | Integration Point | Namespace | Dependency Type |
+|-----|-------|-------------------|-----------|-----------------|
+| **PRJ-015** | HybridArchitecture (GB10 + MI300X/MI325X) | GPU inference backend (Phase 2) | `gpu` | 🔴 Blocked on Track 2+3 |
+| **PRJ-016** | LiteLLM AI Gateway | Deployed IN jAIMSnet DOKS | `gateway` | 🔴 Blocked on Track 4+3 |
+| **PRJ-017** | Observability (Langfuse + LGTM) | Langfuse + LGTM+ IN jAIMSnet | `observability` | 🔴 Blocked on Track 5 |
+| **PRJ-018** | P.O.P. Database | PostgreSQL cluster used by jAIMSnet | Shared (VPC) | 🟡 Partial (PG deployed) |
+| **PRJ-021** | PostgreSQL Operations | DO cluster, LB, Managed PG | Shared (VPC) | 🟡 Partial (PG deployed) |
+| **PRJ-023** | Context Persistence (mem0) | mem0 IN jAIMSnet | `memory` | 🔴 Blocked on Track 4+3 |
+| **PRJ-024** | Secrets Management (Infisical) | Infisical Operator IN jAIMSnet | `secrets` | 🔴 Blocked on Track 2+6 |
+| **PRJ-026** | Cybersecurity Frameworks + ISMS | Security tools via jAIMSnet | `security` | 🔴 Blocked on Track 6+3 |
+| **PRJ-032** | OpenTofu IaC | IaC for all DO resources | `iac/` | 🔴 Blocked on Track 2 |
+| **PRJ-035** | Semaphore UI | CI automation IN jAIMSnet | `automation` | 🔴 Blocked on Track 2+3 |
 
 ---
 
@@ -669,8 +712,8 @@ jaimsnet/
 |---------|--------|-------|
 | Research Track 1 (Repo + Team) | ✅ COMPLETE | Monorepo, GitHub Flow, Hybrid CI/CD, Diátaxis docs |
 | Infrastructure Live | ✅ COMPLETE | DOKS cluster, LB, PG, Uptime Kuma (NYC1) |
-| Research Track 2 (OpenTofu + Ansible) | 📋 Planned | Not blocked — start immediately |
-| Research Track 3 (Deployment Architecture) | 🔴 Blocked | Awaiting @GTM/@THY business questions |
+| Research Track 2 (OpenTofu + Ansible) | 📋 Planned | Not blocked — PRJ-032 depends on this |
+| Research Track 3 (Deployment Architecture) | 🔴 Blocked | Awaiting @GTM/@THY — blocks many PRJs |
 | Research Track 4 (Core Infrastructure) | 📋 Planned | mem0 decided (PRJ-023) |
 | Research Track 5 (Observability Hub + Spoke) | 📋 Planned | Hub not blocked, Spoke + retention partially blocked |
 | Research Track 6 (Security + Compliance) | 📋 Planned | Tool selection not blocked, policy config partially blocked |
@@ -687,7 +730,8 @@ jaimsnet/
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
-| **3.2.3.1** | **2026-W12** | **GTM_2026-W10_026** | **GTM_2026-W11_330** | **Initial document creation — jAIMSnet brand identity (j+AIMS+net, ISO 42001:2023). SDLC alert: implementation paused, research + design required first. Infrastructure live: DOKS cluster (ATL1), Load Balancer (129.212.240.75), Uptime Kuma (NYC1 standalone Droplet). Repo structure (monorepo, Diátaxis docs, ADRs). 8 namespaces (gateway, observability, secrets, automation, memory, gpu, security, gitops). GitHub Flow branching, hybrid CI/CD + GitOps pipeline. Platform status by phase (Phase 1 LOCKED, Phase 2-4 UNDER EVALUATION). 8 research tracks (Track 1 complete, Tracks 2-8 planned with detailed context). Blocker analysis (@GTM/@THY business questions unanswered). Hub vs tenant architecture (Hybrid Option D recommended). ISO 42001 alignment mapping. 6 domains registered. 9 PRJ integrations (PRJ-015/016/017/018/021/023/024/026/035). Compliance roadmap (ISO 42001 → ISO 27001 → SOC 2 → FedRAMP)** |
+| **3.2.3.2** | **2026-W12** | **GTM_2026-W10_026** | **GTM_2026-W11_330** | **Renamed document: PRJ-025_jAIMSnet-Research-Roadmap.md (previously PRJ-025_jAIMSnet-Platform-Engineering.md). Title updated: jAIMSnet — Research + Roadmap. Added scope clarification (this doc = research + roadmap ONLY, not implementation guide). Priority elevated to 🔴 HIGHEST PRIORITY IN ECOSYSTEM. Added Section 3: Why This Research is Critical. Added Section 4: Dependent PRJs — What This Unlocks (PRJ-015/016/017/023/024/026/032/035 all dependent). Added expected new PRJs per research track. Added Dependency Type column to Integration table. Clarified that each research track completion creates downstream implementation PRJs. Updated type to Infrastructure + Governance — Foundational Research + Platform Roadmap.** |
+| 3.2.3.1 | 2026-W12 | GTM_2026-W10_026 | GTM_2026-W11_330 | Initial document creation — jAIMSnet brand identity, SDLC alert (implementation paused), infrastructure live (DOKS/LB/Kuma NYC1), monorepo structure (Track 1 complete ADR-005/006/007/008), 8 namespaces, GitHub Flow + Hybrid CI/CD, platform status by phase, 8 research tracks, blocker analysis (@GTM/@THY questions), Hub vs Tenant architecture (Hybrid Option D), ISO 42001 alignment, 6 domains, 9 PRJ integrations, compliance roadmap |
 
 ---
 
@@ -697,11 +741,13 @@ jaimsnet/
 |----------|---------|------------|----------|----------|
 | PRJ-015_HybridArchitecture.md | 3.2.3.1 | GTM_2026-W09_104 | GTM_2026-W09_108 | _PROJECTS_/ (GH LIVE) |
 | PRJ-016_AIGateway-LiteLLM.md | 3.2.3.1 | GTM_2026-W10_122 | GTM_2026-W10_026 | _PROJECTS_/ (GH LIVE) |
-| PRJ-017_Observability-Langfuse.md | 3.2.3.1 | GTM_2026-W09_121 | GTM_2026-W09_108 | _PROJECTS_/ (GH LIVE) |
+| PRJ-017_Observability.md | 3.2.3.1 | GTM_2026-W09_121 | GTM_2026-W09_108 | _PROJECTS_/ (GH LIVE) |
 | PRJ-021_PostgreSQL-Operations.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W10_026 | _PROJECTS_/ |
 | PRJ-023_Context-Persistence-Pipeline.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W11_326 | _PROJECTS_/ |
 | PRJ-024_Secrets-Management-Infisical.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W11_328 | _PROJECTS_/ |
-| PRJ-026_Cybersecurity-Frameworks.md | 3.2.3.1 | GTM_2026-W10_026 | ⬜ AWAITING | _PROJECTS_/ |
+| PRJ-026_Cybersecurity-Frameworks-ISMS.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W10_026 | _PROJECTS_/ |
+| PRJ-032_OpenTofu-IaC.md | TBD | TBD | ⬜ TBD | _PROJECTS_/ (Future — from Track 2) |
+| PRJ-035_SemaphoreUI.md | TBD | TBD | ⬜ TBD | _PROJECTS_/ (Future — from Track 2+3) |
 | GUIDE-011_Governance-Oversight-VSA-Process.md | 3.2.1.1 | GTM_2026-W10_066 | GTM_2026-W10_073 | _GUIDES_/ |
 
 ---
@@ -724,7 +770,7 @@ jaimsnet/
 | #masterCCC | ✅ GTM_2026-W10_026 |
 | Approval CCC-ID | ✅ GTM_2026-W11_330 |
 | Version History | ✅ Included |
-| Related Documents | ✅ Included |
+| Related Documents | ✅ Included (+PRJ-032, PRJ-035) |
 | Discovered By (BP-047) | ✅ Included |
 | Lifecycle Stage | 🔄 IN PROGRESS |
 | VSA Eligibility | ✅ FULL or DEEP FULL (at APPROVED+ stage) |
