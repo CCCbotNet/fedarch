@@ -1,22 +1,23 @@
-# PRJ-017: Observability — 3-Layer Stack
+# PRJ-017_Observability.md
 
-## 📋 PRJ-017_Observability_v3.2.1.1.md
-## ♾️ WeOwnNet 🌐 | jAIMSnet
+## 📋 Document Metadata
 
 | Field | Value |
 |-------|-------|
-| Document | PRJ-017_Observability.md |
-| Version | 3.2.1.1 |
-| CCC-ID | GTM_2026-W10_122 |
-| Created | 2026-02-27 (W09) |
-| Updated | 2026-03-04 (W10) |
-| Season | #WeOwnSeason003 🚀 |
-| Status | ✅ APPROVED |
-| Lifecycle Stage | ✅ APPROVED (#DocLifecycle) |
-| Source of Truth | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-017_Observability.md) |
-| Tags | #Observability #Langfuse #UptimeKuma #jAIMSnet #FOSS #FlowsBros #Prometheus #Grafana #Loki |
-| Brand | **jAIMSnet** (AI Management Systems network) |
-| Urgency | 🔴 **HIGH — 5 blind incidents W06-W09, $7,277 no visibility** |
+| **Document** | PRJ-017_Observability.md |
+| **Version** | **v3.2.3.1** |
+| **CCC-ID** | RMN_2026-W12_075 |
+| **Approval CCC-ID** | GTM_2026-W10_161 (existing) |
+| **Created** | 2026-02-27 (W09) |
+| **Updated** | **2026-03-19 (W12)** |
+| **Season** | #WeOwnSeason003 🚀 |
+| **Status** | ✅ APPROVED — 🔄 DEPLOYING W12 |
+| **Lifecycle Stage** | 🚀 GH LIVE |
+| **#LLMmodel** | Claude Sonnet 4.6 |
+| **Source of Truth** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-017_Observability-3Layer-jAIMSnet-Stack.md) |
+| **Tags** | #Observability #Langfuse #UptimeKuma #jAIMSnet #FOSS #FlowsBros #Prometheus #Grafana #Loki #Tempo #Alloy #Mimir |
+| **Brand** | **jAIMSnet** (AI Management Systems network) |
+| **Urgency** | 🔴 **HIGH — 6 blind incidents W06-W11, 11.5 hrs no visibility** |
 
 ---
 
@@ -32,27 +33,27 @@
 8. [jAIMS.app Domain Family](#-jaimsapp-domain-family)
 9. [LiteLLM Integration (PRJ-016)](#-litellm-integration-prj-016)
 10. [Multi-Tenant Tracking (#ZeroTo100)](#-multi-tenant-tracking-zeroto100)
-11. [Self-Hosted Architecture](#-self-hosted-architecture)
-12. [Phase 0 — DO Infrastructure Observability](#-phase-0--do-infrastructure-observability)
+11. [Deployment Architecture — jAIMSnet DOKS Cluster](#-deployment-architecture--jaimsnet-doks-cluster)
+12. [Phase 0 — Langfuse + Uptime Kuma (Deploying W11-W12)](#-phase-0--langfuse--uptime-kuma-deploying-w11-w12)
 13. [Phase 0 — Deployment Checklist](#-phase-0--deployment-checklist)
-14. [Phase 0 — Docker Compose](#-phase-0--docker-compose)
+14. [Phase 0 — K8s Manifests (jAIMSnet DOKS)](#-phase-0--k8s-manifests-jaimsnet-doks)
 15. [Phase 0 — Verification (#SmokeTest)](#-phase-0--verification-smoketest)
-16. [Phase 0.5 — Infrastructure Observability](#-phase-05--infrastructure-observability)
+16. [Phase 0.5 — Full LGTM + Tempo + Mimir + Alloy Stack](#-phase-05--full-lgtm--tempo--mimir--alloy-stack)
 17. [Phase 0.5 — Deployment Checklist](#-phase-05--deployment-checklist)
-18. [Phase 0.5 — Docker Compose](#-phase-05--docker-compose)
+18. [Phase 0.5 — K8s Deployment (Helm Charts)](#-phase-05--k8s-deployment-helm-charts)
 19. [Phase 0.5 — Verification (#SmokeTest)](#-phase-05--verification-smoketest)
-20. [Architecture](#-architecture)
-21. [Phase 1 — Local Services (GB10-1)](#-phase-1--local-services-gb10-1)
-22. [Phase 2 — LiteLLM Integration](#-phase-2--litellm-integration)
-23. [Phase 3 — Full Stack](#-phase-3--full-stack)
-24. [OTEL Instrumentation Plan](#-otel-instrumentation-plan)
-25. [Dashboard Configuration](#-dashboard-configuration)
-26. [Integration with PRJ-016 (LiteLLM)](#-integration-with-prj-016-litellm)
+20. [Phase 1 — Local Services (GB10-1)](#-phase-1--local-services-gb10-1)
+21. [Phase 2 — LiteLLM Integration](#-phase-2--litellm-integration)
+22. [Phase 3 — Full Stack](#-phase-3--full-stack)
+23. [OTEL Instrumentation Plan](#-otel-instrumentation-plan)
+24. [Dashboard Configuration](#-dashboard-configuration)
+25. [Hub + Tenant Observability Architecture](#-hub--tenant-observability-architecture)
+26. [Integration with Other PRJs](#-integration-with-other-prjs)
 27. [Project Team](#-project-team)
 28. [MAIT Architecture — 3 MAITs](#-mait-architecture--3-maits)
 29. [Risk Matrix](#-risk-matrix)
 30. [Relationship to Other Projects](#-relationship-to-other-projects)
-31. [Discovered By](#-discovered-by)
+31. [Discovered By (BP-047)](#-discovered-by-bp-047)
 32. [Related Documents](#-related-documents)
 33. [Version History](#-version-history)
 
@@ -63,16 +64,17 @@
 | Field | Value |
 |-------|-------|
 | Project ID | **PRJ-017** |
-| Title | **Observability — Langfuse Deployment** |
+| Title | **Observability — 3-Layer jAIMSnet Stack** |
 | Type | Infrastructure — Observability |
 | Priority | 🔴 P0 (Phase 0 + 0.5) / 🟠 P1 (Phase 1-3) |
 | Owner | @GTM (Layers 2+3) + @RMN (Layer 1) |
 | Brand | **jAIMSnet** |
-| Deployment | Phase 0: DO Droplet ATL1 / Phase 0.5: DO Droplet or GB10-1 / Phase 1+: GB10-1 #NoDe |
-| Timeline | **Phase 0: W10** / **Phase 0.5: W10-W11** / Phase 1: W11 / Phase 2: W12 / Phase 3: W13+ |
-| Depends on | Phase 0: None / Phase 0.5: Phase 0 / Phase 1: PRJ-015 / Phase 2: PRJ-016 |
+| Deployment | Phase 0+0.5: jAIMSnet DOKS Cluster (ATL1) + Uptime Kuma Droplet (NYC1) / Phase 1+: GB10-1 #NoDe |
+| Timeline | **Phase 0: W11-W12** / **Phase 0.5: W11-W12** / Phase 1: W12+ / Phase 2: W12 / Phase 3: W13+ |
+| Depends on | Phase 0: PRJ-025 (jAIMSnet cluster) / Phase 1: PRJ-015 / Phase 2: PRJ-016 |
 | Feeds into | PRJ-016 (LiteLLM OTEL → Langfuse) |
 | #masterCCC | GTM_2026-W10_122 |
+| Approval CCC-ID | GTM_2026-W10_161 |
 
 ---
 
@@ -118,16 +120,7 @@
 | Continual improvement | Data-driven optimization |
 | Documentation | #FedArch governance (SharedKernel, BP, PROTO) |
 | Accountability | CCC attribution system |
-| **Infrastructure monitoring** | **Prometheus + Grafana + Loki (Layer 1)** |
-
-### Ecosystem Brand Map
-
-| Brand | Audience | Focus |
-|-------|----------|-------|
-| ♾️ WeOwnNet 🌐 | Real estate cooperatives | Cooperative ownership |
-| 🔥 BurnedOut Media 🔀 | Burned out professionals | Retreat + coaching |
-| **jAIMSnet** | AI practitioners + infrastructure | **Full-stack observability + AI management** |
-| CCCbot.Net | CCC governance | Onchain cooperative |
+| **Infrastructure monitoring** | **Prometheus + Grafana + Loki + Tempo + Mimir (Layer 1)** |
 
 ### jAIMSnet × PRJ-017
 
@@ -135,21 +128,10 @@
 |-------------------|---------------|
 | Langfuse deployment | jAIMSnet Layer 3 (AI observability) |
 | Uptime Kuma | jAIMSnet Layer 2 (endpoint monitoring) |
-| **Prometheus + Grafana + Loki** | **jAIMSnet Layer 1 (infrastructure)** |
+| **Prometheus + Grafana + Loki + Tempo + Mimir + Alloy** | **jAIMSnet Layer 1 (infrastructure)** |
 | OTEL instrumentation | jAIMSnet tooling |
 | Dashboards | jAIMSnet monitoring platform |
 | @MAIT:#Langfuse + @MAIT:#UptimeKuma + @MAIT:#InfraObs | jAIMSnet knowledge base (3 MAITs) |
-
-### jAIMSnet GH Org — Proposed Repos
-
-| # | Repo | Purpose | Timeline |
-|---|------|---------|----------|
-| 1 | jAIMSnet/docs | Documentation + ISO 42001 mapping | W14+ |
-| 2 | jAIMSnet/langfuse-config | Langfuse deployment configs | W14+ |
-| 3 | jAIMSnet/otel-recipes | OTEL instrumentation recipes | W14+ |
-| 4 | **jAIMSnet/infra-stack** | **Prometheus + Grafana + Loki configs** | **W14+** |
-
-> **W10-W13:** PRJ-017 docs stay in CCCbotNet/fedarch. **W14+:** jAIMSnet GH org gets its own repos.
 
 ---
 
@@ -158,19 +140,24 @@
 ```
 ┌─────────────────────────────────────────────────┐
 │  Layer 3: AI OBSERVABILITY                       │
-│  Langfuse + OTEL                    → @GTM        │
+│  Langfuse + OTEL                    → @GTM       │
 │  "What is the AI doing?"                         │
-│  @MAIT:#Langfuse                                  │
+│  @MAIT:#Langfuse                                 │
+│  Deployment: jAIMSnet DOKS (ATL1)                │
 ├─────────────────────────────────────────────────┤
 │  Layer 2: ENDPOINT MONITORING                    │
-│  Uptime Kuma                       → @GTM        │
+│  Uptime Kuma                        → @GTM       │
 │  "Is it reachable?"                              │
 │  @MAIT:#UptimeKuma                               │
+│  Deployment: Standalone Droplet (NYC1)           │
 ├─────────────────────────────────────────────────┤
 │  Layer 1: INFRASTRUCTURE                         │
-│  Prometheus + Grafana + Loki       → @RMN        │
+│  Prometheus + Grafana + Loki        → @RMN       │
+│  + Tempo + Mimir + Alloy                         │
 │  "What is the machine doing?"                    │
 │  @MAIT:#InfraObs                                 │
+│  Deployment: jAIMSnet DOKS (ATL1)                │
+│             → Phase 1: GB10-1 #NoDe             │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -178,18 +165,20 @@
 |-------|------|-------|-------|---------|
 | **3** | AI Observability | Langfuse + OTEL | @GTM | "What is the AI doing?" |
 | **2** | Endpoint Monitoring | Uptime Kuma | @GTM | "Is it reachable?" |
-| **1** | Infrastructure | Prometheus + Grafana + Loki | @RMN | "What is the machine doing?" |
+| **1** | Infrastructure | Prometheus + Grafana + Loki + Tempo + Mimir + Alloy | @RMN | "What is the machine doing?" |
 
 ### Why 3 Layers
 
-| Question | Layer 3 (Langfuse) | Layer 2 (Kuma) | Layer 1 (Prom/Grafana) |
-|----------|------------------|----------------|----------------------|
-| LLM call latency is high — why? | ✅ Shows latency | ❌ | ✅ **Shows CPU/GPU pressure** |
-| Website is down — why? | ❌ | ✅ Shows down | ✅ **Shows container crash** |
+| Question | Layer 3 (Langfuse) | Layer 2 (Kuma) | Layer 1 (LGTM+Tempo+Mimir) |
+|----------|------------------|----------------|---------------------------|
+| LLM call latency is high — why? | ✅ Shows latency | ❌ | ✅ Shows CPU/GPU pressure |
+| Website is down — why? | ❌ | ✅ Shows down | ✅ Shows container crash |
 | Tokens cost spiked — why? | ✅ Shows per-request cost | ❌ | ❌ |
-| Disk is full — what happens? | ❌ | ❌ | ✅ **Shows disk pressure** |
-| Container OOM killed — what? | ❌ | ✅ Shows endpoint gone | ✅ **Shows memory + restart** |
-| Need to search logs | ❌ | ❌ | ✅ **Loki log search** |
+| Disk is full — what happens? | ❌ | ❌ | ✅ Shows disk pressure |
+| Container OOM killed — what? | ❌ | ✅ Shows endpoint gone | ✅ Shows memory + restart |
+| Need to search logs | ❌ | ❌ | ✅ Loki log search |
+| Trace a request end-to-end | ❌ | ❌ | ✅ Tempo distributed tracing |
+| Long-term metrics retention | ❌ | ❌ | ✅ Mimir scalable storage |
 
 > **No single layer answers all questions. All 3 together = complete observability.**
 
@@ -204,38 +193,10 @@
 | 3 | W09 Tue | ~6.5 hrs | API key expired | @LDC report (blind) | Layer 3 (Langfuse) |
 | 4 | W09 Sun AM | ~18 min | API key restart | @GTM manual (blind) | Layer 3 (Langfuse) |
 | 5 | W09 Sun PM | ~9 min | API key lost | @GTM manual (blind) | Layer 3 + Layer 2 |
-| **TOTAL** | | **~9.5 hrs** | **All blind** | **All human-detected** | **All preventable** |
+| 6 | W10 Mon | ~2h | INT-P01 OOM + Infisical broken | Manual debugging | Layer 1 + Layer 3 |
+| **TOTAL** | | **~11.5 hrs** | **All blind** | **All human-detected** | **All preventable** |
 
-> **9.5 hours of cumulative downtime. All blind. All same pattern. All preventable with observability.**
-
----
-
-## 📋 Why Phoenix (Legacy Context)
-
-| Field | Value |
-|-------|-------|
-| Product | [Arize Phoenix](https://github.com/Arize-ai/phoenix) |
-| License | **BSD-3-Clause** ✅ (FOSS — permissive) |
-| Stars | 10K+ |
-| Score | **33/35** (GTM_2026-W09_114) |
-| Setup | `pip install arize-phoenix` + `phoenix serve` = **2 minutes** |
-| Footprint | **~500 MB RAM** |
-| Storage | SQLite (default) or PostgreSQL |
-| UI | Self-hosted web dashboard |
-| OTEL | ✅ Native OpenTelemetry support |
-
-### What We Have Now vs With Phoenix
-
-| Metric | Now | With Phoenix |
-|--------|-----|-------------|
-| LLM call visibility | ❌ None | ✅ Every call traced |
-| Token cost tracking | ❌ Manual top-up counting | ✅ Per-request cost |
-| Latency monitoring | ❌ None | ✅ Per-request latency |
-| RAG quality | ❌ Blind | ✅ Retrieval relevance scores |
-| Agent flows | ❌ Invisible | ✅ #ContextVolley visualization |
-| Embedding performance | ❌ Unknown | ✅ Embedding latency + quality |
-| Cache effectiveness | ❌ N/A (no cache yet) | ✅ Hit/miss tracking (PRJ-016) |
-| Error debugging | ❌ Log diving | ✅ Trace waterfall |
+> **11.5 hours of cumulative downtime. All blind. All same pattern. All preventable with observability.**
 
 ---
 
@@ -250,7 +211,6 @@
 | @RMN analysis | RMN_2026-W10_043 |
 | Approved | GTM_2026-W10_161 |
 | Sunk cost | **$0** — Phoenix never deployed |
-| Evaluation period | ❌ Not needed — clear winner |
 
 ### Comparison
 
@@ -260,7 +220,8 @@
 | **Priority #2 (FOSS)** | ⚠️ Questionable | ✅ **Aligned** | **Langfuse** 🏆 |
 | **LiteLLM integration** | 🟡 Manual OTEL config | ✅ **Native callback (5 min)** | **Langfuse** 🏆 |
 | **Multi-tenant** | 🟡 Manual tagging | ✅ **Automatic projects** | **Langfuse** 🏆 |
-| **Self-hosted** | ✅ Docker | ✅ Docker | Tie |
+| **Self-hosted** | ✅ Docker | ✅ Docker + K8s | Langfuse 🏆 |
+| **Score** | 3.5/10 | **9.5/10** | **Langfuse** 🏆 |
 | **@RMN recommends** | ❌ | ✅ | **Langfuse** 🏆 |
 
 ### Learning
@@ -268,6 +229,21 @@
 | ID | Learning |
 |----|----------|
 | L-129 | ELv2 (Elastic License v2) is NOT OSI-approved — conflicts with Priority #2 (FOSS); ecosystem MUST prefer OSI-approved licenses (MIT, Apache 2.0, AGPL) over source-available licenses (ELv2, BSL, SSPL) when FOSS alternatives exist |
+
+---
+
+## 📋 Why Langfuse
+
+| Factor | Value |
+|--------|-------|
+| **License** | ✅ MIT (OSI-approved FOSS) |
+| **Stars** | 10K+ GitHub stars |
+| **LiteLLM Native** | `success_callback: ["langfuse"]` — zero extra config |
+| **Multi-tenant** | Automatic project-based isolation |
+| **Self-hosted** | Full control, full prompt logging |
+| **Auto cost tracking** | Per-request cost visible immediately |
+| **OTEL compatible** | Standard OTEL SDK support |
+| **K8s native** | Helm chart available, DOKS compatible |
 
 ---
 
@@ -281,39 +257,20 @@
 | **Tool calls** | MAIT thread interactions | MAIT response quality |
 | **Agent spans** | Parent → child request chains | #ContextVolley flow visualization |
 | **Cache events** | LiteLLM Redis (PRJ-016) | Hit/miss rate, savings |
-| **Failover events** | LiteLLM provider switching | OpenRouter → Ollama transitions |
+| **Failover events** | LiteLLM provider switching | OpenRouter → vLLM transitions |
 | **Errors** | Any failure in pipeline | Root cause analysis |
 
 ---
 
 ## 📋 jAIMS.app Domain Family
 
-### All Observability Under One Roof
-
 | Subdomain | Service | Layer | Status |
 |-----------|---------|-------|--------|
-| **langfuse.jAIMS.app** | **Langfuse** | Layer 3 (LLM) | 🔴 **DEPLOYING** |
-| **kuma.jAIMS.app** | Uptime Kuma | Layer 2 (Endpoints) | ⬜ Phase 0 |
-| **grafana.jAIMS.app** | Grafana | Layer 2 (Metrics) | ⬜ Phase 2 |
-| **litellm.jAIMS.app** | LiteLLM (PRJ-016) | Router | 🔴 **DEPLOYING** |
-
-### Why jAIMS.app
-
-| Factor | Value |
-|--------|-------|
-| Brand | **jAIMSnet = platform engineering** (PRJ-025) |
-| Scope | Observability = core jAIMSnet function |
-| Separation | Agents = WeOwn.Agency. Data = WeOwn.tools. **Observability = jAIMS.app** |
-| Consensus | @RMN + @GTM agree |
-
-### Domain Family Summary
-
-| Domain | Scope |
-|--------|-------|
-| **WeOwn.Agency** | AI agent instances (#AnythingLLM) |
-| **WeOwn.tools** | Data + infrastructure services |
-| **jAIMS.app** | **Observability + platform engineering** |
-| **ccc.bot** | CCC governance |
+| **langfuse.jAIMS.app** | **Langfuse** | Layer 3 (LLM) | 🔄 Deploying |
+| **kuma.jAIMS.app** | Uptime Kuma (NYC1) | Layer 2 (Endpoints) | ✅ LIVE |
+| **grafana.jAIMS.app** | Grafana | Layer 1 (Metrics) | 📋 Phase 0.5 |
+| **litellm.jAIMS.app** | LiteLLM (PRJ-016) | Gateway | 🔄 Deploying |
+| **pgadmin.jAIMS.app** | pgAdmin (PRJ-021) | Database UI | 📋 Planned |
 
 ---
 
@@ -322,9 +279,9 @@
 ### How LiteLLM Feeds Langfuse
 
 ```
-ALL INSTANCES → LiteLLM (PRJ-016)
+ALL INSTANCES → LiteLLM (PRJ-016) [gateway namespace, jAIMSnet DOKS]
                     │
-                    ├── Routes to: MI300X / OpenRouter / GB10
+                    ├── Routes to: MI300X/MI325X / OpenRouter / GB10
                     │
                     └── success_callback: ["langfuse"]
                         │
@@ -344,31 +301,14 @@ litellm_settings:
 environment_variables:
   LANGFUSE_PUBLIC_KEY: "pk-lf-..."
   LANGFUSE_SECRET_KEY: "sk-lf-..."
-  LANGFUSE_HOST: "https://langfuse.jaims.app"
+  LANGFUSE_HOST: "https://langfuse.jAIMS.app"
 ```
 
 > **5 minutes.** Add 3 environment variables to LiteLLM. Every LLM call across every instance = automatically traced.
 
-### Why Langfuse Deploys WITH LiteLLM (Not Before)
-
-| Previously (Phoenix) | Now (Langfuse) |
-|---------------------|----------------|
-| Phoenix deploys BEFORE LiteLLM | **Langfuse deploys WITH LiteLLM** |
-| Separate OTEL config per instance | **Single LiteLLM callback — all instances** |
-| More complex, more steps | **5 minutes, 3 env vars** |
-
 ---
 
 ## 📋 Multi-Tenant Tracking (#ZeroTo100)
-
-### Why Multi-Tenant Matters
-
-| Scenario | Without Langfuse | With Langfuse |
-|----------|-----------------|---------------|
-| "How much did @GTM spend today?" | ❌ Unknown | ✅ **$47.23** |
-| "Cost per AgencyPRO customer?" | ❌ Unknown | ✅ **$12.50/customer/mo** |
-| "Which instance uses most tokens?" | ❌ Unknown | ✅ **INT-P01 (42%)** |
-| "Llama vs Claude quality?" | ❌ Unknown | ✅ **Llama 94.2% match** |
 
 ### Langfuse Multi-Tenant Architecture
 
@@ -377,10 +317,9 @@ Langfuse Projects:
 ├── weownnet-governance    ← INT-P01 traces
 ├── burnedout-media        ← INT-P02 traces
 ├── pop-database           ← INT-P03 traces
-├── weown-events           ← INT-P04 traces
 ├── agencypro-production   ← INT-P05 traces
 │   ├── customer-001       ← Per AgencyPRO customer
-│   └── ... (40 customers in March)
+│   └── ... (scale to 40-100 customers)
 ├── seasonal-shared        ← INT-S003 traces
 ├── home-gtm               ← INT-OG1 traces
 └── home-rmn               ← INT-OG8 traces
@@ -388,172 +327,176 @@ Langfuse Projects:
 
 ---
 
-## 📋 Self-Hosted Architecture
+## 📋 Deployment Architecture — jAIMSnet DOKS Cluster
 
-### Co-Location Strategy (All Services — 1 Droplet)
+### Updated Architecture (W11-W12)
+
+> **⚠️ KEY CHANGE FROM v3.2.1.1:** jAIMSnet is deployed on a DOKS cluster (not Docker Droplets), with the sole exception of Uptime Kuma which runs on a standalone Droplet in NYC1 for geographic resilience.
 
 ```
-DO Droplet (ATL1 — "jAIMSnet Observability")
-├── LiteLLM (PRJ-016) — port 4000
-├── Langfuse — port 3000
-├── Uptime Kuma — port 3001
-├── Caddy (reverse proxy + SSL)
-│   ├── litellm.jaims.app → :4000
-│   ├── langfuse.jaims.app → :3000
-│   └── kuma.jaims.app → :3001
-└── PostgreSQL connection → ATL1 managed cluster
+Internet → DO Load Balancer (129.212.240.75 · ATL1)
+  → ingress-nginx (jAIMSnet DOKS cluster · ATL1)
+    → litellm.jAIMS.app  → LiteLLM   (gateway namespace)
+    → langfuse.jAIMS.app → Langfuse  (observability namespace)
+    → pgadmin.jAIMS.app  → pgAdmin   (observability namespace)
+    → grafana.jAIMS.app  → Grafana   (observability namespace) [Phase 0.5]
+    → cert-manager (auto-TLS via Let's Encrypt)
+
+LiteLLM → Redis               (gateway/redis)
+LiteLLM → Langfuse            (success_callback: ["langfuse"])
+LiteLLM → OpenRouter / vLLM   (providers)
+LiteLLM → PostgreSQL          (spend tracking · PRJ-021)
+Langfuse → PostgreSQL         (traces + evals · PRJ-021)
+Infisical Cloud → Infisical Operator → K8s Secrets → Pods (PRJ-024)
+
+Uptime Kuma (STANDALONE DROPLET · NYC1 · ~$6/mo — separate for resilience)
+  → monitors: litellm.jAIMS.app, langfuse.jAIMS.app, pgadmin.jAIMS.app,
+              INT-P01, INT-OG1, INT-OG8, INT-P02, PostgreSQL cluster
+
+[Phase 0.5] Prometheus + Grafana + Loki + Tempo + Mimir + Alloy
+            (observability namespace · jAIMSnet DOKS · ATL1)
+
+[Phase 2] vLLM on MI300X/MI325X GPU Droplet (VPC · ATL1) → LiteLLM backend
 ```
 
-### Why Self-Host from Day 1
+### Why Uptime Kuma Is Separate (NYC1)
 
-| Factor | Cloud | Self-Hosted |
-|--------|-------|-------------|
-| Data sovereignty | 🟡 Third-party | ✅ **Our servers (ATL1)** |
-| Prompt logging | ❌ Disabled (PII) | ✅ **ENABLED** |
-| Cost | Free → $59/mo | **$0 extra** (co-locate) |
-| Priority #3 | ❌ Violates | ✅ **Aligned** |
-
-### Droplet Spec
-
-| Field | Value |
-|-------|-------|
-| Region | ATL1 |
-| Plan | Basic — 2 vCPU / 4 GB / 80 GB |
-| Cost | **~$24/mo** (all services) |
+| Reason | Detail |
+|--------|--------|
+| **Resilience** | If ATL1 cluster fails, Kuma still monitors and alerts |
+| **Independence** | Kuma monitors cluster health externally |
+| **Geographic Diversity** | NYC1 provides geographic diversity from ATL1 |
+| **Cost** | ~$6/mo Basic Droplet vs cluster resources |
+| **Simplicity** | Docker Compose (single container) vs K8s complexity |
 
 ---
 
-## 📋 Phase 0 — DO Infrastructure Observability
-
-### Why Phase 0
-
-| Incident | When | Detected By | With Phase 0 |
-|----------|------|------------|-------------|
-| API key lost (W08) | 2h 18m downtime | User report | ✅ 0 traces → alert in <60s |
-| API key restart (W09) | ~18 min | @GTM manual | ✅ Trace failure → alert |
-| API key lost (W09 AM) | ~69 min | @LDC report | ✅ 0 traces → alert in <60s |
-| API key lost (W09 PM) | ~9 min | @GTM manual | ✅ 0 traces → alert in <60s |
-| $5,249 blind spend | 91 days | Manual counting | ✅ Per-instance cost dashboard |
-
-> **5 incidents detected by humans. All 5 would have been caught by Langfuse in <60 seconds.**
+## 📋 Phase 0 — Langfuse + Uptime Kuma (Deploying W11-W12)
 
 ### Phase 0 Scope
 
 | # | What to Observe | Source | Method |
 |---|----------------|--------|--------|
-| 1 | **LLM calls** (INT-P01, INT-P02) | AnythingLLM | OTEL SDK → Langfuse |
-| 2 | **OpenRouter API health** | LLM provider | Trace success/failure |
-| 3 | **Token cost per instance** | OTEL metadata | Langfuse dashboard |
-| 4 | **Request latency** | OTEL spans | Langfuse dashboard |
+| 1 | **LLM calls** (all instances) | AnythingLLM → LiteLLM | LiteLLM callback → Langfuse |
+| 2 | **Token cost per instance** | OTEL metadata | Langfuse dashboard |
+| 3 | **Request latency** | OTEL spans | Langfuse dashboard |
+| 4 | **Cache effectiveness** | LiteLLM Redis | Langfuse traces |
 | 5 | **Error rates** | OTEL traces | Langfuse alerting |
-| 6 | **Endpoint uptime** | All domains | Uptime Kuma |
-| 7 | **SSL certificate expiry** | All domains | Uptime Kuma |
-| 8 | **PostgreSQL connectivity** | DO Managed DB | Uptime Kuma |
+| 6 | **Endpoint uptime** | All domains | Uptime Kuma (NYC1) |
+| 7 | **SSL certificate expiry** | All domains | Uptime Kuma (NYC1) |
+| 8 | **PostgreSQL connectivity** | DO Managed DB | Uptime Kuma (NYC1) |
 
-### Phase 0 Infrastructure
+### 7 Uptime Kuma Monitors (NYC1 Droplet)
 
-| Field | Value |
-|-------|-------|
-| Host | **DO Droplet — ATL1** |
-| Plan | Basic — 2 vCPU / 4 GB / 80 GB |
-| Cost | **$24/mo** |
-| Domain | Langfuse.jAIMS.app |
-| Duration | Until GB10-1 arrives → migrate to #NoDe |
-| Services | Langfuse (REQUIRED) + Uptime Kuma (REQUIRED) |
-
-### Resource Utilization (Phase 0)
-
-| Service | RAM | Port |
-|---------|-----|------|
-| Langfuse | ~500 MB | 3000 |
-| Uptime Kuma | ~50 MB | 3001 |
-| **TOTAL** | **~550 MB / 2 GB (28%)** | |
-
-### Observability Layers — Phase 0
-
-| Layer | Tool | What It Sees |
-|-------|------|-------------|
-| **Layer 3 (AI)** | Langfuse | LLM calls, tokens, cost, latency, RAG, traces |
-| **Layer 2 (Endpoints)** | Uptime Kuma | Endpoint uptime, SSL, DNS, PostgreSQL, OpenRouter |
-
-> **Phase 0 = Layer 3 + Layer 2. Layer 1 = Phase 0.5 (@RMN).**
-
-### Migration Path
-
-```
-W10:  Langfuse + Uptime Kuma on DO Droplet (ATL1) — $24/mo
-      └── Observes: INT-P01, INT-P02, PostgreSQL, WordPress
-
-W10-W11: @RMN adds Prom/Grafana/Loki (Phase 0.5)
-         └── Co-locate on same Droplet ($24/mo upgrade) OR GB10-1
-
-W11+: GB10-1 arrives (PRJ-015)
-      └── Migrate ALL observability to GB10-1 #NoDe ($0/mo)
-      └── Destroy DO Droplet (save $18-24/mo)
-      └── Continues observing cloud from edge
-```
+| # | Endpoint | Type | Interval | Priority |
+|---|----------|------|----------|----------|
+| 1 | litellm.jAIMS.app | HTTP(s) | 1 min | 🔴 P0 |
+| 2 | langfuse.jAIMS.app | HTTP(s) | 1 min | 🔴 P0 |
+| 3 | pgadmin.jAIMS.app | HTTP(s) | 5 min | 🟠 P1 |
+| 4 | INT-P01 (AI.WeOwn.Agency) | HTTP(s) | 1 min | 🔴 P0 |
+| 5 | INT-OG1 (AI.YonksTEAM.xyz) | HTTP(s) | 5 min | 🟠 P1 |
+| 6 | INT-OG8 (AI.RomanDiD.xyz) | HTTP(s) | 5 min | 🟠 P1 |
+| 7 | PostgreSQL Cluster | TCP Port (25060) | 1 min | 🔴 P0 |
 
 ---
 
 ## 📋 Phase 0 — Deployment Checklist
 
-| # | Step | Owner | Depends On | Status |
-|---|------|-------|-----------|--------|
-| 1 | Create jAIMSnet DO TEAM | @GTM | None | ⬜ |
-| 2 | Create DO Droplet (ATL1, 4 GB) | @RMN | Step 1 | ⬜ |
-| 3 | Install Docker + Docker Compose | @RMN | Step 2 | ⬜ |
-| 4 | Create langfuse_db on ATL1 PostgreSQL | @RMN | Step 2 | ⬜ |
-| 5 | Create langfuse_user (restricted) | @RMN | Step 4 | ⬜ |
-| 6 | Create docker-compose.yml (all services) | @RMN | Step 3 | ⬜ |
-| 7 | Create Caddyfile (3 subdomains) | @RMN | Step 6 | ⬜ |
-| 8 | Configure DNS (langfuse + kuma + litellm → jAIMS.app) | @GTM | Step 2 | ⬜ |
-| 9 | docker compose up -d | @RMN | Step 7 | ⬜ |
-| 10 | Verify Langfuse UI (https://langfuse.jaims.app) | @GTM | Step 9 | ⬜ |
-| 11 | Create Langfuse API keys | @RMN | Step 10 | ⬜ |
-| 12 | Add Langfuse callback to LiteLLM (3 env vars) | @RMN | Step 11 | ⬜ |
-| 13 | Enable full prompt/response logging | @RMN | Step 12 | ⬜ |
-| 14 | Create Langfuse projects (per instance) | @RMN | Step 10 | ⬜ |
-| 15 | Configure Uptime Kuma monitors (12 targets) | @GTM | Step 9 | ⬜ |
-| 16 | Send test LLM call → verify trace in Langfuse | @GTM | Step 12 | ⬜ |
-| 17 | Phase 0 #SmokeTest (12-point) | @GTM | Step 16 | ⬜ |
-| 18 | FULL:SYNC:META | @GTM | Step 17 | ⬜ |
+| # | Step | Owner | Status |
+|---|------|-------|--------|
+| 1 | Deploy Langfuse to jAIMSnet DOKS (observability namespace) | @RMN | ⬜ |
+| 2 | Configure Langfuse K8s Ingress (langfuse.jAIMS.app, cert-manager) | @RMN | ⬜ |
+| 3 | Connect Langfuse to PostgreSQL (PRJ-021) | @RMN | ⬜ |
+| 4 | Store Langfuse credentials in Infisical (PRJ-024) | @RMN | ⬜ |
+| 5 | Create Langfuse API keys (per instance) | @RMN | ⬜ |
+| 6 | Create Langfuse projects (per instance) | @RMN | ⬜ |
+| 7 | Deploy Uptime Kuma on NYC1 Droplet (Docker Compose) | @GTM | ✅ LIVE |
+| 8 | Configure DNS (kuma.jAIMS.app → NYC1 Droplet) | @GTM | ✅ LIVE |
+| 9 | Configure 7 Uptime Kuma monitors | @GTM | ⬜ |
+| 10 | Add Langfuse callback to LiteLLM (3 env vars) | @RMN | ⬜ |
+| 11 | Send test LLM call → verify trace in Langfuse | @GTM | ⬜ |
+| 12 | Phase 0 #SmokeTest (8-point) | @GTM | ⬜ |
+| 13 | FULL:SYNC:META | @GTM | ⬜ |
 
 ---
 
-## 📋 Phase 0 — Docker Compose
+## 📋 Phase 0 — K8s Manifests (jAIMSnet DOKS)
+
+### Langfuse Deployment + Ingress
 
 ```yaml
-# docker-compose.yml — jAIMSnet Observability Phase 0 (DO Droplet — ATL1)
+# observability/langfuse-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: langfuse
+  namespace: observability
+  labels:
+    app: langfuse
+    jaimsnet.component: observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: langfuse
+  template:
+    metadata:
+      labels:
+        app: langfuse
+    spec:
+      containers:
+      - name: langfuse
+        image: langfuse/langfuse:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: langfuse-db-secret
+              key: url
+        - name: NEXTAUTH_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: langfuse-secret
+              key: nextauth-secret
+        - name: NEXTAUTH_URL
+          value: "https://langfuse.jAIMS.app"
+        - name: SALT
+          valueFrom:
+            secretKeyRef:
+              name: langfuse-secret
+              key: salt
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: langfuse-ingress
+  namespace: observability
+  annotations:
+    cert-manager.io/cluster-issuer: "jaimsnet-cluster-issuer"
+spec:
+  rules:
+  - host: langfuse.jAIMS.app
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: langfuse-service
+            port:
+              number: 3000
+```
+
+### Uptime Kuma Docker Compose (NYC1 Standalone Droplet)
+
+```yaml
+# docker-compose.yml — Uptime Kuma (NYC1 Droplet)
 version: '3.8'
 
 services:
-  litellm:
-    image: ghcr.io/berriai/litellm:main-latest
-    container_name: litellm
-    restart: unless-stopped
-    ports:
-      - "4000:4000"
-    volumes:
-      - ./litellm_config.yaml:/app/config.yaml
-    environment:
-      - LANGFUSE_PUBLIC_KEY=${LANGFUSE_PUBLIC_KEY}
-      - LANGFUSE_SECRET_KEY=${LANGFUSE_SECRET_KEY}
-      - LANGFUSE_HOST=http://langfuse:3000
-      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
-    command: ["--config", "/app/config.yaml"]
-
-  langfuse:
-    image: langfuse/langfuse:latest
-    container_name: langfuse
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    environment:
-      - DATABASE_URL=postgresql://langfuse_user:${DB_PASSWORD}@${DB_HOST}:25060/langfuse_db?sslmode=require
-      - NEXTAUTH_SECRET=${NEXTAUTH_SECRET}
-      - NEXTAUTH_URL=https://langfuse.jaims.app
-      - SALT=${SALT}
-
   uptime-kuma:
     image: louislam/uptime-kuma:1
     container_name: uptime-kuma
@@ -561,237 +504,199 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - uptime_data:/app/data
-
-  caddy:
-    image: caddy:2-alpine
-    container_name: caddy
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
-      - caddy_data:/data
-      - caddy_config:/config
+      - kuma-data:/app/data
 
 volumes:
-  uptime_data:
-  caddy_data:
-  caddy_config:
+  kuma-data:
 ```
-
-### Caddyfile
-
-```
-langfuse.jaims.app {
-    reverse_proxy langfuse:3000
-}
-
-kuma.jaims.app {
-    reverse_proxy uptime-kuma:3001
-}
-
-litellm.jaims.app {
-    reverse_proxy litellm:4000
-}
-```
-
-### Uptime Kuma Monitors
-
-| # | Endpoint | Type | Interval |
-|---|----------|------|----------|
-| 1 | AI.WeOwn.Agency (INT-P01) | HTTPS | 60s |
-| 2 | s003.ccc.bot (INT-S003) | HTTPS | 60s |
-| 3 | Lite.BurnedOut.xyz (INT-P02) | HTTPS | 60s |
-| 4 | BurnedOutAdvisor.com | HTTPS | 60s |
-| 5 | OpenRouter API | HTTPS | 60s |
-| 6 | DO Managed PostgreSQL | TCP:25060 | 300s |
-| 7 | SSL certificates (all) | Certificate | Daily |
 
 ---
 
 ## 📋 Phase 0 — Verification (#SmokeTest)
 
-### Phase 0 #SmokeTest (12-Point)
+### Phase 0 #SmokeTest (8-Point)
 
 | # | Test | Expected | Status |
 |---|------|----------|--------|
-| 1 | Langfuse running | https://langfuse.jaims.app → login | ⬜ |
-| 2 | LiteLLM running | https://litellm.jaims.app → health | ⬜ |
-| 3 | LLM call trace | Make call via LiteLLM → trace in Langfuse | ⬜ |
-| 4 | Cost visible | Trace shows $ amount | ⬜ |
-| 5 | Latency visible | Trace shows ms | ⬜ |
-| 6 | Model tracked | Trace shows model name | ⬜ |
-| 7 | Prompt logged | Full prompt visible (self-hosted) | ⬜ |
-| 8 | Multi-project | Separate projects per instance | ⬜ |
-| 9 | Uptime Kuma running | https://kuma.jaims.app → dashboard | ⬜ |
-| 10 | Uptime Kuma monitors | 12 endpoints green | ⬜ |
-| 11 | Persistence (Langfuse) | Restart → traces retained | ⬜ |
-| 12 | Persistence (Kuma) | Restart → monitors retained | ⬜ |
+| 1 | Langfuse UI accessible | https://langfuse.jAIMS.app → login | ⬜ |
+| 2 | LLM call trace | Make call via LiteLLM → trace in Langfuse | ⬜ |
+| 3 | Cost visible | Trace shows $ amount | ⬜ |
+| 4 | Latency visible | Trace shows ms | ⬜ |
+| 5 | Prompt logged | Full prompt visible (self-hosted) | ⬜ |
+| 6 | Multi-project | Separate projects per instance | ⬜ |
+| 7 | Uptime Kuma running | https://kuma.jAIMS.app → dashboard | ✅ |
+| 8 | Uptime Kuma monitors | All 7 endpoints green | ⬜ |
 
 ---
 
-## 📋 Phase 0.5 — Infrastructure Observability
+## 📋 Phase 0.5 — Full LGTM + Tempo + Mimir + Alloy Stack
 
-### Why Phase 0.5
+### Why This Stack?
 
-> *"Running local LLMs on bare metal is even more of a reason to have node-level observability. Whether it's cloud or bare metal, a full observability stack is absolutely critical to monitor performance and identify any issues at an infra level."* — @RMN (GTM_2026-W09_185)
+> **Note:** Final tool confirmation depends on jAIMSnet roadmap research (PRJ-025 Tracks 4-5). However, Prometheus + Grafana + Loki + Tempo + Mimir + Alloy is the highly likely stack based on research to date. May be refined after PRJ-025 research is complete.
 
-| What Langfuse sees | What Langfuse DOESN'T see |
-|-------------------|-------------------------|
-| LLM call latency | ❌ Why latency is high (CPU pressure?) |
-| Token cost | ❌ Disk running out |
-| Trace failures | ❌ Container OOM kills |
-| | ❌ GPU thermal throttling |
-| | ❌ Log aggregation / search |
-| | ❌ Docker container health |
-| | ❌ Network I/O |
+| Factor | Value |
+|--------|-------|
+| **Stack** | Prometheus + Grafana + Loki + Tempo + Mimir + Alloy |
+| **Ecosystem** | All Grafana Labs FOSS tools — native integration |
+| **License** | All AGPL 3.0 / Apache 2.0 (FOSS) |
+| **K8s Native** | All designed for Kubernetes, Helm charts available |
+| **Status** | Highly likely (subject to PRJ-025 final research) |
 
-### Phase 0.5 Identity
+### LGTM+ Stack Components
 
-| Field | Value |
-|-------|-------|
-| Phase | **0.5** |
-| Name | Infrastructure Observability |
-| Tools | Prometheus + Grafana + Loki + node_exporter + cAdvisor + Promtail |
-| Owner | **@RMN** |
-| Timeline | W10-W11 (parallel to Phase 0) |
-| Dependency | Phase 0 (co-locate on DO Droplet or deploy on GB10-1) |
-| Trigger | @RMN Signal feedback (GTM_2026-W09_185) |
-| Standard | Industry standard / best practice (Prometheus + Grafana + Loki) |
+| Component | Tool | Purpose | Namespace | Port | License |
+|-----------|------|---------|-----------|------|---------|
+| **Metrics Collection** | Prometheus | Scrape metrics from nodes, pods, services | observability | 9090 | Apache 2.0 |
+| **Log Aggregation** | Loki | Collect and query logs | observability | 3100 | AGPL 3.0 |
+| **Distributed Tracing** | Tempo | Collect and query distributed traces | observability | 3200 | AGPL 3.0 |
+| **Log/Metric/Trace Collection** | Alloy | Ship logs, metrics, traces to Loki/Prom/Tempo | observability | — | Apache 2.0 |
+| **Long-term Metrics** | Mimir | Scalable, long-term Prometheus-compatible storage | observability | 9009 | AGPL 3.0 |
+| **Visualization** | Grafana | Dashboards for ALL observability signals | observability | 3000 | AGPL 3.0 |
 
-### Phase 0.5 Scope
+### Why Each Component
 
-| # | What to Monitor | Tool | Source |
-|---|----------------|------|--------|
-| 1 | CPU utilization | Prometheus + node_exporter | All hosts |
-| 2 | GPU utilization | Prometheus + nvidia_exporter | GB10-1 (Phase 1+) |
-| 3 | Memory pressure | Prometheus + node_exporter | All hosts |
-| 4 | Disk I/O + capacity | Prometheus + node_exporter | All hosts |
-| 5 | Container health | Prometheus + cAdvisor | Docker hosts |
-| 6 | Container restarts | Prometheus + cAdvisor | Docker hosts |
-| 7 | Network I/O | Prometheus + node_exporter | All hosts |
-| 8 | Log aggregation | Loki + Promtail | All services |
-| 9 | Log search | Grafana (Loki datasource) | All services |
-| 10 | Dashboard visualization | Grafana | All metrics |
+| Component | Why |
+|-----------|-----|
+| **Prometheus** | Industry standard, K8s native, extensive ecosystem |
+| **Loki** | Lightweight, K8s native, tight Grafana integration, FOSS |
+| **Tempo** | FOSS distributed tracing, integrates natively with Grafana + Loki, compatible with OTEL |
+| **Alloy** | Grafana's next-gen collector (replaces Promtail/Grafana Agent), handles logs + metrics + traces in one agent |
+| **Mimir** | Horizontal scaling for Prometheus metrics, long-term retention, multi-tenant |
+| **Grafana** | Single pane of glass for Prometheus + Loki + Tempo + Mimir |
 
-### Phase 0.5 Resource Requirements
+### What Langfuse sees vs LGTM+ stack
 
-| Service | RAM | Port |
-|---------|-----|------|
-| Prometheus | ~500 MB - 1 GB | 9090 |
-| Grafana | ~200-500 MB | 3000 |
-| Loki | ~500 MB - 1 GB | 3100 |
-| Promtail | ~50 MB | — |
-| node_exporter | ~20 MB | 9100 |
-| cAdvisor | ~50 MB | 8080 |
-| **TOTAL** | **~1.3 - 3 GB** | |
+| Question | Langfuse (Layer 3) | LGTM+ (Layer 1) |
+|----------|-------------------|-----------------|
+| LLM call latency — why? | ✅ Shows latency per request | ✅ Shows CPU/GPU pressure causing it |
+| Token cost | ✅ Per-request cost | ❌ |
+| Container OOM killed | ❌ | ✅ Shows memory + restart |
+| Log search | ❌ | ✅ Loki full-text log search |
+| Distributed trace (infra level) | ❌ | ✅ Tempo end-to-end infra trace |
+| Long-term metrics trends | ❌ | ✅ Mimir 1yr+ retention |
+| Disk/CPU/Memory | ❌ | ✅ Prometheus + node_exporter |
 
-### Deployment Options
+### Resource Requirements (LGTM+ Stack)
 
-| Option | Where | Cost | When |
-|--------|-------|------|------|
-| A: Co-locate on DO Droplet | NYC1 (upgrade to 4 GB) | $24/mo | W10 |
-| B: Deploy on GB10-1 directly | Northglenn, CO | $0/mo | W11+ (after PRJ-015) |
-| C: Separate DO Droplet | NYC1 | +$18/mo | W10 |
-
-> **@RMN decides deployment option.** Phase 0 MUST NOT be blocked on this decision.
+| Component | CPU Request | Memory Request | Storage |
+|-----------|:-----------:|:--------------:|:-------:|
+| Prometheus | 500m | 1Gi | 50Gi |
+| Grafana | 100m | 256Mi | 10Gi |
+| Loki | 500m | 1Gi | 100Gi |
+| Tempo | 500m | 1Gi | 100Gi |
+| Mimir | 500m | 1Gi | 200Gi |
+| Alloy | 100m | 256Mi | — |
+| **TOTAL** | **~2.2 CPU** | **~4.5 Gi** | **~460 Gi** |
 
 ---
 
 ## 📋 Phase 0.5 — Deployment Checklist
 
-| # | Step | Owner | Depends On | Status |
-|---|------|-------|-----------|--------|
-| 1 | Choose deployment option (A/B/C) | @RMN | None | ⬜ |
-| 2 | Provision host (if new) or upgrade Droplet | @RMN / @GTM | Step 1 | ⬜ |
-| 3 | Create `observability-infra/` directory | @RMN | Step 2 | ⬜ |
-| 4 | Create `docker-compose.observability-infra.yml` | @RMN | Step 3 | ⬜ |
-| 5 | Create `prometheus.yml` config | @RMN | Step 4 | ⬜ |
-| 6 | Create `promtail.yml` config | @RMN | Step 4 | ⬜ |
-| 7 | `docker compose up -d` | @RMN | Step 6 | ⬜ |
-| 8 | Verify Prometheus UI (http://<IP>:9090) | @RMN | Step 7 | ⬜ |
-| 9 | Verify Grafana UI (http://<IP>:3000) | @RMN | Step 7 | ⬜ |
-| 10 | Add Prometheus datasource in Grafana | @RMN | Step 9 | ⬜ |
-| 11 | Add Loki datasource in Grafana | @RMN | Step 9 | ⬜ |
-| 12 | Import node_exporter dashboard | @RMN | Step 10 | ⬜ |
-| 13 | Import cAdvisor dashboard | @RMN | Step 10 | ⬜ |
-| 14 | Phase 0.5 #SmokeTest (10-point) | @RMN | Step 13 | ⬜ |
-| 15 | FULL:SYNC:META | @RMN | Step 14 | ⬜ |
-
-> **15 steps. @RMN owns all steps. @GTM assists with Droplet upgrade if Option A.**
+| # | Step | Owner | Status |
+|---|------|-------|--------|
+| 1 | Create observability namespace (if not exists) | @RMN | ⬜ |
+| 2 | Add Helm repos (Prometheus, Grafana, Loki, Tempo, Mimir, Alloy) | @RMN | ⬜ |
+| 3 | Deploy kube-prometheus-stack (Prometheus + Grafana) | @RMN | ⬜ |
+| 4 | Deploy Loki (log aggregation) | @RMN | ⬜ |
+| 5 | Deploy Tempo (distributed tracing) | @RMN | ⬜ |
+| 6 | Deploy Mimir (long-term metrics) | @RMN | ⬜ |
+| 7 | Deploy Alloy (log + metric + trace collection agent) | @RMN | ⬜ |
+| 8 | Configure Grafana datasources (Prometheus, Loki, Tempo, Mimir) | @RMN | ⬜ |
+| 9 | Import Grafana dashboards (node, K8s, containers) | @RMN | ⬜ |
+| 10 | Configure Grafana Ingress (grafana.jAIMS.app) | @RMN | ⬜ |
+| 11 | Deploy node_exporter DaemonSet (host metrics) | @RMN | ⬜ |
+| 12 | Deploy kube-state-metrics (K8s object metrics) | @RMN | ⬜ |
+| 13 | Phase 0.5 #SmokeTest (10-point) | @RMN | ⬜ |
+| 14 | FULL:SYNC:META | @RMN | ⬜ |
 
 ---
 
-## 📋 Phase 0.5 — Docker Compose
+## 📋 Phase 0.5 — K8s Deployment (Helm Charts)
+
+```bash
+# 1. Add all Helm repos
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+
+# 2. Deploy kube-prometheus-stack (Prometheus + Grafana + Alertmanager)
+helm install kube-prometheus prometheus-community/kube-prometheus-stack \
+  --namespace observability \
+  --set prometheus.prometheusSpec.resources.requests.memory=1Gi \
+  --set grafana.adminPassword=${GRAFANA_ADMIN_PASSWORD} \
+  --set grafana.ingress.enabled=true \
+  --set grafana.ingress.hosts[0]=grafana.jAIMS.app \
+  --set grafana.ingress.annotations."cert-manager\.io/cluster-issuer"=jaimsnet-cluster-issuer
+
+# 3. Deploy Loki
+helm install loki grafana/loki \
+  --namespace observability \
+  --set loki.storage.type=filesystem \
+  --set loki.persistence.enabled=true \
+  --set loki.persistence.size=100Gi
+
+# 4. Deploy Tempo
+helm install tempo grafana/tempo \
+  --namespace observability \
+  --set tempo.storage.trace.backend=local \
+  --set persistence.enabled=true \
+  --set persistence.size=100Gi
+
+# 5. Deploy Mimir
+helm install mimir grafana/mimir-distributed \
+  --namespace observability \
+  --set mimir.structuredConfig.common.storage.backend=filesystem
+
+# 6. Deploy Alloy (unified collector)
+helm install alloy grafana/alloy \
+  --namespace observability \
+  --set alloy.configMap.content="$(cat alloy-config.yaml)"
+```
+
+### Alloy Configuration (logs + metrics + traces)
 
 ```yaml
-# docker-compose.observability-infra.yml — jAIMSnet Infrastructure (Phase 0.5)
-version: '3.8'
+# alloy-config.yaml — Collects logs, metrics, and traces
 
-services:
-  prometheus:
-    image: prom/prometheus:latest
-    container_name: prometheus
-    restart: unless-stopped
-    ports:
-      - "9090:9090"
-    volumes:
-      - prometheus_data:/prometheus
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+// Collect logs from all pods
+loki.source.kubernetes "pods" {
+  targets    = discovery.kubernetes.pods.targets
+  forward_to = [loki.write.default.receiver]
+}
 
-  grafana:
-    image: grafana/grafana:latest
-    container_name: grafana
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
-    volumes:
-      - grafana_data:/var/lib/grafana
-    depends_on:
-      - prometheus
+loki.write "default" {
+  endpoint {
+    url = "http://loki:3100/loki/api/v1/push"
+  }
+}
 
-  loki:
-    image: grafana/loki:latest
-    container_name: loki
-    restart: unless-stopped
-    ports:
-      - "3100:3100"
-    volumes:
-      - loki_data:/loki
+// Collect metrics
+prometheus.scrape "pods" {
+  targets    = discovery.kubernetes.pods.targets
+  forward_to = [prometheus.remote_write.mimir.receiver]
+}
 
-  promtail:
-    image: grafana/promtail:latest
-    container_name: promtail
-    restart: unless-stopped
-    volumes:
-      - /var/log:/var/log:ro
-      - ./promtail.yml:/etc/promtail/config.yml
+prometheus.remote_write "mimir" {
+  endpoint {
+    url = "http://mimir:9009/api/v1/push"
+  }
+}
 
-  node-exporter:
-    image: prom/node-exporter:latest
-    container_name: node-exporter
-    restart: unless-stopped
-    ports:
-      - "9100:9100"
+// Receive OTEL traces and forward to Tempo
+otelcol.receiver.otlp "default" {
+  grpc { endpoint = "0.0.0.0:4317" }
+  http { endpoint = "0.0.0.0:4318" }
+  output {
+    traces = [otelcol.exporter.otlp.tempo.input]
+  }
+}
 
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:latest
-    container_name: cadvisor
-    restart: unless-stopped
-    ports:
-      - "8080:8080"
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-
-volumes:
-  prometheus_data:
-  grafana_data:
-  loki_data:
+otelcol.exporter.otlp "tempo" {
+  client {
+    endpoint = "tempo:4317"
+  }
+}
 ```
 
 ---
@@ -802,157 +707,51 @@ volumes:
 
 | # | Test | Expected | Status |
 |---|------|----------|--------|
-| 1 | Prometheus running | `curl http://<IP>:9090` → UI | ⬜ |
-| 2 | node_exporter metrics | `curl http://<IP>:9100/metrics` → CPU/memory data | ⬜ |
-| 3 | cAdvisor metrics | `curl http://<IP>:8080/metrics` → container data | ⬜ |
-| 4 | Grafana running | `http://<IP>:3000` → login page | ⬜ |
-| 5 | Prometheus datasource | Grafana → Data Sources → Prometheus → Test → ✅ | ⬜ |
-| 6 | Loki datasource | Grafana → Data Sources → Loki → Test → ✅ | ⬜ |
-| 7 | Node dashboard | CPU, memory, disk, network visible | ⬜ |
-| 8 | Container dashboard | Container health, restarts visible | ⬜ |
+| 1 | Prometheus running | http://prometheus:9090 → UI | ⬜ |
+| 2 | Grafana accessible | https://grafana.jAIMS.app → login | ⬜ |
+| 3 | Prometheus datasource | Grafana → Prometheus → Test → ✅ | ⬜ |
+| 4 | Loki datasource | Grafana → Loki → Test → ✅ | ⬜ |
+| 5 | Tempo datasource | Grafana → Tempo → Test → ✅ | ⬜ |
+| 6 | Mimir datasource | Grafana → Mimir → Test → ✅ | ⬜ |
+| 7 | Node metrics visible | CPU, memory, disk, network in dashboard | ⬜ |
+| 8 | K8s pod metrics visible | Container health, restarts in dashboard | ⬜ |
 | 9 | Log search | Grafana → Explore → Loki → query returns logs | ⬜ |
 | 10 | Persistence | Restart all → data retained | ⬜ |
 
 ---
 
-## 📋 Architecture
-
-### Phase 0 + 0.5 Architecture (W10 — DO Droplet)
-
-```
-┌──────────────────────────────────────────────────────────┐
-│  DigitalOcean — NYC1                                      │
-│                                                           │
-│  ┌────────────────────────────────────────────────────┐  │
-│  │  jAIMSnet Observability Droplet ($18-24/mo)         │  │
-│  │                                                     │  │
-│  │  LAYER 3 (AI):                                     │  │
-│  │  ┌──────────────┐                                  │  │
-│  │  │  Langfuse      │ OTEL traces from INT-P01/P02    │  │
-│  │  │  Port: 3000   │                                  │  │
-│  │  └──────────────┘                                  │  │
-│  │                                                     │  │
-│  │  LAYER 2 (Endpoints):                              │  │
-│  │  ┌──────────────┐                                  │  │
-│  │  │  Uptime Kuma  │ Health checks → all endpoints   │  │
-│  │  │  Port: 3001   │                                  │  │
-│  │  └──────────────┘                                  │  │
-│  │                                                     │  │
-│  │  LAYER 1 (Infrastructure) — Phase 0.5:             │  │
-│  │  ┌──────────┐ ┌────────┐ ┌──────┐                │  │
-│  │  │Prometheus│ │Grafana │ │ Loki │                │  │
-│  │  │  :9090   │ │ :3000  │ │:3100 │                │  │
-│  │  └──────────┘ └────────┘ └──────┘                │  │
-│  │  ┌────────────┐ ┌──────────┐ ┌─────────┐        │  │
-│  │  │node_export │ │ cAdvisor │ │Promtail │        │  │
-│  │  │   :9100    │ │  :8080   │ │         │        │  │
-│  │  └────────────┘ └──────────┘ └─────────┘        │  │
-│  └────────────────────────────────────────────────────┘  │
-│                                                           │
-│  ┌────────────────────────────────────────────────────┐  │
-│  │  DigitalOcean — ATL1 (Production)                   │  │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────────────┐   │  │
-│  │  │ INT-P01  │ │ INT-P02  │ │ DO PostgreSQL    │   │  │
-│  │  │ OTEL SDK │ │ OTEL SDK │ │ (health check)   │   │  │
-│  │  └──────────┘ └──────────┘ └──────────────────┘   │  │
-│  └────────────────────────────────────────────────────┘  │
-│                                                           │
-│  ┌────────────────────────────────────────────────────┐  │
-│  │  DigitalOcean — NYC1 (New)                          │  │
-│  │  ┌──────────────────┐                              │  │
-│  │  │ BurnedOutAdvisor │                              │  │
-│  │  │ WordPress        │                              │  │
-│  │  └──────────────────┘                              │  │
-│  └────────────────────────────────────────────────────┘  │
-└──────────────────────────────────────────────────────────┘
-```
-
-### Full Architecture (W13+ — After GB10)
-
-```
-┌─────────────────────────────────────────────────────────┐
-│  GB10-1: #NoDe (Northglenn, CO)                          │
-│                                                          │
-│  LAYER 3 (AI):                                           │
-│  ┌──────────────────────────────────────────────────┐   │
-│  │  Langfuse (Port: 3000)                             │   │
-│  │  ┌──────────────┐  ┌──────────────────────────┐  │   │
-│  │  │  OTEL Collector│  │  Web Dashboard           │  │   │
-│  │  │  (traces in)  │  │  (visualization out)     │  │   │
-│  │  └──────┬───────┘  └──────────────────────────┘  │   │
-│  │         │                                         │   │
-│  │  ┌──────┴───────┐                                │   │
-│  │  │  SQLite DB    │                                │   │
-│  │  │  (trace store)│                                │   │
-│  │  └──────────────┘                                │   │
-│  └──────────────────────────────────────────────────┘   │
-│                                                          │
-│  LAYER 2 (Endpoints):                                    │
-│  ┌──────────────────────────────────────────────────┐   │
-│  │  Uptime Kuma (Port: 3001)                         │   │
-│  └──────────────────────────────────────────────────┘   │
-│                                                          │
-│  LAYER 1 (Infrastructure):                               │
-│  ┌──────────────────────────────────────────────────┐   │
-│  │  Prometheus :9090 │ Grafana :3000 │ Loki :3100    │   │
-│  │  node_exporter :9100 │ cAdvisor :8080 │ Promtail  │   │
-│  │  nvidia_exporter (GPU) 🆕                         │   │
-│  └──────────────────────────────────────────────────┘   │
-│         ▲         ▲         ▲                            │
-│         │         │         │                            │
-│  ┌──────┴──┐ ┌───┴────┐ ┌──┴──────┐                   │
-│  │ Ollama  │ │LiteLLM │ │ ALLM    │                   │
-│  │ (local) │ │(gateway)│ │ (local) │                   │
-│  └─────────┘ └────────┘ └─────────┘                   │
-│                    ▲                                     │
-│                    │ OTEL traces                         │
-│         ┌──────────┴──────────┐                         │
-│         │ Cloud AnythingLLM    │                         │
-│         │ INT-P01, INT-S003,   │                         │
-│         │ INT-OG1, INT-P02     │                         │
-│         └─────────────────────┘                         │
-└─────────────────────────────────────────────────────────┘
-```
-
-### Data Flow
-
-```
-1. AnythingLLM makes LLM call
-2. OTEL SDK captures: model, tokens, latency, cost
-3. OTEL exports trace to Langfuse (http://<langfuse>:3000/v1/traces)
-4. Langfuse stores in SQLite
-5. Langfuse dashboard visualizes
-6. Prometheus scrapes node_exporter + cAdvisor (Layer 1)
-7. Loki ingests logs via Promtail (Layer 1)
-8. Grafana visualizes Prometheus + Loki (Layer 1)
-9. @GTM / @RMN view dashboards
-```
-
----
-
 ## 📋 Phase 1 — Local Services (GB10-1)
 
-### Timeline: W11 (After PRJ-015)
+### Timeline: W12+ (After PRJ-015)
 
 | Service | Instrumentation | Method |
 |---------|----------------|--------|
 | **AnythingLLM (local)** | LLM calls + RAG retrieval | OTEL Python SDK or langfuse.otel |
 | **Ollama** | Inference calls | OTEL wrapper |
 
+### Migration Plan (DOKS → GB10-1)
+
+| Step | Action | Timeline | Downtime |
+|------|--------|----------|----------|
+| 1 | Deploy LGTM+ stack on GB10-1 | W12 | 0 min |
+| 2 | Test GB10-1 observability locally | W12 | 0 min |
+| 3 | Export Langfuse data (PostgreSQL) | W12 | 0 min |
+| 4 | Update DNS (langfuse.jAIMS.app → GB10-1) | W12 | ~5 min |
+| 5 | Add nvidia_exporter for GPU monitoring | W12 | 0 min |
+| 6 | Scale down/remove from jAIMSnet DOKS (optional) | W13 | 0 min |
+
 ### Deployment Checklist (Phase 1)
 
-| # | Step | Owner | Depends On | Status |
-|---|------|-------|-----------|--------|
-| 1 | GB10-1 #NoDe operational | @GTM | PRJ-015 | ⬜ |
-| 2 | Migrate Langfuse from DO Droplet to GB10-1 | @GTM | Step 1 | ⬜ |
-| 3 | Migrate Uptime Kuma from DO Droplet to GB10-1 | @GTM | Step 1 | ⬜ |
-| 4 | Migrate Prom/Grafana/Loki from DO Droplet to GB10-1 | @RMN | Step 1 | ⬜ |
-| 5 | Add nvidia_exporter for GPU monitoring | @RMN | Step 4 | ⬜ |
-| 6 | Destroy DO Droplet | @GTM | Step 2 + 3 + 4 | ⬜ |
-| 7 | Install OTEL SDK on AnythingLLM (local) | @RMN | Step 2 | ⬜ |
-| 8 | Send test trace | @GTM | Step 7 | ⬜ |
-| 9 | Verify trace appears in Langfuse UI | @GTM | Step 8 | ⬜ |
-| 10 | Instrument Ollama calls | @RMN | Step 7 | ⬜ |
+| # | Step | Owner | Status |
+|---|------|-------|--------|
+| 1 | GB10-1 #NoDe operational (PRJ-015) | @GTM | ⬜ |
+| 2 | Deploy LGTM+ stack on GB10-1 (Docker Compose) | @RMN | ⬜ |
+| 3 | Add nvidia_exporter for GPU monitoring | @RMN | ⬜ |
+| 4 | Migrate Langfuse from DOKS to GB10-1 | @GTM | ⬜ |
+| 5 | Migrate Uptime Kuma from NYC1 to GB10-1 (optional) | @GTM | ⬜ |
+| 6 | Install OTEL SDK on AnythingLLM (local) | @RMN | ⬜ |
+| 7 | Send test trace → verify in Langfuse | @GTM | ⬜ |
+| 8 | Instrument Ollama calls | @RMN | ⬜ |
 
 ---
 
@@ -960,23 +759,33 @@ volumes:
 
 ### Timeline: W12 (After PRJ-016)
 
-| Service | Instrumentation | Method |
-|---------|----------------|--------|
-| **LiteLLM** | All proxied calls | Built-in OTEL export (config.yaml) |
-
-### For LiteLLM (PRJ-016 — automatic)
-
 ```yaml
-# In LiteLLM config.yaml
+# In LiteLLM config.yaml (3 env vars — 5 min setup)
 litellm_settings:
-  callbacks: ["otel"]
+  success_callback: ["langfuse"]
 
 environment_variables:
-  OTEL_EXPORTER: "otlp_http"
-  OTEL_ENDPOINT: "http://langfuse:3000/v1/traces"
+  LANGFUSE_PUBLIC_KEY: "pk-lf-..."
+  LANGFUSE_SECRET_KEY: "sk-lf-..."
+  LANGFUSE_HOST: "https://langfuse.jAIMS.app"
 ```
 
 > **When PRJ-016 deploys, ALL LLM traffic automatically traces to Langfuse.** Zero additional instrumentation needed per instance.
+
+### What Langfuse Receives (Automatic from LiteLLM)
+
+| Data Point | Automatic? | Detail |
+|-----------|:----------:|--------|
+| Model requested + used | ✅ | `smart` alias → actual model |
+| Provider | ✅ | OpenRouter, Anthropic, vLLM, etc. |
+| Input/output | ✅ | Full prompt + response |
+| Tokens (in/out/total) | ✅ | Token counts |
+| Cost (calculated) | ✅ | Per-request cost |
+| Latency (total + TTFT) | ✅ | Response time |
+| Cache hit/miss | ✅ | Redis cache status |
+| API key + team ID | ✅ | Per-instance tracking |
+| Success/failure | ✅ | Error messages |
+| Fallback used | ✅ | Which backend was used |
 
 ---
 
@@ -1000,7 +809,7 @@ from langfuse.otel import register
 from openinference.instrumentation.openai import OpenAIInstrumentor
 
 tracer_provider = register(
-    endpoint="http://<langfuse-host>:3000/v1/traces",
+    endpoint="https://langfuse.jAIMS.app/v1/traces",
     project_name="fedarch"
 )
 
@@ -1012,93 +821,82 @@ OpenAIInstrumentor().instrument(tracer_provider=tracer_provider)
 ```yaml
 # In LiteLLM config.yaml
 litellm_settings:
-  callbacks: ["otel"]
+  success_callback: ["langfuse"]
 
 environment_variables:
-  OTEL_EXPORTER: "otlp_http"
-  OTEL_ENDPOINT: "http://langfuse:3000/v1/traces"
+  LANGFUSE_PUBLIC_KEY: "pk-lf-..."
+  LANGFUSE_SECRET_KEY: "sk-lf-..."
+  LANGFUSE_HOST: "https://langfuse.jAIMS.app"
 ```
 
 ---
 
 ## 📋 Dashboard Configuration
 
-### Default Views (Layer 3 — Langfuse)
+### Layer 3 — Langfuse Dashboards
 
 | Dashboard | Metrics | Purpose |
 |-----------|---------|---------|
 | **Traces** | Request waterfall, spans, latency | Debug individual requests |
 | **LLM Calls** | Model, tokens in/out, cost, latency | Usage patterns |
-| **Embeddings** | Embedding latency, batch sizes | Performance monitoring |
-| **RAG** | Retrieval relevance, chunks returned | RAG quality |
-
-### Custom Views for #FedArch (Layer 3 — Langfuse)
-
-| View | Metrics | Purpose |
-|------|---------|---------|
 | **Cost by Instance** | Tokens × cost per instance | Budget tracking |
-| **Model Distribution** | % Claude vs % Llama vs % Qwen3 | #HybridArchitecture balance |
-| **Cache Effectiveness** | Hit/miss rate (via LiteLLM) | Savings validation |
-| **Failover Events** | OpenRouter → Ollama transitions | Reliability monitoring |
+| **Model Distribution** | % Claude vs % Llama vs % Qwen3 | Hybrid balance |
+| **Cache Effectiveness** | Hit/miss rate (via LiteLLM Redis) | Savings validation |
 | **Error Rate** | Errors by provider, model, instance | Health monitoring |
 
-### Infrastructure Dashboards (Layer 1 — Grafana)
+### Layer 1 — Grafana Dashboards (LGTM+ Stack)
 
-| Dashboard | Metrics | Purpose |
-|-----------|---------|---------|
-| **Node Overview** | CPU, memory, disk, network | Host health |
-| **Container Overview** | Container CPU, memory, restarts | Docker health |
-| **GPU Monitoring** | GPU utilization, temperature, memory | GB10-1 inference health |
-| **Log Explorer** | Log search, filter, aggregate | Debugging |
+| Dashboard | ID | Metrics | Purpose |
+|-----------|:--:|---------|---------|
+| **Node Exporter Full** | 1860 | CPU, memory, disk, network | Host-level metrics |
+| **Kubernetes Cluster** | 6417 | Cluster-wide pods, nodes, namespaces | K8s overview |
+| **Kubernetes Pods** | 6336 | Per-pod CPU, memory, network | Pod health |
+| **Loki Stats** | 13407 | Loki health, log volume | Log system health |
+| **Tempo** | Built-in | Distributed traces (infra level) | Infra trace analysis |
+| **Mimir** | Built-in | Long-term metrics | Trend analysis |
+| **Custom: WeOwnNet Instances** | TBD | INT-P01, INT-OG1, INT-OG8, INT-P02 health | Instance monitoring |
+| **Custom: jAIMSnet Services** | TBD | LiteLLM, Langfuse, Redis health | Service monitoring |
+| **GPU Monitoring** | TBD | GPU utilization, temperature, memory | GB10-1 + MI300X health |
 
 ---
 
-## 📋 Integration with PRJ-016 (LiteLLM)
+## 📋 Hub + Tenant Observability Architecture
 
-### Why Langfuse Deploys BEFORE LiteLLM
+> **Note:** This section reflects the planned architecture for jAIMSnet Hub + Tenant model (from PRJ-025). Final tenant observability details TBD after PRJ-025 research Tracks 5 and 3 are complete.
 
-```
-W10: Deploy Langfuse Phase 0 (DO Droplet)
-  └── Langfuse running on port 3000
-  └── OTEL endpoint ready
-  └── Observing existing infrastructure immediately
+### Hub Observability (jAIMSnet DOKS — ATL1)
 
-W12: Deploy LiteLLM (PRJ-016)
-  └── LiteLLM config: OTEL_ENDPOINT=http://langfuse:3000/v1/traces
-  └── ALL LLM traffic automatically traced
-  └── Cost, latency, cache, failover = visible immediately
-```
+| Component | Location | Status |
+|-----------|----------|--------|
+| Prometheus (hub) | jAIMSnet DOKS observability namespace | 📋 Phase 0.5 |
+| Grafana (hub) | jAIMSnet DOKS observability namespace | 📋 Phase 0.5 |
+| Loki (hub) | jAIMSnet DOKS observability namespace | 📋 Phase 0.5 |
+| Tempo (hub) | jAIMSnet DOKS observability namespace | 📋 Phase 0.5 |
+| Mimir (hub) | jAIMSnet DOKS observability namespace | 📋 Phase 0.5 |
+| Langfuse (hub) | jAIMSnet DOKS observability namespace | 📋 Phase 0 |
+| Uptime Kuma | NYC1 Standalone Droplet | ✅ LIVE |
 
-> **Langfuse = infrastructure for LiteLLM.** Deploy the observer before the thing being observed.
+### Tenant Spoke Agents (Preliminary — TBD after PRJ-025 Track 3+5)
 
-### Shared Docker Network (Phase 1+ on GB10-1)
+| Tenant Type | Observability Agent | Sends Data To | Status |
+|-------------|--------------------|-|--------|
+| **DOKS Cluster tenants** | Alloy DaemonSet (inside cluster) | Hub Loki + Mimir + Tempo | 📋 TBD after PRJ-025 |
+| **Docker Droplet tenants** | Alloy (Docker container) | Hub Loki + Mimir + Tempo | 📋 TBD after PRJ-025 |
 
-```yaml
-# Both PRJ-016 and PRJ-017 on same Docker network
-networks:
-  fedarch-edge:
-    driver: bridge
+---
 
-# Langfuse joins:
-services:
-  langfuse:
-    networks:
-      - fedarch-edge
+## 📋 Integration with Other PRJs
 
-# LiteLLM joins:
-services:
-  litellm:
-    networks:
-      - fedarch-edge
-    environment:
-      - OTEL_ENDPOINT=http://langfuse:3000/v1/traces
-
-# Prometheus joins:
-services:
-  prometheus:
-    networks:
-      - fedarch-edge
-```
+| PRJ | Title | Integration Point |
+|-----|-------|-------------------|
+| **PRJ-015** | HybridArchitecture (GB10 + MI300X) | Phase 1 migration to GB10-1, nvidia_exporter for GPU monitoring |
+| **PRJ-016** | LiteLLM AI Gateway | Langfuse native callback, cost tracking, per-instance budgets |
+| **PRJ-018** | P.O.P. Database | PostgreSQL cluster shared (db-postgresql-atl1-weownnet) |
+| **PRJ-020** | Interns Co-op Pipeline | PostgreSQL cluster shared, monitoring |
+| **PRJ-021** | PostgreSQL Operations | PostgreSQL cluster owner, Trusted Sources |
+| **PRJ-024** | Secrets Management (Infisical) | Langfuse + Grafana credentials in Infisical Operator |
+| **PRJ-025** | jAIMSnet Platform Engineering | Observability deployed IN jAIMSnet DOKS cluster |
+| **PRJ-026** | Cybersecurity Frameworks + ISMS | Security monitoring, audit logging (Loki, Grafana SIEM) |
 
 ---
 
@@ -1107,36 +905,21 @@ services:
 | CCC | Role | Layers | Focus |
 |-----|------|--------|-------|
 | **GTM** | **Owner** | Layer 3 + Layer 2 | Langfuse, Uptime Kuma, Phase 0, dashboards, @MAIT |
-| **RMN** | **Platform + Infra Observability** | **Layer 1** | **Prometheus, Grafana, Loki, OTEL instrumentation, Phase 0.5** |
-
-> **Phase 0 = primarily @GTM solo.** Phase 0.5 = @RMN. Phase 1+ = both.
+| **RMN** | **Platform + Infra Observability** | **Layer 1** | **Prometheus, Grafana, Loki, Tempo, Mimir, Alloy, OTEL instrumentation, Phase 0.5** |
 
 ---
 
 ## 📋 MAIT Architecture — 3 MAITs
-
-> **#MAITlivesInAthread** — "One thread, one tool, one truth."
 
 ### @MAIT:#Langfuse
 
 | Field | Value |
 |-------|-------|
 | Thread | MAIT_Langfuse |
-| UUID | ⬜ TBD |
 | ShortCode | @MAIT:#Langfuse |
 | Steward | @GTM |
 | Instance | INT-P01 |
-| Protocol | #ContextVolley |
-| Tool Agent | t-langfuse_tool |
 | Scope | Langfuse LLM observability + LiteLLM callback integration |
-
-#### RAG Documents
-
-| # | Source | Depth |
-|---|--------|-------|
-| 1 | langfuse.com/docs | 2 |
-| 2 | opentelemetry.io/docs (Python SDK) | 1 |
-| 3 | github.com/langfuse/langfuse (GH Repo connector) | — |
 
 ### @MAIT:#UptimeKuma
 
@@ -1147,36 +930,17 @@ services:
 | ShortCode | @MAIT:#UptimeKuma |
 | Steward | @GTM |
 | Instance | INT-P01 |
-| Protocol | #ContextVolley |
-| Tool Agent | t-uptimekuma_tool |
 | Scope | Uptime Kuma endpoint monitoring + SSL + DNS health |
-
-#### RAG Documents
-
-| # | Source | Depth |
-|---|--------|-------|
-| 1 | github.com/louislam/uptime-kuma/wiki | 2 |
 
 ### @MAIT:#InfraObs
 
 | Field | Value |
 |-------|-------|
 | Thread | MAIT_InfraObs |
-| UUID | ⬜ TBD (created by @RMN) |
 | ShortCode | @MAIT:#InfraObs |
 | Steward | **@RMN** |
 | Instance | INT-P01 |
-| Protocol | #ContextVolley |
-| Tool Agent | t-infraobs_tool |
-| Scope | Prometheus + Grafana + Loki + node_exporter + cAdvisor |
-
-#### RAG Documents
-
-| # | Source | Depth |
-|---|--------|-------|
-| 1 | prometheus.io/docs | 2 |
-| 2 | grafana.com/docs/grafana | 2 |
-| 3 | grafana.com/docs/loki | 2 |
+| Scope | Prometheus + Grafana + Loki + Tempo + Mimir + Alloy |
 
 ---
 
@@ -1184,14 +948,14 @@ services:
 
 | # | Risk | Prob | Impact | Mitigation |
 |---|------|------|--------|------------|
-| 1 | GB10-1 not ready (PRJ-015) | Medium | High | **Phase 0 covers interim — DO Droplet** |
+| 1 | GB10-1 not ready (PRJ-015) | Medium | High | **Phase 0 + 0.5 on jAIMSnet DOKS covers interim** |
 | 2 | OTEL instrumentation complexity | Low | Medium | Langfuse provides helper library (langfuse.otel) |
-| 3 | Storage growth (traces) | Low | Low | SQLite + configurable retention; 2 TB NVMe (Phase 1+) |
-| 4 | Langfuse project abandoned | Low | Low | MIT = fork-friendly |
-| 5 | Network: cloud → GB10-1 (traces) | Medium | Low | Traces = async, non-blocking; latency irrelevant |
-| 6 | Dashboard access (remote) | Low | Low | Tailscale/WireGuard or port forward |
-| 7 | GB10 delayed (PRJ-015) | Medium | Medium | Phase 0 covers indefinitely — DO Droplet provides observability until GB10 arrives |
-| 8 | **@RMN availability for Layer 1** | **Low** | **Medium** | **Phase 0 (Layer 2+3) deploys independently; Layer 1 = parallel track; no blocking** |
+| 3 | Storage growth (traces/logs) | Low | Low | Configurable retention per component |
+| 4 | LGTM+ stack resource usage | Medium | Medium | DOKS autoscale covers Phase 0.5; GB10-1 covers Phase 1 |
+| 5 | Langfuse project abandoned | Low | Low | MIT = fork-friendly |
+| 6 | PRJ-025 research changes tool selection | Low | Medium | Stack is highly likely but subject to final research |
+| 7 | Uptime Kuma NYC1 Droplet failure | Low | Medium | NYC1 provides geographic independence from ATL1 |
+| 8 | **@RMN availability for Layer 1** | Low | Medium | Phase 0 (Layer 2+3) deploys independently; Layer 1 = parallel track |
 
 ---
 
@@ -1199,22 +963,11 @@ services:
 
 | PRJ | Relationship |
 |-----|-------------|
-| **PRJ-014** | INT-P01 + INT-S003 traffic observed by Langfuse (Phase 0) |
+| **PRJ-014** | INT-P01 + INT-S003 traffic observed by Langfuse |
 | **PRJ-015** | All observability migrates TO GB10-1 #NoDe (Phase 1 — hardware dependency) |
 | **PRJ-016** | LiteLLM sends OTEL traces TO Langfuse (Phase 2 — Langfuse = endpoint) |
-| **PRJ-013** | Paperless-ngx co-located on GB10-1 (Phase 1 — shared Docker host) |
-| **PRJ-018** | P.O.P. PostgreSQL monitored by Uptime Kuma (Phase 0) |
-
-### Infrastructure Quad — Execution Order
-
-```
-PRJ-014: SEPARATE  (INT-S003 + WeOwn.tools)     W10      ✅ GH LIVE
-PRJ-017: OBSERVE   (Langfuse Phase 0 — DO)       W10      🔴 PHASE 0 MONDAY
-PRJ-015: COMPUTE   (2× GB10)                    W10-W11  ⬜ @THY
-PRJ-016: ROUTE     (LiteLLM)                    W12-W13  ⬜ After GB10
-
-"Separate. Observe. Compute. Route."
-```
+| **PRJ-018** | P.O.P. PostgreSQL monitored by Uptime Kuma |
+| **PRJ-025** | jAIMSnet DOKS cluster = home for Phase 0 + 0.5 observability |
 
 ---
 
@@ -1222,25 +975,24 @@ PRJ-016: ROUTE     (LiteLLM)                    W12-W13  ⬜ After GB10
 
 | CCC | Contributor | Role | Context |
 |-----|-------------|------|---------|
-| GTM | [yonks](https://GitHub.com/YonksTEAM) | Co-Founder / Chief Digital Alchemist | ADK Observability Ecosystem analysis — Langfuse selected 33/35 — W09; Phase 0 driven by 5 blind incidents W06-W09 |
-| RMN | Roman Di Domizio | AI Platform Engineer | Identified missing Layer 1 (infrastructure observability) — W09; **Langfuse recommendation (RMN_2026-W10_043) — MIT license + native LiteLLM callback — W10** |
+| GTM | Jason Younker | Co-Founder | ADK Observability Ecosystem analysis — Phoenix selected W09; Phase 0 driven by 5 blind incidents W06-W09; Langfuse final approval (GTM_2026-W10_161) |
+| RMN | Roman Di Domizio | AI Platform Engineer | Identified missing Layer 1 (infrastructure observability) — W09; Langfuse recommendation (RMN_2026-W10_043) — MIT license + native LiteLLM callback; jAIMSnet DOKS architecture for observability deployment; LGTM + Tempo + Mimir + Alloy stack design |
+| LDC | Dhruv | Agentic AI Engineer | Feedback on observability requirements, AI-specific monitoring |
 
 ---
 
 ## 📋 Related Documents
 
-| Document | Version | #masterCCC | Approval | URL |
-|----------|---------|------------|----------|-----|
-| PRJ-015_HybridArchitecture | v3.2.1.1 | GTM_2026-W10_122 | GTM_2026-W10_125 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-015_HybridArchitecture.md) |
-| PRJ-016_AIGateway-LiteLLM | v3.1.4.1 | GTM_2026-W09_117 | GTM_2026-W09_119 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_PROJECTS_/PRJ-016_AIGateway-LiteLLM.md) |
-| SharedKernel | v3.1.3.1 | GTM_2026-W08_069 | GTM_2026-W08_071 | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_SYS_/SharedKernel.md) |
-| Langfuse Docs | — | — | — | [langfuse.com/docs](https://langfuse.com/docs) |
-| Langfuse GitHub | — | — | — | [github.com/langfuse/langfuse](https://github.com/langfuse/langfuse) |
-| Uptime Kuma | — | — | — | [github.com/louislam/uptime-kuma](https://github.com/louislam/uptime-kuma) |
-| Prometheus | — | — | — | [prometheus.io](https://prometheus.io) |
-| Grafana | — | — | — | [grafana.com](https://grafana.com) |
-| Loki | — | — | — | [grafana.com/oss/loki](https://grafana.com/oss/loki) |
-| ISO/IEC 42001 | — | — | — | [iso.org/standard/42001](https://www.iso.org/standard/42001) |
+| Document | Version | #masterCCC | Approval | Location |
+|----------|---------|------------|----------|----------|
+| PRJ-015_HybridArchitecture.md | 3.2.3.1 | GTM_2026-W10_122 | GTM_2026-W10_125 | _PROJECTS_/ (GH LIVE) |
+| PRJ-016_AIGateway-LiteLLM.md | 3.2.3.1 | GTM_2026-W09_117 | GTM_2026-W09_119 | _PROJECTS_/ (GH LIVE) |
+| PRJ-018_POP-Database.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W11_308 | _PROJECTS_/ |
+| PRJ-021_PostgreSQL-Operations.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W10_026 | _PROJECTS_/ |
+| PRJ-024_Secrets-Management-Infisical.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W11_328 | _PROJECTS_/ |
+| PRJ-025_jAIMSnet-Platform-Engineering.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W11_330 | _PROJECTS_/ |
+| PRJ-026_Cybersecurity-Frameworks-ISMS.md | 3.2.3.1 | GTM_2026-W10_026 | GTM_2026-W10_026 | _PROJECTS_/ |
+| GUIDE-011_Governance-Oversight-VSA-Process.md | 3.2.1.1 | GTM_2026-W10_066 | GTM_2026-W10_073 | _GUIDES_/ |
 
 ---
 
@@ -1248,13 +1000,14 @@ PRJ-016: ROUTE     (LiteLLM)                    W12-W13  ⬜ After GB10
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
-| 3.2.1.1 | 2026-W10 | GTM_2026-W10_122 | GTM_2026-W10_161 | **Phoenix → Langfuse** (Layer 3); MIT replaces ELv2 (L-129 — Priority #2); self-host from Day 1 at langfuse.jAIMS.app; co-locate LiteLLM + Langfuse + Uptime Kuma on ATL1 ($24/mo); native LiteLLM callback (5 min — replaces manual OTEL); full prompt logging (self-hosted = safe); +Multi-Tenant Tracking section (#ZeroTo100); +jAIMS.app Domain Family section; +LiteLLM Integration section; +Phoenix → Langfuse Decision section; +Self-Hosted Architecture section; Phase 0 host NYC1 → ATL1 (co-locate); Phase 0 Docker Compose updated (LiteLLM + Langfuse + Kuma + Caddy); Phase 0 checklist updated (14 → 18 steps); Phase 0 #SmokeTest updated (10 → 12 points); @MAIT:#Phoenix → @MAIT:#Langfuse; t-phoenix_tool → t-langfuse_tool; title → "Observability — 3-Layer Stack"; @RMN Discovered By updated (Langfuse recommendation); FULL PRESERVE from v3.1.4.3 (L-097) |
-| 3.1.4.3 | 2026-W09 | GTM_2026-W09_185 | GTM_2026-W09_191 | +3-layer jAIMSnet observability stack (AI + Endpoint + Infrastructure); +Phase 0.5 (Prometheus + Grafana + Loki — @RMN owns Layer 1); +Phase 0.5 Docker Compose (6 services); +Phase 0.5 deployment checklist (15 steps); +Phase 0.5 #SmokeTest (10-point); +@MAIT:#InfraObs (Steward: @RMN) + t-infraobs_tool; +Incident history (5 incidents — all blind); @RMN elevated: Platform → Platform + Infra Observability; +@RMN in Discovered By (BP-047); GB10-1 resource allocation 65% → 67%; jAIMSnet scope 2-layer → 3-layer; MAIT section: 1 MAIT → 3 MAITs; +Infrastructure dashboards (Layer 1 — Grafana); +nvidia_exporter for GPU (Phase 1); Phase 1 checklist expanded (8 → 10 steps); Architecture diagrams updated (both); Data flow expanded (6 → 9 steps); +Risk #8 (@RMN availability); +Related Documents (Prometheus, Grafana, Loki); FULL PRESERVE Phase 0-3 from v3.1.4.2 (L-097) |
-| 3.1.4.2 | 2026-W09 | GTM_2026-W09_154 | GTM_2026-W09_158 | +Phase 0 (DO Infrastructure Observability — W10, no dependencies); +jAIMSnet brand identity (ISO 42001, 6 domains, GH org, ecosystem map); +Uptime Kuma REQUIRED (endpoint health monitoring); +Phase 0 deployment checklist (14 steps); +Phase 0 Docker Compose (Phoenix + Uptime Kuma); +Phase 0 #SmokeTest (10-point); +Phase 0 architecture diagram; +Phase 1 deployment checklist (migration from DO); +Risk #7 (GB10 delayed → Phase 0 covers); Infrastructure Quad reordered (Observe → position 2); Priority 🟠 P1 → 🔴 P0 (Phase 0); FULL PRESERVE Phase 1-3 content from v3.1.4.1 (L-097) |
-| 3.1.4.1 | 2026-W09 | GTM_2026-W09_121 | GTM_2026-W09_122 | Initial project; Phoenix observability on GB10-1 #NoDe; BSD-3 FOSS; ~500 MB RAM; OTEL instrumentation (3 phases); LiteLLM integration (PRJ-016 endpoint); 6 dashboard views; 13-step deployment; Docker Compose; 6-point #SmokeTest; @MAIT:#Observability; 6-risk matrix; deploys BEFORE LiteLLM (infrastructure dependency) |
+| **3.2.3.1** | **2026-W12** | **GTM_2026-W10_122** | **GTM_2026-W10_161** | **Updated deployment architecture: jAIMSnet DOKS cluster (ATL1) for Langfuse + LGTM+ stack (not Docker Droplet); Uptime Kuma = standalone Droplet (NYC1) for geographic resilience (confirmed LIVE). Phase 0.5 LGTM+ stack expanded: added Tempo (distributed tracing), Mimir (long-term metrics), Alloy (unified log+metric+trace collector, replaces Promtail). Full K8s Helm chart deployment commands. Updated 3-layer architecture diagram to reflect DOKS deployment. Added Hub + Tenant Observability Architecture section (preliminary, TBD after PRJ-025 Tracks 3+5). Updated incident history (+W10 incident = 6 total, 11.5 hrs). Added Alloy configuration YAML. Updated all integrations (+PRJ-024, PRJ-025, PRJ-026). Updated related documents to v3.2.3.1. Updated Discovered By (@RMN contributions: DOKS architecture, LGTM+Tempo+Mimir+Alloy stack). Note: final stack subject to PRJ-025 research confirmation.** |
+| 3.2.1.1 | 2026-W10 | GTM_2026-W10_122 | GTM_2026-W10_161 | Phoenix → Langfuse (Layer 3); MIT replaces ELv2 (L-129); self-host from Day 1 at langfuse.jAIMS.app; native LiteLLM callback (5 min); +Multi-Tenant Tracking; +jAIMS.app Domain Family; +Phoenix→Langfuse Decision; 5 blind incidents (9.5 hrs) |
+| 3.1.4.3 | 2026-W09 | GTM_2026-W09_185 | GTM_2026-W09_191 | +3-layer jAIMSnet observability stack; +Phase 0.5 (Prometheus+Grafana+Loki); +@MAIT:#InfraObs (@RMN); 5 incidents history; @RMN elevated |
+| 3.1.4.2 | 2026-W09 | GTM_2026-W09_154 | GTM_2026-W09_158 | +Phase 0 (DO Infrastructure Observability); +jAIMSnet brand identity; +Uptime Kuma; +Phase 0 deployment checklist |
+| 3.1.4.1 | 2026-W09 | GTM_2026-W09_121 | GTM_2026-W09_122 | Initial project; Phoenix observability; 3-phase rollout; LiteLLM integration |
 
 ---
 
-#FlowsBros #FedArch #Observability #Langfuse #OTEL #jAIMSnet #Prometheus #Grafana #Loki #FOSS #WeOwnSeason003
+#FlowsBros #FedArch #Observability #Langfuse #OTEL #jAIMSnet #Prometheus #Grafana #Loki #Tempo #Mimir #Alloy #FOSS #WeOwnSeason003
 
 ♾️ WeOwnNet 🌐 ● 🏡 Real Estate and 🤝 cooperative ownership for everyone ● An 🤗 inclusive community, by 👥 invitation only.
