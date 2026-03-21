@@ -20,8 +20,8 @@
 | **#LLMmodel** | **Claude Sonnet 4.6 (INT-OG1:CCC @GTM — v3.2.3.3 regeneration)** |
 | **#LLMmodel** | **Claude Opus 4.6 (INT-P01:tools #MetaAgent)** |
 | **GH Filename** | CASE-STUDY-014_BadAgent-Friday.md |
-| **Folder** | `_GOVERNANCE_/` |
-| **Source of Truth** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_GOVERNANCE_/CASE-STUDY-014_BadAgent-Friday.md) |
+| **Folder** | `_CASE-STUDY_/` |
+| **Source of Truth** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_CASE-STUDY_/CASE-STUDY-014_BadAgent-Friday.md) |
 
 ---
 
