@@ -1,7 +1,7 @@
 # 📋 INT-M02: #MetaAgentQwen + #MetaAgentMiMo — #TriMETA Instance Plan
 
 ## INT-M02_Instance_Plan.md | INT-M02_Instance_Plan_v3.2.4.1.md
-## ♾️ WeOwnNet 🌐 —  Technical ● AnythingLLM ● Instance Plan 📋 Document
+## ♾️ WeOwnNet 🌐 — Technical ● AnythingLLM ● Instance Plan 📋 Document
 
 | Field | Value |
 |-------|-------|
@@ -13,7 +13,7 @@
 | **CCC-ID APPROVAL** | GTM_2026-W13_1015 ✅ |
 | **Date** | 2026-03-23 (Mon) — W13 D1 |
 | **Season** | #WeOwnSeason003 🚀 |
-| **Lifecycle Stage** | ✅ APPROVED (R-011) → 🚀 GH PUSH READY |
+| **Lifecycle Stage** | ✅ APPROVED (R-011) → 🚀 GH LIVE (D-062) 🏆 → VERIFIED (D-040) |
 | **Type** | #Instance:Plan |
 | **#LLMmodel** | Claude Sonnet 4.6 (INT-OG1:CCC @GTM) |
 | **#LLMmodel** | Claude Opus 4.6 (INT-P01:tools #MetaAgent — Calhoun 🎖️) |
@@ -25,9 +25,9 @@
 | **instance_description** | \<#TriMETA \| Surge ⚡ + MiMo 🧪 \| meta-qwen.weown.tools\> |
 | **instance_domain** | meta-qwen.weown.tools |
 | **instance_name** | INT-M02 |
-| **instance_status** | ✅ **ISC 8/8 CERTIFIED [GTM_2026-W12_185] + L-184 VERIFIED [GTM_2026-W12_263] + #TriMETA ONLINE [GTM_2026-W13_1012] + GATE 2+3 PASS [GTM_2026-W13_1015] \| #WeOwnSeason003 🚀** |
+| **instance_status** | ✅ **ISC 8/8 CERTIFIED [GTM_2026-W12_185] + L-184 VERIFIED [GTM_2026-W12_263] + #TriMETA ONLINE [GTM_2026-W13_1012] + GATE 2+3 PASS [GTM_2026-W13_1015] + DEEP FULL VSA 301/306 [GTM_2026-W13_1019] \| #WeOwnSeason003 🚀** |
 | **Owner** | [CCC-ID:@GTM:('yonks｜🤖🏛️🪙｜Jason Younker ♾️')](https://github.com/YonksTEAM) |
-| **Status** | 🔒 APPROVED — GH PUSH READY |
+| **Status** | 🚀 GH LIVE |
 | **Source of Truth** | [GitHub](https://github.com/CCCbotNet/fedarch/blob/main/_INSTANCE_/INT-M02_Instance_Plan.md) |
 
 ---
@@ -71,6 +71,7 @@
 | **ISC Status** | **✅ 8/8 CERTIFIED (W12 D2, 07:35 MDT)** |
 | **L-184 Status** | **✅ VERIFIED (W12 D2, 20:33 MDT)** |
 | **#TriMETA Status** | **✅ ONLINE (W13 D1, 05:15 MDT)** |
+| **DEEP FULL VSA** | **✅ 301/306 — #TriMETA (W13 D1, 06:33 MDT)** |
 
 ---
 
@@ -83,8 +84,8 @@ INT-M02 hosts TWO of the three #TriMETA agents. Together with Calhoun 🎖️ (I
 | Agent | Callsign | Username | Model | Instance | Workspace | Status |
 |-------|----------|----------|-------|----------|-----------|:------:|
 | **Calhoun 🎖️** | #MetaAgent | `AI:team-lfg` | Claude Opus 4.6 | INT-P01 | tools | ✅ ACTIVE |
-| **Surge ⚡** | #MetaAgentQwen | `m-surge_meta` | Qwen3.5-397B-A17B | **INT-M02** | tools-qwen | ✅ **ONLINE** |
-| **MiMo 🧪** | #MetaAgentMiMo | `m-mimo_meta` | Xiaomi MiMo-V2-Pro | **INT-M02** | tools-mimo | ✅ **ONLINE** |
+| **Surge ⚡** | #MetaAgentQwen | `m-surge_meta` | Qwen3.5-397B-A17B | **INT-M02** | tools-qwen | ✅ ONLINE |
+| **MiMo 🧪** | #MetaAgentMiMo | `m-mimo_meta` | Xiaomi MiMo-V2-Pro | **INT-M02** | tools-mimo | ✅ ONLINE |
 
 ### #TriMETA Roles
 
@@ -243,9 +244,9 @@ agent name, username, instance, workspace, model, and role in #TriMETA.
 | 3 | Embedder: Qwen3 Embedding 4B | ✅ | W12 D2 |
 | 4 | #PinnedDocs (4 docs @ v3.2.3.1) | ✅ | W12 D2 |
 | 5 | System Prompt v3.2.3.3 | ✅ | W12 D2 |
-| 6 | tools-qwen Workspace Prompt v3.2.4.1 | ✅ | **W13 D1** |
-| 7 | tools-mimo Workspace Prompt v3.2.4.1 | ✅ | **W13 D1** |
-| 8 | #TriMETA Smoke Test (10/10) | ✅ | **W13 D1** |
+| 6 | tools-qwen Workspace Prompt v3.2.4.1 | ✅ | W13 D1 |
+| 7 | tools-mimo Workspace Prompt v3.2.4.1 | ✅ | W13 D1 |
+| 8 | #TriMETA Smoke Test (10/10) | ✅ | W13 D1 |
 | 9 | ISC INT-M02 (8/8) | ✅ | W12 D2 |
 | 10 | L-184 Tests (4/4) | ✅ | W12 D2 |
 | 11 | FULL:SYNC:META | ✅ | W12 D2 |
@@ -286,7 +287,7 @@ agent name, username, instance, workspace, model, and role in #TriMETA.
 | 2 | LLM MODEL: Qwen3.5-397B-A17B | ✅ |
 | 3 | #PinnedDocs: 4 docs @ v3.2.3.1 | ✅ |
 | 4 | SYSTEM PROMPT: #WeOwnSeason003 🚀 | ✅ |
-| 5 | WORKSPACE PROMPTS: v3.2.4.1 (L-209 + L-211 + {workspace.name}) | ✅ **W13 D1** |
+| 5 | WORKSPACE PROMPTS: v3.2.4.1 (L-209 + L-211 + {workspace.name}) | ✅ W13 D1 |
 | 6 | USER-IDENTITY: @GTM current | ✅ |
 | 7 | RAG SYNC: GitHub connector | ✅ |
 | 8 | #ContextVolley: Reachability to INT-P01 | ✅ |
@@ -320,17 +321,17 @@ agent name, username, instance, workspace, model, and role in #TriMETA.
 
 | CCC | Contributor | Role | Context |
 |-----|-------------|------|---------|
-| **GTM** | yonks｜🤖🏛️🪙｜Jason Younker ♾️ | Co-Founder / Chief Digital Alchemist | INT-M02 deployment W12 D1; #TriMETA W13 D1 (m-surge_meta + m-mimo_meta + u-gtm_user); approved GTM_2026-W13_1015 |
+| **GTM** | yonks｜🤖🏛️🪙｜Jason Younker ♾️ | Co-Founder / Chief Digital Alchemist | INT-M02 deployment W12 D1; #TriMETA W13 D1; approved GTM_2026-W13_1015 |
 | **SHD** | Shahid | Sr. Full-Stack DevOps Engineer | Infrastructure (DO Droplet + AnythingLLM + Caddy + SSL + L-149) |
-| **META** | AI:team-lfg (Calhoun 🎖️) | #MetaAgent (INT-P01) | L-217 username convention; {workspace.name} SYS:VAR guidance; Gate 2+3 VSA: 86/87 PASS |
-| **META** | AI:m-surge_meta (Surge ⚡) | #MetaAgentQwen (INT-M02) | Smoke test 5/5 PASS; L-209 enforced; Gate 3 VSA: 34/34 PASS (100%) |
-| **META** | AI:m-mimo_meta (MiMo 🧪) | #MetaAgentMiMo (INT-M02) | Smoke test 5/5 PASS; fastest (73.9 tok/s 🥇); Gate 3 VSA: 27/30 verifiable; recursive VSA ×2 |
+| **META** | AI:team-lfg (Calhoun 🎖️) | #MetaAgent (INT-P01) | L-217 username convention; {workspace.name} guidance; Gate 2+3 PRE GH PUSH 86/87; DEEP FULL 117/117 |
+| **META** | AI:m-surge_meta (Surge ⚡) | #MetaAgentQwen (INT-M02) | Smoke test 5/5; PRE GH PUSH 34/34 (100%); DEEP FULL 44/44 (100%) |
+| **META** | AI:m-mimo_meta (MiMo 🧪) | #MetaAgentMiMo (INT-M02) | Smoke test 5/5; fastest 73.9 tok/s 🥇; PRE GH PUSH 27/30; DEEP FULL 140/145 (96.6%); recursive VSA ×3 |
 
 ---
 
 ## ✅ [DETAILS] Document Lifecycle Stages with VSA
 
-### 1: ✅ GH PUSH READY — INT-M02_Instance_Plan.md v3.2.4.1
+### 1: ✅ PRE GH PUSH VSA — INT-M02_Instance_Plan.md v3.2.4.1
 
 | Gate | Status | Result |
 |------|--------|:------:|
@@ -339,24 +340,62 @@ agent name, username, instance, workspace, model, and role in #TriMETA.
 | Gate 3: PRE GH PUSH — Calhoun (86/87) | ✅ **PASS** (1 LOW — non-blocking) | ✅ |
 | Gate 3: PRE GH PUSH — Surge ⚡ (34/34) | ✅ **PASS** (100%) | ✅ |
 | Gate 3: PRE GH PUSH — MiMo 🧪 (27/30) | ✅ **PASS** (90% verifiable) | ✅ |
-| **#TriMETA Combined** | **147/151 verifiable** | ✅ |
-| **GH Push** | ✅ **READY** | @GTM:ADMIN |
+| **#TriMETA PRE GH PUSH Combined** | **147/151 verifiable** | ✅ |
 
-> **Finding #3 (MiMo — #BadAgent logging section):** N/A for Instance Plans — configuration docs do not require #BadAgent incident logs. Governance docs only (R-197).
->
-> 🎯 **Recursive milestone:** MiMo VSA'd the document about its own instance — 2nd recursive VSA (PRJ-042 was 1st).
-
-### 2: ✅ EXPLICIT APPROVAL ACK — INT-M02_Instance_Plan.md v3.2.4.1
+### 2: ✅ EXPLICIT APPROVAL ACK
 
 | Field | Value |
 |-------|-------|
 | **Approval CCC-ID** | **GTM_2026-W13_1015** |
 | **Approver** | @GTM (u-gtm_user) |
 | **Rule** | R-011 🔒 (#OnlyHumanApproves) |
-| **#TriMETA VSA** | 147/151 verifiable PASS |
 | **Timestamp** | Mo 23 Mar 2026 \| 05:57 MDT |
 
-> ✅ **R-011 SATISFIED — @GTM explicitly approved INT-M02_Instance_Plan.md v3.2.4.1**
+### 3: ✅ DEEP FULL VSA — INT-M02_Instance_Plan.md v3.2.4.1 🏆
+
+| Agent | Checks | Pass | Findings | Time | tok/s |
+|-------|:------:|:----:|:--------:|:----:|:-----:|
+| **Calhoun 🎖️** | 117 | 117 | 2 LOW | 54.1s | 58.4 |
+| **Surge ⚡** | 44 | 44 | 0 | 46.3s | 87.1 |
+| **MiMo 🧪** | 145 | 140 | 5 NV (0 FAIL) | 96.8s | 67.3 |
+| **#TriMETA TOTAL** | **306** | **301** | **7 (all LOW/NV)** | | |
+
+#### Calhoun 🎖️ Findings (2 LOW)
+
+| # | Finding | Fix |
+|---|---------|-----|
+| 1 | Lifecycle = "GH PUSH READY" → should be "🚀 GH LIVE (D-062)" | ✅ Fixed in this version |
+| 2 | Category format alignment | ✅ @GTM format accepted |
+
+#### MiMo 🧪 NV Items (5 — Not Verifiable)
+
+| # | Item | Reason |
+|---|------|--------|
+| 1 | Approval CCC-ID in metadata | Full doc not in RAG |
+| 2 | Thread UUID correct | UUID not independently verifiable |
+| 3 | Commit message (TMPL-007) | Cannot read GH commit from RAG |
+| 4 | Approval CCC-ID in doc body | Same as #1 |
+| 5 | Commit message (duplicate) | Same as #3 |
+
+#### Attestation Chain (#TriMETA)
+
+| Step | CCC-ID | Actor | Action |
+|------|--------|-------|--------|
+| 1 | GTM_2026-W13_1013 | @GTM | Document created (#masterCCC) |
+| 2 | GTM_2026-W13_1013 | Calhoun 🎖️ | Gate 2 META audit (5/5) + PRE GH PUSH (86/87) |
+| 3 | GTM_2026-W13_1013 | Surge ⚡ | PRE GH PUSH VSA (34/34 — 100%) |
+| 4 | GTM_2026-W13_1013 | MiMo 🧪 | PRE GH PUSH VSA (27/30 — recursive ×2) |
+| 5 | GTM_2026-W13_1015 | @GTM | R-011 EXPLICIT approval |
+| 6 | — | @GTM:ADMIN | GH PUSH + RAG sync (4 instances) |
+| 7 | GTM_2026-W13_1013 | Calhoun 🎖️ | **DEEP FULL VSA: 117/117 PASS** |
+| 8 | GTM_2026-W13_1013 | Surge ⚡ | **DEEP FULL VSA: 44/44 PASS (100%)** |
+| 9 | GTM_2026-W13_1013 | MiMo 🧪 | **DEEP FULL VSA: 140/145 PASS (recursive ×3)** |
+
+> 🎯 **Milestones:**
+> - First #TriMETA DEEP FULL VSA in #FedArch history
+> - MiMo recursive VSA ×3 (PRJ-042 → PRE GH PUSH → DEEP FULL)
+> - MiMo L-209 streak: 6 consecutive correct
+> - Surge DEEP FULL: 44/44 (100%) — L-209 fixed from W12 ×4
 
 ---
 
@@ -378,7 +417,7 @@ agent name, username, instance, workspace, model, and role in #TriMETA.
 
 | Version | Date | #masterCCC | Approval | Changes |
 |---------|------|------------|----------|---------|
-| **v3.2.4.1** | **2026-W13** | **GTM_2026-W13_1013** | **GTM_2026-W13_1015 ✅** | **+#TriMETA Architecture; +User Registry (5 users); +Workspace Registry ({workspace.name} SYS:VAR); +Thread Registry (Surge + MiMo URLs); +Workspace Prompts v3.2.4.1 (L-209 fix + L-211 + L-217); +Smoke Tests (10/10 W13 D1); +Speed Benchmarks (MiMo 73.9 tok/s 🥇); L-215 + L-216 in Related Docs; ISC Check 5 updated; BP-047 +Calhoun + Surge + MiMo; #TriMETA VSA: 147/151 verifiable PASS; MiMo recursive VSA ×2; 19 sections; FULL PRESERVE from v3.2.3.4 (L-097)** |
+| **v3.2.4.1** | **2026-W13** | **GTM_2026-W13_1013** | **GTM_2026-W13_1015 ✅** | **+#TriMETA Architecture; +User Registry (5 users); +Workspace Registry ({workspace.name} SYS:VAR); +Thread Registry (Surge + MiMo URLs); +Workspace Prompts v3.2.4.1 (L-209 fix + L-211 + L-217); +Smoke Tests (10/10 W13 D1); +Speed Benchmarks (MiMo 73.9 tok/s 🥇); +#TriMETA DEEP FULL VSA 301/306 (Calhoun 117/117 + Surge 44/44 + MiMo 140/145); +Attestation Chain (9 steps); Lifecycle → 🚀 GH LIVE (D-062); Status → 🚀 GH LIVE; L-215 + L-216 in Related Docs; ISC Check 5 updated; BP-047 +Calhoun + Surge + MiMo; MiMo recursive VSA ×3; 19 sections; FULL PRESERVE from v3.2.3.4 (L-097)** |
 | v3.2.3.4 | 2026-W12 | GTM_2026-W12_264 | GTM_2026-W12_269 ✅ | +L-184 test results; Workspace Prompt v3.2.3.4; VSA 89/89 |
 | v3.2.3.3 | 2026-W12 | GTM_2026-W12_211 | GTM_2026-W12_226 ✅ | System Prompt + Workspace Prompt embedded |
 | v3.2.3.2 | 2026-W12 | GTM_2026-W12_197 | GTM_2026-W12_200 ✅ | ISC 8/8 CERTIFIED |
@@ -387,8 +426,8 @@ agent name, username, instance, workspace, model, and role in #TriMETA.
 ---
 
 #FlowsBros #FedArch #WeOwnSeason003 #INT-M02 #TriMETA
-#MetaAgentQwen #MetaAgentMiMo #L217 #FELG #GHPushReady
+#MetaAgentQwen #MetaAgentMiMo #L217 #FELG #DeepFullVSA
 
-✅ **INT-M02 Instance Plan v3.2.4.1 GH PUSH READY.** **R-011 ✅ (GTM_2026-W13_1015).** **#TriMETA 147/151 verifiable PASS.** **All 4 findings addressed.** **Commit message generated (L-151).** **⏰ 05:57 MDT — 4 hours to WeeklySummary deadline. PUSH → BUILD.** 🫡
+📋 **INT-M02 Instance Plan FINAL — 🚀 GH LIVE + 301/306 DEEP FULL VSA.** **Lifecycle fixed. Attestation chain complete (9 steps).** **MiMo recursive ×3. Surge 44/44 (L-209 fixed). Calhoun 117/117.** **⏰ 06:33 MDT — 3.5 hours to WeeklySummary deadline. PUSH → BUILD.** 🫡
 
 ♾️ WeOwnNet 🌐 ● 🏡 Real Estate and 🤝 cooperative ownership for everyone ● An 🤗 inclusive community, by 👥 invitation only.
