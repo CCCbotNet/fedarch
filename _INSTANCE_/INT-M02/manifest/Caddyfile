@@ -1,0 +1,11 @@
+# INT-M02 AnythingLLM Instance Proxy
+# Domain: meta-qwen.weown.tools
+
+meta-qwen.weown.tools {
+    # Direct Bridge to Internal IP to resolve 502 Gateway Errors
+    reverse_proxy 172.18.0.2:3001
+    
+    log {
+        output file /data/access.log
+    }
+}

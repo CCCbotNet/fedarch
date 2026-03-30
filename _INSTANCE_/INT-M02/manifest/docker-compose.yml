@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  anythingllm:
+    image: mintplexlabs/anythingllm
+    container_name: anythingllm
+    restart: always
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./storage:/app/server/storage
+    environment:
+      - STORAGE_DIR=/app/server/storage
+    networks:
+      backend_bridge:
+        ipv4_address: 172.18.0.2
+
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy_data:/data
+      - ./caddy_config:/config
+    networks:
+      backend_bridge:
+        ipv4_address: 172.18.0.3
+    depends_on:
+      - anythingllm
+
+networks:
+  backend_bridge:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
