@@ -6,7 +6,9 @@
 | Field | Value |
 |-------|-------|
 | Guide | GUIDE-007 |
-| Version | 3.2.0.0 |
+| Version | 3.2.1.1 |
+| CCC-ID | CTO_2026-W11_001 |
+| Approval | ⬜ AWAITING HUMAN APPROVAL (R-011) |
 | Purpose | Procedures for maintaining INSTANCE_INVENTORY.md as a living document |
 | Audience | Platform Engineers, ADMIN users, Infrastructure Stewards |
 | Related | INSTANCE_INVENTORY.md, TMPL-011, SharedKernel (Elevated Registry), BP-027 |
@@ -604,7 +606,7 @@ Contact: Signal: ♾️ WeOwn.Agency 👥
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 3.2.0.0 | 2026-W11 | 🚀 **INITIAL RELEASE** — Complete guide for maintaining INSTANCE_INVENTORY.md; 7 sections: overview, when to update, process, filling out sections, workflows, scenarios, quick commands; 4 detailed workflows (deploy, scale, incident, key rotation); aligned with BP-027, L-097, BP-064 |
+| 3.2.1.1 | 2026-W11 | CTO_2026-W11_001 | ⬜ AWAITING | 🚀 **INITIAL RELEASE** — Complete guide for maintaining INSTANCE_INVENTORY.md; 7 sections: overview, when to update, process, filling out sections, workflows, scenarios, quick commands; 4 detailed workflows (deploy, scale, incident, key rotation); aligned with BP-027, L-097, BP-064 |
 
 ---
 

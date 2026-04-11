@@ -6,7 +6,9 @@
 | Field | Value |
 |-------|-------|
 | Template | TMPL-011_Instance-Deployment-Checklist |
-| Version | 3.2.0.0 |
+| Version | 3.2.1.1 |
+| CCC-ID | CTO_2026-W11_001 |
+| Approval | ⬜ AWAITING HUMAN APPROVAL (R-011) |
 | Purpose | Standard checklist for deploying new #AnythingLLM instances |
 | Audience | DevOps, Platform Engineers, ADMIN users |
 | Related | INSTANCE_INVENTORY.md, GUIDE-007, BP-025, BP-051 |
@@ -386,7 +388,7 @@ Notes:
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 3.2.0.0 | 2026-W11 | 🚀 **INITIAL RELEASE** — Complete deployment checklist; 10 phases: infrastructure, AnythingLLM, system prompt, pinned docs, threads, security, observability, ISC, documentation, verification; aligned with BP-025 (instance setup order), BP-051 (#HomeInstance setup), BP-059 (ISC certification) |
+| 3.2.1.1 | 2026-W11 | CTO_2026-W11_001 | ⬜ AWAITING | 🚀 **INITIAL RELEASE** — Complete deployment checklist; 10 phases: infrastructure, AnythingLLM, system prompt, pinned docs, threads, security, observability, ISC, documentation, verification; aligned with BP-025 (instance setup order), BP-051 (#HomeInstance setup), BP-059 (ISC certification) |
 
 ---
 
