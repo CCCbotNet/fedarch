@@ -7,7 +7,7 @@
 |-------|-------|
 | Guide | GUIDE-007 |
 | Version | 3.2.1.1 |
-| CCC-ID | CTO_2026-W11_001 |
+| CCC-ID | CTO_2026-W15_001 |
 | Approval | ⬜ AWAITING HUMAN APPROVAL (R-011) |
 | Purpose | Procedures for maintaining INSTANCE_INVENTORY.md as a living document |
 | Audience | Platform Engineers, ADMIN users, Infrastructure Stewards |
