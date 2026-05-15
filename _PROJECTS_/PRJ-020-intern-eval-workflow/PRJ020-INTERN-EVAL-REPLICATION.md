@@ -13,7 +13,7 @@
 
 ---
 
-> ⛔ **REPLICATION & AUTOMATION NOTICE:** For immediate replication or future cohort runs, **the manual FluentForms API extraction and the manual one-time Python export to PostgreSQL must be automated or improved**. Relying on manual pulls creates duplicate evaluations, race conditions, and excessive manual overhead. **Before re-running this pipeline for another intake, implement a FluentForms → n8n webhook trigger, add strict date-cutoff logic, and replace the Python script with a native n8n PostgreSQL upsert node.** (See Section 10 for implementation path).
+> ⛔ **REPLICATION & AUTOMATION RECOMMENDATION:** For immediate replication or future cohort runs, **the manual FluentForms API extraction and the manual one-time Python export to PostgreSQL are highly recommended to be automated or improved**. Relying on manual pulls creates duplicate evaluations, race conditions, and excessive manual overhead. **Before re-running this pipeline for another intake, implement a FluentForms → n8n webhook trigger, add strict date-cutoff logic, and replace the Python script with a native n8n PostgreSQL upsert node.** (See Section 10 for implementation path).
 
 ---
 
